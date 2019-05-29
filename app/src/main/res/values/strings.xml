@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">WanAndroid</string>
+
+    <string name="scale_down_show_behavior">com.zkp.android.utils.ScaleDownShowBehavior</string>
+    <string name="bye_burger_bottom_behavior">com.zkp.android.utils.BottomNavigationBehavior</string>
+
+    <string name="navigation_drawer_open">Open drawer</string>
+    <string name="navigation_drawer_close">Close drawer</string>
+
+    <string name="title_home">主页</string>
+    <string name="title_knowledge_hierarchy">知识体系</string>
+    <string name="title_wx_article">公众号</string>
+    <string name="title_navigation">导航</string>
+    <string name="title_project">项目</string>
+    <string name="login_in">登录</string>
+    <string name="my_collect">我的收藏</string>
+    <string name="nav_welfare">福利</string>
+    <string name="nav_weather">天气</string>
+    <string name="nav_todo">TODO</string>
+    <string name="nav_night_mode">夜间模式</string>
+    <string name="setting">设置</string>
+    <string name="about_us">关于</string>
+    <string name="cnblogs">测试博客</string>
+    <string name="logout">退出登录</string>
+    <string name="action_search">搜索</string>
+    <string name="useful_sites">常用网站</string>
+    <string name="top">top</string>
+    <string name="new1">new</string>
+    <string name="collect">收藏</string>
+    <string name="share">分享</string>
+    <string name="open_it_with_browser">用浏览器打开</string>
+
+</resources>

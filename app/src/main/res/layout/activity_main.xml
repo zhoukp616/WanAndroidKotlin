@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.classic.common.MultipleStatusView xmlns:android="http://schemas.android.com/apk/res/android"
+                                       xmlns:app="http://schemas.android.com/apk/res-auto"
+                                       xmlns:tools="http://schemas.android.com/tools"
+                                       android:id="@+id/custom_multiple_status_view"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="match_parent"
+                                       app:noNetworkView="@layout/no_network_view"
+                                       app:emptyView="@layout/empty_view"
+                                       app:errorView="@layout/error_view"
+                                       app:loadingView="@layout/loading_view">
+
+    <android.support.v4.widget.DrawerLayout android:id="@+id/drawerLayout"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:orientation="vertical">
+
+        <android.support.design.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <include layout="@layout/toolbar"/>
+
+            <FrameLayout
+                    android:id="@+id/frameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+            <android.support.design.widget.BottomNavigationView
+                    android:id="@+id/bottomNavigation"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_55"
+                    android:layout_gravity="bottom"
+                    android:background="@color/colorWhite"
+                    android:elevation="@dimen/dp_16"
+                    app:labelVisibilityMode="labeled"
+                    app:itemIconTint="@drawable/nav_item_color_selector"
+                    app:itemTextColor="@drawable/nav_item_color_selector"
+                    app:layout_behavior="@string/bye_burger_bottom_behavior"
+                    app:menu="@menu/bottom_nav_menu"/>
+
+            <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/faBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_marginEnd="@dimen/dp_16"
+                    android:layout_marginRight="@dimen/dp_16"
+                    android:layout_marginBottom="@dimen/dp_60"
+                    android:src="@drawable/icon_arrow_upward"
+                    app:backgroundTint="@color/colorPrimary"
+                    app:layout_behavior="@string/scale_down_show_behavior"
+                    tools:ignore="RtlHardcoded"/>
+
+        </android.support.design.widget.CoordinatorLayout>
+
+        <android.support.design.widget.NavigationView
+                android:id="@+id/navigation"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:background="@color/colorWhite"
+                app:headerLayout="@layout/nav_header"
+                app:insetForeground="@android:color/transparent"
+                app:itemIconTint="@color/nav_item_color_ic"
+                app:itemTextColor="@color/nav_item_color_tv"
+                app:menu="@menu/nav_menu"/>
+
+    </android.support.v4.widget.DrawerLayout>
+
+</com.classic.common.MultipleStatusView>

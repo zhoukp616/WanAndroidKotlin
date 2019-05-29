@@ -1,0 +1,153 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'org.greenrobot.greendao'
+
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    defaultConfig {
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        flavorDimensions "default"
+    }
+
+    configurations.all {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            def requested = details.requested
+            if (requested.group == 'com.android.support') {
+                if (!requested.name.startsWith("multidex")) {
+                    details.useVersion '28.0.0'
+                }
+            }
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            outputFileName = "WanAndroid_${variant.buildType.name}_${variant.versionName}.apk".toLowerCase()
+        }
+    }
+
+    signingConfigs {
+        dev {
+            keyAlias 'wanandroid_dev'
+            keyPassword '123456'
+            storeFile file('D:/code/Git/WanAndroid/ot.jks')
+            storePassword '123456'
+        }
+        gank {
+            keyAlias 'wanandroid'
+            keyPassword '123456'
+            storeFile file('D:/code/Git/WanAndroid/ot.jks')
+            storePassword '123456'
+        }
+    }
+
+    buildTypes {
+        dev {
+            debuggable true
+            signingConfig signingConfigs.dev
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), "proguard-rules.pro"
+        }
+        gank {
+            signingConfig signingConfigs.gank
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), "proguard-rules.pro"
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+        disable 'MissingTranslation'
+    }
+
+    productFlavors {
+        flavors_dev {
+            applicationId "com.zkp.wanandroiddev"
+            manifestPlaceholders = [
+                    app_name: "玩安卓_dev"
+            ]
+        }
+        flavors_gank {
+            applicationId "com.zkp.wanandroid"
+            manifestPlaceholders = [
+                    app_name: "玩安卓"
+            ]
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //support
+    implementation rootProject.ext.dependencies["appcompat-v7"]
+    implementation rootProject.ext.dependencies["cardview-v7"]
+    implementation rootProject.ext.dependencies["preference-v7"]
+    implementation rootProject.ext.dependencies["preference-v14"]
+    implementation rootProject.ext.dependencies["design"]
+
+    implementation rootProject.ext.dependencies["fragmentation"]
+    implementation rootProject.ext.dependencies["fragmentation-swipeback"]
+
+    //ui
+    implementation rootProject.ext.dependencies["multipleStatusView"]
+    implementation rootProject.ext.dependencies["SmartRefreshLayout"]
+    implementation rootProject.ext.dependencies["SmartRefreshHeader"]
+    implementation rootProject.ext.dependencies["banner"]
+    implementation rootProject.ext.dependencies["agentweb"]
+    implementation rootProject.ext.dependencies["smartShow"]
+    implementation rootProject.ext.dependencies["MagicIndicator"]
+
+    //net
+    implementation rootProject.ext.dependencies["gson"]
+    implementation rootProject.ext.dependencies["okhttp"]
+    implementation rootProject.ext.dependencies["cookJar"]
+    implementation rootProject.ext.dependencies["logging-interceptor"]
+    implementation rootProject.ext.dependencies["retrofit"]
+    implementation rootProject.ext.dependencies["converter-gson"]
+    implementation rootProject.ext.dependencies["adapter-rxjava2"]
+    implementation rootProject.ext.dependencies["converter-moshi"]
+    implementation rootProject.ext.dependencies["Kotlin-moshi"]
+    implementation rootProject.ext.dependencies["glide"]
+    annotationProcessor rootProject.ext.dependencies["glide_compiler"]
+
+    //rx
+    implementation rootProject.ext.dependencies["rxjava"]
+    implementation rootProject.ext.dependencies["rxandroid"]
+
+    //di
+    implementation rootProject.ext.dependencies["dagger2"]
+    annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
+    implementation rootProject.ext.dependencies["dagger2-android"]
+    implementation rootProject.ext.dependencies["dagger2-android-support"]
+    annotationProcessor rootProject.ext.dependencies["dagger2-android-processor"]
+    annotationProcessor rootProject.ext.dependencies["javax_annotation"]
+    implementation rootProject.ext.dependencies["butterknife"]
+    kapt rootProject.ext.dependencies["butterknife-compiler"]
+
+    //tools
+    implementation rootProject.ext.dependencies["permission"]
+    implementation rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
+    implementation rootProject.ext.dependencies["greenDao"]
+    implementation rootProject.ext.dependencies["greenDao-Generator"]
+    implementation rootProject.ext.dependencies["netStatusBus"]
+
+    implementation rootProject.ext.dependencies["eventBus"]
+}

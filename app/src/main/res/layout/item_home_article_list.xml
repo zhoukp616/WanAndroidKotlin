@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    xmlns:tools="http://schemas.android.com/tools"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/dp_5"
+                                    android:layout_marginTop="@dimen/dp_4"
+                                    android:layout_marginRight="@dimen/dp_5"
+                                    android:layout_marginBottom="@dimen/dp_4"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:foreground="?android:attr/selectableItemBackground"
+                                    app:cardBackgroundColor="@color/colorWhite"
+                                    app:cardCornerRadius="@dimen/dp_10">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dp_14"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_14"
+            android:paddingBottom="@dimen/dp_10">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:id="@+id/tvArticleTop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_5"
+                    android:background="@drawable/bg_top"
+                    android:paddingLeft="@dimen/dp_4"
+                    android:paddingTop="@dimen/dp_2"
+                    android:paddingRight="@dimen/dp_4"
+                    android:paddingBottom="@dimen/dp_2"
+                    android:text="@string/top"
+                    android:textColor="@color/colorRed"
+                    android:textSize="@dimen/sp_10"
+                    android:visibility="gone"
+                    tools:text="top"
+                    tools:visibility="visible" tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/tvArticleFresh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_5"
+                    android:layout_toEndOf="@id/tvArticleTop"
+                    android:layout_toRightOf="@id/tvArticleTop"
+                    android:background="@drawable/bg_top"
+                    android:paddingLeft="@dimen/dp_4"
+                    android:paddingTop="@dimen/dp_2"
+                    android:paddingRight="@dimen/dp_4"
+                    android:paddingBottom="@dimen/dp_2"
+                    android:text="@string/new1"
+                    android:textColor="@color/colorRed"
+                    android:textSize="@dimen/sp_10"
+                    android:visibility="gone"
+                    tools:text="new"
+                    tools:visibility="visible" tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/tvArticleTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_5"
+                    android:layout_toEndOf="@id/tvArticleFresh"
+                    android:layout_toRightOf="@id/tvArticleFresh"
+                    android:background="@drawable/bg_tag"
+                    android:paddingLeft="@dimen/dp_4"
+                    android:paddingTop="@dimen/dp_2"
+                    android:paddingRight="@dimen/dp_4"
+                    android:paddingBottom="@dimen/dp_2"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/sp_10"
+                    android:visibility="gone"
+                    tools:text="wanAndroid"
+                    tools:visibility="visible" tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/tvArticleAuthor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/tvArticleTag"
+                    android:layout_toRightOf="@id/tvArticleTag"
+                    android:gravity="center"
+                    android:textColor="@color/Grey700"
+                    android:textSize="@dimen/sp_12"
+                    tools:text="author" tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/tvArticleChapterName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/tvArticleAuthor"
+                    android:layout_toRightOf="@id/tvArticleAuthor"
+                    android:gravity="end"
+                    android:textColor="@color/Grey700"
+                    android:textSize="12sp"
+                    tools:text="super/chapterName" tools:ignore="RtlHardcoded"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+            <ImageView
+                    android:id="@+id/ivArticleThumbnail"
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="@dimen/dp_75"
+                    android:layout_marginEnd="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_5"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/bg_placeholder"
+                    tools:visibility="visible" tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                    android:id="@+id/tvArticleTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/ivArticleThumbnail"
+                    android:layout_toRightOf="@id/ivArticleThumbnail"
+                    android:ellipsize="end"
+                    android:gravity="top|start"
+                    android:lineSpacingExtra="@dimen/dp_2"
+                    android:maxLines="2"
+                    android:textColor="@color/Grey900"
+                    android:textSize="@dimen/sp_16"
+                    tools:text="WanAndroid"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:gravity="center_vertical">
+
+            <ImageView
+                    android:id="@+id/ivArticleLike"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_like_not"/>
+
+            <TextView
+                    android:id="@+id/tvArticleNiceDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dp_12"
+                    android:layout_marginLeft="@dimen/dp_12"
+                    android:layout_toEndOf="@id/ivArticleLike"
+                    android:layout_toRightOf="@id/ivArticleLike"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/Grey700"
+                    android:textSize="@dimen/sp_12"
+                    tools:text="2019-01-01" tools:ignore="RtlHardcoded"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
