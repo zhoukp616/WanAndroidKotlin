@@ -62,4 +62,18 @@ interface ApiService {
     @GET("navi/json")
     fun getNaviJson(): Observable<HttpResult<MutableList<Navigation>>>
 
+    /**
+     * 获取项目分类数据
+     */
+    @GET("project/tree/json")
+    fun getProjectTree(): Observable<HttpResult<MutableList<ProjectTree>>>
+
+    /**
+     * 获取某个分类下的项目列表
+     * @param page 页码 从1开始
+     * @param cid 项目分类id
+     */
+    @GET("project/list/{page}/json?")
+    fun getProjectList(@Path("page") page: Int, @Query("cid") cid: Int): Observable<HttpResult<ArticleResponseBody>>
+
 }
