@@ -19,6 +19,7 @@ import com.zkp.android.base.activity.BaseActivity
 import com.zkp.android.http.AppConfig
 import com.zkp.android.modules.home.HomeFragment
 import com.zkp.android.modules.knowledge.KnowledgeFragment
+import com.zkp.android.modules.navigation.NavigationFragment
 import com.zkp.android.modules.wechat.WeChatFragment
 
 class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), MainContract.View {
@@ -50,6 +51,7 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
     private var mHomeFragment: HomeFragment? = null
     private var mKnowledgeFragment: KnowledgeFragment? = null
     private var mWeChatFragment: WeChatFragment? = null
+    private var mNavigationFragment: NavigationFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if (savedInstanceState != null) {
@@ -132,14 +134,14 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
                 }
                 transaction.show(mWeChatFragment!!)
             }
-//            AppConfig.TYPE_NAVIGATION -> {
-//                mTitle.text = getString(R.string.navigation)
-//                if (mNavigationFragment == null) {
-//                    mNavigationFragment = NavigationFragment.newInstance()
-//                    transaction.add(R.id.frameLayout, mNavigationFragment)
-//                }
-//                transaction.show(mNavigationFragment)
-//            }
+            AppConfig().TYPE_NAVIGATION -> {
+                mTitle.text = getString(R.string.title_navigation)
+                if (mNavigationFragment == null) {
+                    mNavigationFragment = NavigationFragment().getInstance()
+                    transaction.add(R.id.frameLayout, mNavigationFragment!!)
+                }
+                transaction.show(mNavigationFragment!!)
+            }
 //            AppConfig.TYPE_PROJECT -> {
 //                mTitle.text = getString(R.string.project)
 //                if (mProjectFragment == null) {
@@ -159,9 +161,7 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
             AppConfig().TYPE_HOME_PAGER -> mHomeFragment?.let { transaction.hide(it) }
             AppConfig().TYPE_KNOWLEDGE -> mKnowledgeFragment?.let { transaction.hide(it) }
             AppConfig().TYPE_WX_ARTICLE -> mWeChatFragment?.let { transaction.hide(it) }
-//            AppConfig.TYPE_NAVIGATION -> if (mNavigationFragment != null) {
-//                transaction.hide(mNavigationFragment)
-//            }
+            AppConfig().TYPE_NAVIGATION -> mNavigationFragment?.let { transaction.hide(it) }
 //            AppConfig.TYPE_PROJECT -> if (mProjectFragment != null) {
 //                transaction.hide(mProjectFragment)
 //            }
@@ -200,7 +200,7 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
                 R.id.navigation_home -> showFragment(AppConfig().TYPE_HOME_PAGER)
                 R.id.navigation_knowledge_hierarchy -> showFragment(AppConfig().TYPE_KNOWLEDGE)
                 R.id.navigation_wx_article -> showFragment(AppConfig().TYPE_WX_ARTICLE)
-//                R.id.navigation_navigation -> showFragment(AppConfig.TYPE_NAVIGATION)
+                R.id.navigation_navigation -> showFragment(AppConfig().TYPE_NAVIGATION)
 //                R.id.navigation_project -> showFragment(AppConfig.TYPE_PROJECT)
                 else -> {
                 }

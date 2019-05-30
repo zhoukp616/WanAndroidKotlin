@@ -16,6 +16,9 @@
     <color name="bottom_nav_checked_dark">#048998</color>
     <color name="bottom_nav_not_checked">#cccccc</color>
 
+    <color name="tab_selected">#00ACC0</color>
+    <color name="tab_text">@color/Grey200</color>
+
     <color name="Grey50">#FAFAFA</color>
     <color name="Grey100">#F5F5F5</color>
     <color name="Grey200">#EEEEEE</color>

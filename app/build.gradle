@@ -114,6 +114,8 @@ dependencies {
     implementation rootProject.ext.dependencies["agentweb"]
     implementation rootProject.ext.dependencies["smartShow"]
     implementation rootProject.ext.dependencies["MagicIndicator"]
+    implementation rootProject.ext.dependencies["verticalTabLayout"]
+    implementation rootProject.ext.dependencies["flowLayout"]
 
     //net
     implementation rootProject.ext.dependencies["gson"]

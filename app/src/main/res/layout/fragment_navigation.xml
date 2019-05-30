@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.classic.common.MultipleStatusView xmlns:android="http://schemas.android.com/apk/res/android"
+                                       xmlns:app="http://schemas.android.com/apk/res-auto"
+                                       android:id="@+id/custom_multiple_status_view"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="match_parent"
+                                       app:noNetworkView="@layout/no_network_view"
+                                       app:emptyView="@layout/empty_view"
+                                       app:errorView="@layout/error_view"
+                                       app:loadingView="@layout/loading_view">
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/refreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srlAccentColor="?attr/colorPrimary"
+            app:srlEnablePreviewInEditMode="true"
+            app:srlPrimaryColor="?attr/colorPrimary">
+
+        <com.scwang.smartrefresh.header.WaveSwipeHeader
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:orientation="horizontal">
+
+            <q.rorbin.verticaltablayout.VerticalTabLayout
+                    android:id="@+id/tabLayout"
+                    android:layout_width="@dimen/dp_110"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorWhite"
+                    android:textColor="?android:textColorSecondary"
+                    app:indicator_color="@color/tab_selected"
+                    app:indicator_gravity="fill"
+                    app:tabTextColor="@color/tab_text"
+                    app:tab_height="@dimen/dp_50"
+                    app:tab_margin="@dimen/dp_16"
+                    app:tab_mode="scrollable"/>
+
+            <View
+                    android:layout_width="@dimen/dp_0_5"
+                    android:layout_height="match_parent"
+                    android:background="@color/Grey400"/>
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbarSize="@dimen/dp_3"
+                    android:scrollbarThumbVertical="@color/Grey400"
+                    android:scrollbars="vertical"/>
+
+        </LinearLayout>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+</com.classic.common.MultipleStatusView>

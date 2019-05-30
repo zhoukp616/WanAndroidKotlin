@@ -56,4 +56,10 @@ interface ApiService {
     @GET("wxarticle/list/{id}/{page}/json")
     fun getWeChatArticle(@Path("id") id: Int, @Path("page") page: Int): Observable<HttpResult<ArticleResponseBody>>
 
+    /**
+     * 获取导航数据
+     */
+    @GET("navi/json")
+    fun getNaviJson(): Observable<HttpResult<MutableList<Navigation>>>
+
 }

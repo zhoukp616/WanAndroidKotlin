@@ -32,6 +32,8 @@ ext {
             MagicIndicatorVersion               : "1.5.0",
             netStatusBusVersion                 : "0.1.4",
             eventBusVersion                     : "3.1.1",
+            verticalTabLayoutVersion            : "1.2.5",
+            flowLayoutVersion                   : "1.1.2"
     ]
 
     dependencies = [
@@ -54,6 +56,8 @@ ext {
             "agentweb"                     : "com.just.agentweb:agentweb:${version["agentWebVersion"]}",
             "smartShow"                    : "com.github.the-pig-of-jungle.smart-show:all:${version["smartShowVersion"]}",
             "MagicIndicator"               : "com.github.hackware1993:MagicIndicator:${version["MagicIndicatorVersion"]}",
+            "verticalTabLayout"            : "q.rorbin:VerticalTabLayout:${version["verticalTabLayoutVersion"]}",
+            "flowLayout"                   : "com.hyman:flowlayout-lib:${version["flowLayoutVersion"]}",
 
             //net
             "gson"                         : "com.google.code.gson:gson:${version["gsonVersion"]}",
