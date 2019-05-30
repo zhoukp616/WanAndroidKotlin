@@ -1,4 +1,4 @@
-package com.zkp.android.modules.knowledge.list
+package com.zkp.android.modules.wechat.list
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,51 +11,49 @@ import com.zkp.android.R
 import com.zkp.android.base.fragment.BaseFragment
 import com.zkp.android.bean.Article
 import com.zkp.android.modules.home.detail.ArticleDetailActivity
-import com.zkp.android.modules.knowledge.adapter.KnowledgeListAdapter
+import com.zkp.android.modules.wechat.adapter.WeChatArticleAdapter
 
 /**
  * @author: zkp
  * @project: WanAndroid
- * @package: com.zkp.android.modules.knowledge.list
- * @time: 2019/5/29 15:48
+ * @package: com.zkp.android.modules.wechat.list
+ * @time: 2019/5/30 10:23
  * @description:
  */
-class KnowledgeListFragment : BaseFragment<KnowledgeListContract.View, KnowledgeListContract.Presenter>(),
-    KnowledgeListContract.View {
+class WeChatListFragment : BaseFragment<WeChatListContract.View, WeChatListContract.Presenter>(),
+    WeChatListContract.View {
 
     @BindView(R.id.refreshLayout)
     lateinit var mRefreshLayout: SmartRefreshLayout
-
     @BindView(R.id.recyclerView)
     lateinit var mRecyclerView: RecyclerView
     /**
-     * 分类的id，二级目录的id
+     * 微信公众号ID
      */
-    private var cid: Int = 0
-    private lateinit var mAdapter: KnowledgeListAdapter
+    private var mId: Int = 0
+    private lateinit var mAdapter: WeChatArticleAdapter
 
-    override fun getKonwledgeListSuccess(data: MutableList<Article>, isFresh: Boolean) {
+    override fun getWeChatArticleSuccess(articles: MutableList<Article>, isFresh: Boolean) {
         if (isFresh) {
-            mAdapter.replaceData(data)
+            mAdapter.replaceData(articles)
         } else {
-            mAdapter.addData(data)
+            mAdapter.addData(articles)
         }
     }
 
-    override fun getKonwledgeListError(errorMsg: String) {
+    override fun getWeChatArticleError(errorMsg: String) {
         SmartToast.show(errorMsg)
     }
 
-    fun newInstance(bundle: Bundle): KnowledgeListFragment {
-        val fragment = KnowledgeListFragment()
+    fun newInstance(bundle: Bundle): WeChatListFragment {
+        val fragment = WeChatListFragment()
         fragment.arguments = bundle
         return fragment
     }
 
-    override fun createPresenter(): KnowledgeListContract.Presenter = KnowledgeListPresenter()
-
+    override fun createPresenter(): WeChatListContract.Presenter = WeChatListPresenter()
     override fun getLayoutId(): Int {
-        return R.layout.fragment_knowledge_list
+        return R.layout.fragment_wechat_list
     }
 
     override fun initView() {
@@ -63,13 +61,13 @@ class KnowledgeListFragment : BaseFragment<KnowledgeListContract.View, Knowledge
         mRecyclerView.setHasFixedSize(true)
 
         val articleList = mutableListOf<Article>()
-        mAdapter = KnowledgeListAdapter(R.layout.item_home_article_list, articleList)
+        mAdapter = WeChatArticleAdapter(R.layout.item_home_article_list, articleList)
         mRecyclerView.adapter = mAdapter
     }
 
     override fun initEventAndData() {
         arguments?.let {
-            cid = it.getInt("cid")
+            mId = it.getInt("id")
         }
 
         initRefreshLayout()
@@ -89,13 +87,13 @@ class KnowledgeListFragment : BaseFragment<KnowledgeListContract.View, Knowledge
             context?.startActivity(intent)
         }
 
-        mPresenter?.refresh(cid)
+        mPresenter?.refresh(mId)
 
     }
 
     private fun initRefreshLayout() {
         mRefreshLayout.setOnRefreshListener { refreshLayout ->
-            mPresenter?.refresh(cid)
+            mPresenter?.refresh(mId)
             refreshLayout.finishRefresh()
         }
 
@@ -108,4 +106,5 @@ class KnowledgeListFragment : BaseFragment<KnowledgeListContract.View, Knowledge
     fun jumpToTop() {
         mRecyclerView.smoothScrollToPosition(0)
     }
+
 }

@@ -21,8 +21,8 @@ class HomePresenter : BasePresenter<HomeContract.Model, HomeContract.View>(), Ho
 
     override fun getBanner() {
         mView?.showLoading()
-        HttpsUtil().request(mModel!!.requestBanner(), object : HttpsUtil.IResponseListener<HttpResult<List<Banner>>> {
-            override fun onSuccess(data: HttpResult<List<Banner>>) {
+        HttpsUtil().request(mModel!!.requestBanner(), object : HttpsUtil.IResponseListener<HttpResult<MutableList<Banner>>> {
+            override fun onSuccess(data: HttpResult<MutableList<Banner>>) {
                 if (data.errorCode == 0) {
                     mView?.getBannerSuccess(data.data)
                 } else {

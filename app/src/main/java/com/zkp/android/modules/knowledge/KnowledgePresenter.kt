@@ -20,8 +20,8 @@ class KnowledgePresenter : BasePresenter<KnowledgeContract.Model, KnowledgeContr
     override fun getKnowledgeTree(isFresh: Boolean) {
         mView?.showLoading()
         HttpsUtil().request(mModel!!.requestKnowledgeTree(),
-            object : HttpsUtil.IResponseListener<HttpResult<List<KnowledgeTreeBody>>> {
-                override fun onSuccess(data: HttpResult<List<KnowledgeTreeBody>>) {
+            object : HttpsUtil.IResponseListener<HttpResult<MutableList<KnowledgeTreeBody>>> {
+                override fun onSuccess(data: HttpResult<MutableList<KnowledgeTreeBody>>) {
                     if (data.errorCode == 0) {
                         mView?.getKnowledgeTreeSuccess(data.data, isFresh)
                     } else {

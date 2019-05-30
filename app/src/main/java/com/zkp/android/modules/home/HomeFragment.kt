@@ -5,7 +5,6 @@ import android.content.Intent
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.widget.LinearLayout
 import butterknife.BindView
 import com.coder.zzq.smartshow.toast.SmartToast
@@ -81,7 +80,7 @@ class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), 
         mBanner?.isAutoPlay(true)
         //设置轮播时间
         mBanner?.setDelayTime(4000)
-        //设置指示器位置（当banner模式中有指示器时）
+        //设置指示器位置(当banner模式中有指示器时)
         mBanner?.setIndicatorGravity(BannerConfig.CENTER)
 
     }
@@ -140,7 +139,7 @@ class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), 
         SmartToast.show(errorMsg)
     }
 
-    override fun getBannerSuccess(banners: List<com.zkp.android.bean.Banner>) {
+    override fun getBannerSuccess(banners: MutableList<com.zkp.android.bean.Banner>) {
         if (mImageUrlList == null) {
             mImageUrlList = ArrayList()
             mIdList = ArrayList()

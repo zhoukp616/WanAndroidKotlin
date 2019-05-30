@@ -25,7 +25,7 @@ class HomeModel : BaseModel(), HomeContract.Model {
 //    override fun cancelCollectArticle(id: Int): Observable<HttpResult<Any>> {
 //    }
 
-    override fun requestBanner(): Observable<HttpResult<List<Banner>>> {
+    override fun requestBanner(): Observable<HttpResult<MutableList<Banner>>> {
         return HttpsUtil().createApi(App.getContext(), AppConfig().BASE_URL, ApiService::class.java).getBanner()
     }
 

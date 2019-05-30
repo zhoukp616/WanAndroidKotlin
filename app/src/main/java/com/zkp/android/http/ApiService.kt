@@ -1,9 +1,6 @@
 package com.zkp.android.http
 
-import com.zkp.android.bean.ArticleResponseBody
-import com.zkp.android.bean.Banner
-import com.zkp.android.bean.HttpResult
-import com.zkp.android.bean.KnowledgeTreeBody
+import com.zkp.android.bean.*
 import retrofit2.http.GET
 import io.reactivex.Observable
 import retrofit2.http.Path
@@ -29,13 +26,13 @@ interface ApiService {
      * 获取首页轮播图
      */
     @GET("banner/json")
-    fun getBanner(): Observable<HttpResult<List<Banner>>>
+    fun getBanner(): Observable<HttpResult<MutableList<Banner>>>
 
     /**
      * 获取知识体系数据
      */
     @GET("tree/json")
-    fun getKnowledgeTree(): Observable<HttpResult<List<KnowledgeTreeBody>>>
+    fun getKnowledgeTree(): Observable<HttpResult<MutableList<KnowledgeTreeBody>>>
 
     /**
      * 获取知识体系下的文章
@@ -44,5 +41,19 @@ interface ApiService {
      */
     @GET("/article/list/{page}/json?")
     fun getKnowledgeList(@Path("page") page: Int, @Query("cid") cid: Int): Observable<HttpResult<ArticleResponseBody>>
+
+    /**
+     * 获取微信公众号列表
+     */
+    @GET("wxarticle/chapters/json ")
+    fun getWeChatChapters(): Observable<HttpResult<MutableList<ProjectTree>>>
+
+    /**
+     * 获取某个微信公众号的文章列表
+     * @param id 微信公众号id
+     * @param page 页码 从1开始
+     */
+    @GET("wxarticle/list/{id}/{page}/json")
+    fun getWeChatArticle(@Path("id") id: Int, @Path("page") page: Int): Observable<HttpResult<ArticleResponseBody>>
 
 }

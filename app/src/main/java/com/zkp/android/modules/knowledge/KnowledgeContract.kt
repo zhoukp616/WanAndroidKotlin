@@ -22,7 +22,7 @@ class KnowledgeContract {
          * @param data
          * @param isFresh 是否刷新
          */
-        fun getKnowledgeTreeSuccess(data: List<KnowledgeTreeBody>, isFresh: Boolean)
+        fun getKnowledgeTreeSuccess(data: MutableList<KnowledgeTreeBody>, isFresh: Boolean)
 
         /**
          * 获取知识体系数据失败
@@ -52,7 +52,7 @@ class KnowledgeContract {
         /**
          * 请求知识体系数据
          */
-        fun requestKnowledgeTree(): Observable<HttpResult<List<KnowledgeTreeBody>>>
+        fun requestKnowledgeTree(): Observable<HttpResult<MutableList<KnowledgeTreeBody>>>
     }
 
 }

@@ -29,7 +29,7 @@ class KnowledgeFragment : BaseFragment<KnowledgeContract.View, KnowledgeContract
 
     private var mAdapter: KnowledgeAdapter? = null
 
-    override fun getKnowledgeTreeSuccess(data: List<KnowledgeTreeBody>, isFresh: Boolean) {
+    override fun getKnowledgeTreeSuccess(data: MutableList<KnowledgeTreeBody>, isFresh: Boolean) {
         if (mAdapter?.data?.size!! < data.size) {
             mAdapter?.replaceData(data)
         }

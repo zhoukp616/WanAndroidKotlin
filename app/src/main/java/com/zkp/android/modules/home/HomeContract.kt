@@ -37,7 +37,7 @@ class HomeContract {
          * 获取首页banner数据成功
          * @param banners
          */
-        fun getBannerSuccess(banners: List<Banner>)
+        fun getBannerSuccess(banners: MutableList<Banner>)
 
         /**
          * 获取首页banner数据失败
@@ -86,7 +86,7 @@ class HomeContract {
         /**
          * 请求banner数据
          */
-        fun requestBanner(): Observable<HttpResult<List<Banner>>>
+        fun requestBanner(): Observable<HttpResult<MutableList<Banner>>>
 
         /**
          * 请求文章列表

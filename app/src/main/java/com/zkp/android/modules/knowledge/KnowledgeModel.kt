@@ -18,7 +18,7 @@ import io.reactivex.Observable
  */
 class KnowledgeModel : BaseModel(), KnowledgeContract.Model {
 
-    override fun requestKnowledgeTree(): Observable<HttpResult<List<KnowledgeTreeBody>>> {
+    override fun requestKnowledgeTree(): Observable<HttpResult<MutableList<KnowledgeTreeBody>>> {
         return HttpsUtil().createApi(App.getContext(), AppConfig().BASE_URL, ApiService::class.java).getKnowledgeTree()
     }
 }
