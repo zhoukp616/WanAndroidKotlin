@@ -141,6 +141,25 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
                     intent.putExtra("type_fragment", AppConfig().TYPE_COLLECT)
                     startActivity(intent)
                 }
+
+
+                R.id.nav_item_logout -> {
+                    mPresenter?.logout()
+                    mUsTv = mNavigation.getHeaderView(0).findViewById(R.id.nav_header_login)
+                    mUsTv.text =
+                        if (mPresenter?.getLoginStatus()!!) mPresenter?.getUserAccount() else getString(R.string.login_in)
+                    mNavigation.menu.findItem(R.id.nav_item_logout).isVisible = mPresenter?.getLoginStatus()!!
+                    if (!mPresenter?.getLoginStatus()!!) {
+                        mUsTv.setOnClickListener {
+                            startActivityForResult(
+                                Intent(
+                                    this@MainActivity,
+                                    LoginActivity::class.java
+                                ), LOGIN
+                            )
+                        }
+                    }
+                }
             }
             true
         }
@@ -156,6 +175,21 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
             }
         }
         mNavigation.menu.findItem(R.id.nav_item_logout).isVisible = mPresenter?.getLoginStatus()!!
+    }
+
+    override fun logoutSuccess() {
+        mUsTv.text = getString(R.string.login)
+        mUsTv.setOnClickListener {
+            startActivityForResult(
+                Intent(this@MainActivity, LoginActivity::class.java),
+                LOGIN
+            )
+        }
+        mNavigation.menu.findItem(R.id.nav_item_logout).isVisible = false
+    }
+
+    override fun logoutError(errorMsg: String) {
+        SmartToast.show(errorMsg)
     }
 
     /**
@@ -269,6 +303,7 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
                         if (mPresenter?.getLoginStatus()!!) mPresenter?.getUserAccount() else getString(R.string.login_in)
                     if (mPresenter?.getLoginStatus()!!) {
                         mUsTv.isEnabled = false
+                        mNavigation.menu.findItem(R.id.nav_item_logout).isVisible = true
                     }
                 }
             }

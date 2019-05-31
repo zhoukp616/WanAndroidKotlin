@@ -99,6 +99,16 @@ interface ApiService {
     ): Observable<HttpResult<Login>>
 
     /**
+     * 退出登录
+     * 访问了 logout 后，
+     * 服务端会让客户端清除 Cookie（即cookie max-Age=0），
+     * 如果客户端 Cookie 实现合理，可以实现自动清理，
+     * 如果本地做了用户账号密码和保存，及时清理
+     */
+    @GET("user/logout/json")
+    fun logout(): Observable<HttpResult<Any>>
+
+    /**
      * 注册
      * @param username 用户名
      * @param password 密码
