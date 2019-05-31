@@ -45,4 +45,39 @@ class AppConfig {
      */
     val TYPE_PROJECT = 4
 
+    /**
+     * 我的收藏
+     */
+    val TYPE_COLLECT = 5
+    /**
+     * 福利
+     */
+    val TYPE_WELFARE = 6
+    /**
+     * 天气
+     */
+    val TYPE_WEATHER = 7
+    /**
+     * 设置
+     */
+    val TYPE_SETTING = 8
+    /**
+     * 关于
+     */
+    val TYPE_ABOUT_US = 9
+    /**
+     * 常用网站
+     */
+    val TYPE_USEFUL_SITES = 10
+    /**
+     * 搜索结果
+     */
+    val TYPE_SEARCH_RESULT = 11
+    /**
+     * 测试博客
+     */
+    val TYPE_CNBLOG = 12
+    val CNBLOGS_URL = "https://www.cnblogs.com/imyalost/category/873684.html"
+    val CNBLOGS_AUTHOR = "老_张"
+
 }

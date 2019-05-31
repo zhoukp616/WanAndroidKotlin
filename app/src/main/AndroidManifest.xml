@@ -45,6 +45,10 @@
                   android:screenOrientation="portrait"
                   android:label="${app_name}"/>
 
+        <activity android:name=".modules.main.activity.ComponentActivity"
+                  android:screenOrientation="portrait"
+                  android:label="${app_name}"/>
+
 
     </application>
 

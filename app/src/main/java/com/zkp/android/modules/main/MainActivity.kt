@@ -22,6 +22,7 @@ import com.zkp.android.http.AppConfig
 import com.zkp.android.modules.home.HomeFragment
 import com.zkp.android.modules.knowledge.KnowledgeFragment
 import com.zkp.android.modules.login.LoginActivity
+import com.zkp.android.modules.main.activity.ComponentActivity
 import com.zkp.android.modules.navigation.NavigationFragment
 import com.zkp.android.modules.project.ProjectFragment
 import com.zkp.android.modules.wechat.WeChatFragment
@@ -132,12 +133,17 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
     }
 
     private fun initNavigationView() {
-//        mNavigation.setNavigationItemSelectedListener { menuItem ->
-//            when(menuItem.itemId){
-//                R.id.nav_item_my_collect->
-//            }
-//            true
-//        }
+        var intent: Intent
+        mNavigation.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.nav_item_my_collect -> {
+                    intent = Intent(this@MainActivity, ComponentActivity::class.java)
+                    intent.putExtra("type_fragment", AppConfig().TYPE_COLLECT)
+                    startActivity(intent)
+                }
+            }
+            true
+        }
         mUsTv = mNavigation.getHeaderView(0).findViewById(R.id.nav_header_login)
         mUsTv.text = if (mPresenter?.getLoginStatus()!!) mPresenter?.getUserAccount() else getString(R.string.login_in)
         if (!mPresenter?.getLoginStatus()!!) {
@@ -149,6 +155,7 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
                 )
             }
         }
+        mNavigation.menu.findItem(R.id.nav_item_logout).isVisible = mPresenter?.getLoginStatus()!!
     }
 
     /**
