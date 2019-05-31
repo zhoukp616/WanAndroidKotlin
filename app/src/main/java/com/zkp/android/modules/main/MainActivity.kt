@@ -20,6 +20,7 @@ import com.zkp.android.R
 import com.zkp.android.base.activity.BaseActivity
 import com.zkp.android.http.AppConfig
 import com.zkp.android.modules.home.HomeFragment
+import com.zkp.android.modules.home.detail.ArticleDetailActivity
 import com.zkp.android.modules.knowledge.KnowledgeFragment
 import com.zkp.android.modules.login.LoginActivity
 import com.zkp.android.modules.main.activity.ComponentActivity
@@ -142,7 +143,15 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
                     startActivity(intent)
                 }
 
-
+                R.id.nav_item_cnblogs -> {
+                    intent = Intent(this@MainActivity, ArticleDetailActivity::class.java)
+                    intent.putExtra("articleLink", AppConfig().CNBLOGS_URL)
+                    intent.putExtra("author", AppConfig().CNBLOGS_AUTHOR)
+                    intent.putExtra("isShowCollectIcon", true)
+                    intent.putExtra("isCollected", false)
+                    intent.putExtra("isCnBlog", true)
+                    startActivity(intent)
+                }
                 R.id.nav_item_logout -> {
                     mPresenter?.logout()
                     mUsTv = mNavigation.getHeaderView(0).findViewById(R.id.nav_header_login)

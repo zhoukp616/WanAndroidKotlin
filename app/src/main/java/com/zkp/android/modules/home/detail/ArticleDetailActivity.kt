@@ -1,6 +1,5 @@
 package com.zkp.android.modules.home.detail
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.support.design.widget.AppBarLayout
@@ -22,6 +21,9 @@ import com.just.agentweb.DefaultWebClient
 import com.just.agentweb.NestedScrollAgentWebView
 import com.zkp.android.R
 import com.zkp.android.base.activity.BaseActivity
+import com.zkp.android.bean.CollectArticle
+import com.zkp.android.bean.CollectResponseBody
+import com.zkp.android.http.AppConfig
 
 /**
  * @author: zkp
@@ -102,7 +104,7 @@ class ArticleDetailActivity : BaseActivity<ArticleDetailContract.View, ArticleDe
                 if (isCnBlog) {
                     mCollectItem.setIcon(R.drawable.ic_like_not_white)
                     page = 0
-//                    mPresenter.getCollectList(page)
+                    mPresenter?.getCollectList(page)
                 }
             }
         }
@@ -138,13 +140,15 @@ class ArticleDetailActivity : BaseActivity<ArticleDetailContract.View, ArticleDe
     }
 
     private fun getBundleData() {
-        val bundle = intent.extras!!
-        title = bundle.getString("title")
-        articleLink = bundle.getString("articleLink")
-        articleId = bundle.getInt("articleId")
-        isCnBlog = bundle.getBoolean("isCnBlog")
-        isCollected = bundle.getBoolean("isCollected")
-        isShowCollectIcon = bundle.getBoolean("isShowCollectIcon")
+        intent.extras?.let {
+            title = it.getString("title")
+            articleLink = it.getString("articleLink")
+            articleId = it.getInt("articleId")
+            isCnBlog = it.getBoolean("isCnBlog")
+            isCollected = it.getBoolean("isCollected")
+            isShowCollectIcon = it.getBoolean("isShowCollectIcon")
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -161,7 +165,17 @@ class ArticleDetailActivity : BaseActivity<ArticleDetailContract.View, ArticleDe
                 SmartToast.show(R.string.share)
             }
             R.id.item_collect -> {
-                SmartToast.show(R.string.collect)
+                if (isCollected) {
+                    mPresenter?.unCollectArticle(articleId)
+                } else {
+                    if (isCnBlog) {
+                        mPresenter?.collectOutArticle(mTitle.text.toString(), AppConfig().CNBLOGS_AUTHOR, articleLink!!)
+                        isCnBlog = false
+                    } else {
+                        mPresenter?.collectArticle(articleId)
+                    }
+                }
+                isCollected = !isCollected
             }
             R.id.item_system_browser -> {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(articleLink)))
@@ -199,4 +213,53 @@ class ArticleDetailActivity : BaseActivity<ArticleDetailContract.View, ArticleDe
             super.onBackPressedSupport()
         }
     }
+
+    override fun collectArticleSuccess() {
+        mCollectItem.setIcon(if (isCollected) R.drawable.ic_like_white else R.drawable.ic_like_not_white)
+    }
+
+    override fun collectArticleError(errorMsg: String) {
+        SmartToast.show(errorMsg)
+    }
+
+    override fun getCollectListSuccess(articles: CollectResponseBody<CollectArticle>) {
+        for (datasBean in articles.datas) {
+            if (datasBean.author == AppConfig().CNBLOGS_AUTHOR &&
+                datasBean.title == mTitle.text.toString() &&
+                datasBean.link == articleLink
+            ) {
+                //这篇文章已在收藏列表中
+                isCollected = true
+                mCollectItem.setIcon(R.drawable.ic_like_white)
+                return
+            }
+        }
+
+        if (!articles.over) {
+            //收藏文章数>1页
+            page++
+            mPresenter?.getCollectList(page)
+        }
+    }
+
+    override fun getCollectListError(errorMsg: String) {
+        SmartToast.show(errorMsg)
+    }
+
+    override fun collectOutArticleSuccess() {
+        mCollectItem.setIcon(if (isCollected) R.drawable.ic_like_white else R.drawable.ic_like_not_white)
+    }
+
+    override fun collectOutArticleError(errorMsg: String) {
+        SmartToast.show(errorMsg)
+    }
+
+    override fun unCollectArticleSuccess() {
+        mCollectItem.setIcon(if (isCollected) R.drawable.ic_like_white else R.drawable.ic_like_not_white)
+    }
+
+    override fun unCollectArticleError(errorMsg: String) {
+        SmartToast.show(errorMsg)
+    }
+
 }
