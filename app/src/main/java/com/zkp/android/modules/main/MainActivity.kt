@@ -94,10 +94,12 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-//        var intent: Intent
+        var intent: Intent
         when (item?.itemId) {
             R.id.action_usage -> {
-                SmartToast.show("常用网站")
+                intent = Intent(this@MainActivity, ComponentActivity::class.java)
+                intent.putExtra("type_fragment", AppConfig().TYPE_USEFUL_SITES)
+                startActivity(intent)
             }
             R.id.action_search -> {
                 SmartToast.show("搜索")

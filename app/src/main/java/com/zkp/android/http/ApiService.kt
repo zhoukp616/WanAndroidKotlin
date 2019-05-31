@@ -167,5 +167,11 @@ interface ApiService {
         @Query("originId") originId: Int
     ): Observable<HttpResult<Any>>
 
+    /**
+     * 获取常用网站
+     */
+    @GET("/friend/json")
+    fun getFriendJson(): Observable<HttpResult<MutableList<Friend>>>
+
 
 }

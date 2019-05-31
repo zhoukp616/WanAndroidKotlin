@@ -111,25 +111,6 @@ data class ProjectTree(
     @Json(name = "visible") val visible: Int
 )
 
-//常用网站
-data class Friend(
-    @Json(name = "icon") val icon: String,
-    @Json(name = "id") val id: Int,
-    @Json(name = "link") val link: String,
-    @Json(name = "name") val name: String,
-    @Json(name = "order") val order: Int,
-    @Json(name = "visible") val visible: Int
-)
-
-//搜索热词
-data class Hotkey(
-    @Json(name = "id") val id: Int,
-    @Json(name = "link") val link: String,
-    @Json(name = "name") val name: String,
-    @Json(name = "order") val order: Int,
-    @Json(name = "visible") val visible: Int
-)
-
 // 登录数据
 data class Login(
     @Json(name = "chapterTops") val chapterTops: MutableList<String>,
@@ -182,4 +163,23 @@ data class CollectArticle(
     @Json(name = "userId") val userId: Int,
     @Json(name = "visible") val visible: Int,
     @Json(name = "zan") val zan: Int
+)
+
+//常用网站
+data class Friend(
+    @Json(name = "icon") val icon: String,
+    @Json(name = "id") val id: Int,
+    @Json(name = "link") val link: String,
+    @Json(name = "name") val name: String,
+    @Json(name = "order") val order: Int,
+    @Json(name = "visible") val visible: Int
+)
+
+//搜索热词
+data class Hotkey(
+    @Json(name = "id") val id: Int,
+    @Json(name = "link") val link: String,
+    @Json(name = "name") val name: String,
+    @Json(name = "order") val order: Int,
+    @Json(name = "visible") val visible: Int
 )

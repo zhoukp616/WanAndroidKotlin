@@ -1,4 +1,4 @@
-package com.zkp.android.modules.main.Fragment
+package com.zkp.android.modules.main.Fragment.collect
 
 import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
@@ -19,7 +19,8 @@ import com.zkp.android.modules.main.Fragment.adapter.CollectArticleAdapter
  * @time: 2019/5/31 13:36
  * @description:
  */
-class CollectFragment : BaseFragment<CollectContract.View, CollectContract.Presenter>(), CollectContract.View {
+class CollectFragment : BaseFragment<CollectContract.View, CollectContract.Presenter>(),
+    CollectContract.View {
 
     @BindView(R.id.refreshLayout)
     lateinit var mRefreshLayout: SmartRefreshLayout
@@ -29,7 +30,8 @@ class CollectFragment : BaseFragment<CollectContract.View, CollectContract.Prese
 
     private lateinit var mAdapter: CollectArticleAdapter
 
-    override fun createPresenter(): CollectContract.Presenter = CollectPresenter()
+    override fun createPresenter(): CollectContract.Presenter =
+        CollectPresenter()
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_collect

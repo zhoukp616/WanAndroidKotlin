@@ -7,7 +7,8 @@ import butterknife.BindView
 import com.zkp.android.R
 import com.zkp.android.base.activity.BaseActivity
 import com.zkp.android.http.AppConfig
-import com.zkp.android.modules.main.Fragment.CollectFragment
+import com.zkp.android.modules.main.Fragment.collect.CollectFragment
+import com.zkp.android.modules.main.Fragment.usage.UseageFragment
 
 /**
  * @author: zkp
@@ -47,6 +48,10 @@ class ComponentActivity : BaseActivity<ComponetContract.View, ComponetContract.P
             AppConfig().TYPE_COLLECT -> {
                 mTargetFragment = CollectFragment()
                 title = getString(R.string.collect)
+            }
+            AppConfig().TYPE_USEFUL_SITES -> {
+                mTargetFragment = UseageFragment()
+                title = getString(R.string.useful_sites)
             }
         }
 

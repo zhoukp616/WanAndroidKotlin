@@ -1,4 +1,4 @@
-package com.zkp.android.modules.main.Fragment
+package com.zkp.android.modules.main.Fragment.collect
 
 import com.zkp.android.base.model.IModel
 import com.zkp.android.base.presenter.IPresenter

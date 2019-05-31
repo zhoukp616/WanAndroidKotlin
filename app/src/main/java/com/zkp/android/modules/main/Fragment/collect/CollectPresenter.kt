@@ -1,4 +1,4 @@
-package com.zkp.android.modules.main.Fragment
+package com.zkp.android.modules.main.Fragment.collect
 
 import com.zkp.android.base.presenter.BasePresenter
 import com.zkp.android.bean.CollectArticle
@@ -13,11 +13,13 @@ import com.zkp.android.http.HttpsUtil
  * @time: 2019/5/31 13:40
  * @description:
  */
-class CollectPresenter : BasePresenter<CollectContract.Model, CollectContract.View>(), CollectContract.Presenter {
+class CollectPresenter : BasePresenter<CollectContract.Model, CollectContract.View>(),
+    CollectContract.Presenter {
 
     private var currentPage: Int = 0
 
-    override fun createModel(): CollectContract.Model? = CollectModel()
+    override fun createModel(): CollectContract.Model? =
+        CollectModel()
 
     override fun getCollectList(page: Int, isFresh: Boolean) {
         mView?.showLoading()

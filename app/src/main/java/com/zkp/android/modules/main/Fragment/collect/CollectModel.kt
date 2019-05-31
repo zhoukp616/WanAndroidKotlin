@@ -1,8 +1,7 @@
-package com.zkp.android.modules.main.Fragment
+package com.zkp.android.modules.main.Fragment.collect
 
 import com.zkp.android.app.App
 import com.zkp.android.base.model.BaseModel
-import com.zkp.android.bean.ArticleResponseBody
 import com.zkp.android.bean.CollectArticle
 import com.zkp.android.bean.CollectResponseBody
 import com.zkp.android.bean.HttpResult
