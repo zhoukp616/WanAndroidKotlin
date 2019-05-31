@@ -18,12 +18,6 @@ import io.reactivex.Observable
  * @description:
  */
 class HomeModel : BaseModel(), HomeContract.Model {
-//    override fun addCollectArticle(id: Int): Observable<HttpResult<Any>> {
-//
-//    }
-//
-//    override fun cancelCollectArticle(id: Int): Observable<HttpResult<Any>> {
-//    }
 
     override fun requestBanner(): Observable<HttpResult<MutableList<Banner>>> {
         return HttpsUtil().createApi(App.getContext(), AppConfig().BASE_URL, ApiService::class.java).getBanner()
@@ -32,5 +26,14 @@ class HomeModel : BaseModel(), HomeContract.Model {
     override fun requestArticleList(page: Int): Observable<HttpResult<ArticleResponseBody>> {
         return HttpsUtil().createApi(App.getContext(), AppConfig().BASE_URL, ApiService::class.java)
             .getHomeArticleList(page)
+    }
+
+    override fun collectArticle(id: Int): Observable<HttpResult<Any>> {
+        return HttpsUtil().createApi(App.getContext(), AppConfig().BASE_URL, ApiService::class.java).collectArticle(id)
+    }
+
+    override fun unCollectArticle(id: Int): Observable<HttpResult<Any>> {
+        return HttpsUtil().createApi(App.getContext(), AppConfig().BASE_URL, ApiService::class.java)
+            .unCollectArticle(id)
     }
 }

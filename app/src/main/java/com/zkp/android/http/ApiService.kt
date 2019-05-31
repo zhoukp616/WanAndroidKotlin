@@ -122,7 +122,7 @@ interface ApiService {
      * 收藏站内文章
      * @param id 文章id
      */
-    @POST("lg/collect/(id)/json")
+    @POST("lg/collect/{id}/json")
     fun collectArticle(@Path("id") id: Int): Observable<HttpResult<Any>>
 
     /**

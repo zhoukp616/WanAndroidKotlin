@@ -21,22 +21,24 @@ class HomePresenter : BasePresenter<HomeContract.Model, HomeContract.View>(), Ho
 
     override fun getBanner() {
         mView?.showLoading()
-        HttpsUtil().request(mModel!!.requestBanner(), object : HttpsUtil.IResponseListener<HttpResult<MutableList<Banner>>> {
-            override fun onSuccess(data: HttpResult<MutableList<Banner>>) {
-                if (data.errorCode == 0) {
-                    mView?.getBannerSuccess(data.data)
-                } else {
-                    mView?.getBannerError(data.errorMsg)
+        HttpsUtil().request(
+            mModel!!.requestBanner(),
+            object : HttpsUtil.IResponseListener<HttpResult<MutableList<Banner>>> {
+                override fun onSuccess(data: HttpResult<MutableList<Banner>>) {
+                    if (data.errorCode == 0) {
+                        mView?.getBannerSuccess(data.data)
+                    } else {
+                        mView?.getBannerError(data.errorMsg)
+                    }
+                    mView?.hideLoading()
                 }
-                mView?.hideLoading()
-            }
 
-            override fun onFail(errMsg: String) {
-                mView?.getBannerError(errMsg)
-                mView?.hideLoading()
-            }
+                override fun onFail(errMsg: String) {
+                    mView?.getBannerError(errMsg)
+                    mView?.hideLoading()
+                }
 
-        })
+            })
     }
 
     override fun getHomeArticleList(page: Int, isFresh: Boolean) {
@@ -69,4 +71,45 @@ class HomePresenter : BasePresenter<HomeContract.Model, HomeContract.View>(), Ho
         this.currentPage++
         getHomeArticleList(currentPage, false)
     }
+
+    override fun collectArticle(id: Int) {
+        mView?.showLoading()
+        HttpsUtil().request(mModel!!.collectArticle(id), object : HttpsUtil.IResponseListener<HttpResult<Any>> {
+            override fun onSuccess(data: HttpResult<Any>) {
+                if (data.errorCode == 0) {
+                    mView?.collectArticleSuccess()
+                } else {
+                    mView?.collectArticleError(data.errorMsg)
+                }
+                mView?.hideLoading()
+            }
+
+            override fun onFail(errMsg: String) {
+                mView?.collectArticleError(errMsg)
+                mView?.hideLoading()
+            }
+
+        })
+    }
+
+    override fun unCollectArticle(id: Int) {
+        mView?.showLoading()
+        HttpsUtil().request(mModel!!.unCollectArticle(id), object : HttpsUtil.IResponseListener<HttpResult<Any>> {
+            override fun onSuccess(data: HttpResult<Any>) {
+                if (data.errorCode == 0) {
+                    mView?.unCollectArticleSuccess()
+                } else {
+                    mView?.unCollectArticleError(data.errorMsg)
+                }
+                mView?.hideLoading()
+            }
+
+            override fun onFail(errMsg: String) {
+                mView?.unCollectArticleError(errMsg)
+                mView?.hideLoading()
+            }
+
+        })
+    }
+
 }

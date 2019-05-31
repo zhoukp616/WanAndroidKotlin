@@ -31,6 +31,27 @@ class KnowledgeListContract {
          * @param errorMsg
          */
         fun getKonwledgeListError(errorMsg: String)
+
+        /**
+         * 收藏文章成功
+         */
+        fun collectArticleSuccess()
+
+        /**
+         * 收藏文章失败
+         * @param errorMsg
+         */
+        fun collectArticleError(errorMsg: String)
+
+        /**
+         * 取消收藏文章成功
+         */
+        fun unCollectArticleSuccess()
+
+        /**
+         * 取消收藏文章失败
+         */
+        fun unCollectArticleError(errorMsg: String)
     }
 
     interface Presenter : IPresenter<View> {
@@ -52,10 +73,35 @@ class KnowledgeListContract {
          * 加载更多数据
          */
         fun loadMore()
+
+        /**
+         * 收藏文章
+         * @param id 文章id
+         */
+        fun collectArticle(id: Int)
+
+        /**
+         * 取消收藏文章
+         * @param id 文章id
+         */
+        fun unCollectArticle(id: Int)
+
     }
 
     interface Model : IModel {
         fun requestKonwledgeList(page: Int, cid: Int): Observable<HttpResult<ArticleResponseBody>>
+
+        /**
+         * 收藏文章
+         * @param id
+         */
+        fun collectArticle(id: Int): Observable<HttpResult<Any>>
+
+        /**
+         * 取消收藏文章
+         * @param id
+         */
+        fun unCollectArticle(id: Int): Observable<HttpResult<Any>>
     }
 
 }

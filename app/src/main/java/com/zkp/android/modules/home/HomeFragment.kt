@@ -105,6 +105,18 @@ class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), 
             context?.startActivity(intent)
         }
 
+        mAdapter?.setOnItemChildClickListener { _, view, position ->
+            when (view.id) {
+                R.id.ivArticleLike ->
+                    //收藏
+                    if (mAdapter?.getItem(position)?.collect!!) {
+                        mPresenter?.unCollectArticle(mAdapter?.getItem(position)?.id!!)
+                    } else {
+                        mPresenter?.collectArticle(mAdapter?.getItem(position)?.id!!)
+                    }
+            }
+        }
+
         mPresenter?.refresh()
     }
 
@@ -167,6 +179,22 @@ class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), 
 
         //banner设置方法全部调用完毕时最后调用
         mBanner?.start()
+    }
+
+    override fun collectArticleSuccess() {
+        mPresenter?.refresh()
+    }
+
+    override fun collectArticleError(errorMsg: String) {
+        SmartToast.show(errorMsg)
+    }
+
+    override fun unCollectArticleSuccess() {
+        mPresenter?.refresh()
+    }
+
+    override fun unCollectArticleError(errorMsg: String) {
+        SmartToast.show(errorMsg)
     }
 
     override fun onHiddenChanged(hidden: Boolean) {

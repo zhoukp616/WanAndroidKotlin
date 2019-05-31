@@ -21,4 +21,5 @@ class WeChatModel : BaseModel(), WeChatContract.Model {
     override fun requestWeChatChaptrs(): Observable<HttpResult<MutableList<ProjectTree>>> {
         return HttpsUtil().createApi(App.getContext(), AppConfig().BASE_URL, ApiService::class.java).getWeChatChapters()
     }
+
 }

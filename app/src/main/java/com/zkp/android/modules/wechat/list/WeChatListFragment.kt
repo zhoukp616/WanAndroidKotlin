@@ -87,6 +87,18 @@ class WeChatListFragment : BaseFragment<WeChatListContract.View, WeChatListContr
             context?.startActivity(intent)
         }
 
+        mAdapter.setOnItemChildClickListener { _, view, position ->
+            when (view.id) {
+                R.id.ivArticleLike ->
+                    //收藏
+                    if (mAdapter.getItem(position)?.collect!!) {
+                        mPresenter?.unCollectArticle(mAdapter.getItem(position)?.id!!)
+                    } else {
+                        mPresenter?.collectArticle(mAdapter.getItem(position)?.id!!)
+                    }
+            }
+        }
+
         mPresenter?.refresh(mId)
 
     }
@@ -101,6 +113,22 @@ class WeChatListFragment : BaseFragment<WeChatListContract.View, WeChatListContr
             mPresenter?.loadMore()
             refreshLayout.finishLoadMore()
         }
+    }
+
+    override fun collectArticleSuccess() {
+        mPresenter?.refresh(mId)
+    }
+
+    override fun collectArticleError(errorMsg: String) {
+        SmartToast.show(errorMsg)
+    }
+
+    override fun unCollectArticleSuccess() {
+        mPresenter?.refresh(mId)
+    }
+
+    override fun unCollectArticleError(errorMsg: String) {
+        SmartToast.show(errorMsg)
     }
 
     fun jumpToTop() {

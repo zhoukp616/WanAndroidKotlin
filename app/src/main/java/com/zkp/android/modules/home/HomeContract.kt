@@ -44,6 +44,27 @@ class HomeContract {
          * @param errorMsg
          */
         fun getBannerError(errorMsg: String)
+
+        /**
+         * 收藏文章成功
+         */
+        fun collectArticleSuccess()
+
+        /**
+         * 收藏文章失败
+         * @param errorMsg
+         */
+        fun collectArticleError(errorMsg: String)
+
+        /**
+         * 取消收藏文章成功
+         */
+        fun unCollectArticleSuccess()
+
+        /**
+         * 取消收藏文章失败
+         */
+        fun unCollectArticleError(errorMsg: String)
     }
 
     interface Presenter : IPresenter<View> {
@@ -68,21 +89,22 @@ class HomeContract {
          * 加载更多数据
          */
         fun loadMore()
+
+        /**
+         * 收藏文章
+         * @param id 文章id
+         */
+        fun collectArticle(id: Int)
+
+        /**
+         * 取消收藏文章
+         * @param id 文章id
+         */
+        fun unCollectArticle(id: Int)
+
     }
 
     interface Model : IModel {
-//        /**
-//         * 收藏文章
-//         * @param id
-//         */
-//        fun addCollectArticle(id: Int): Observable<HttpResult<Any>>
-//
-//        /**
-//         * 取消收藏文章
-//         * @param id
-//         */
-//        fun cancelCollectArticle(id: Int): Observable<HttpResult<Any>>
-
         /**
          * 请求banner数据
          */
@@ -93,6 +115,18 @@ class HomeContract {
          * @param page 从0开始
          */
         fun requestArticleList(page: Int): Observable<HttpResult<ArticleResponseBody>>
+
+        /**
+         * 收藏文章
+         * @param id
+         */
+        fun collectArticle(id: Int): Observable<HttpResult<Any>>
+
+        /**
+         * 取消收藏文章
+         * @param id
+         */
+        fun unCollectArticle(id: Int): Observable<HttpResult<Any>>
     }
 
 }

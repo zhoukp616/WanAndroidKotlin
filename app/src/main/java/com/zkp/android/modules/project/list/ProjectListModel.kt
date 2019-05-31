@@ -22,4 +22,14 @@ class ProjectListModel : BaseModel(), ProjectListContract.Model {
         return HttpsUtil().createApi(App.getContext(), AppConfig().BASE_URL, ApiService::class.java)
             .getProjectList(page, cid)
     }
+
+    override fun collectArticle(id: Int): Observable<HttpResult<Any>> {
+        return HttpsUtil().createApi(App.getContext(), AppConfig().BASE_URL, ApiService::class.java).collectArticle(id)
+    }
+
+    override fun unCollectArticle(id: Int): Observable<HttpResult<Any>> {
+        return HttpsUtil().createApi(App.getContext(), AppConfig().BASE_URL, ApiService::class.java)
+            .unCollectArticle(id)
+    }
+
 }

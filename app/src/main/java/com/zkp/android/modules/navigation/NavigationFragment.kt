@@ -13,6 +13,7 @@ import com.zkp.android.modules.navigation.adapter.NavigationAdapter
 import q.rorbin.verticaltablayout.VerticalTabLayout
 import q.rorbin.verticaltablayout.adapter.TabAdapter
 import q.rorbin.verticaltablayout.widget.ITabView
+import q.rorbin.verticaltablayout.widget.TabView
 
 /**
  * @author: zkp
@@ -36,6 +37,10 @@ class NavigationFragment : BaseFragment<NavigationContract.View, NavigationContr
     private lateinit var mLinearLayoutManager: LinearLayoutManager
     private lateinit var mAdapter: NavigationAdapter
     private lateinit var mNavigationList: MutableList<Navigation>
+
+    private var needScroll: Boolean = false
+    private var index: Int = 0
+    private var isClickTab: Boolean = false
 
     fun getInstance(): NavigationFragment {
         return NavigationFragment()
@@ -100,6 +105,86 @@ class NavigationFragment : BaseFragment<NavigationContract.View, NavigationContr
         mAdapter = NavigationAdapter(R.layout.item_navigation, mNavigationList)
         mRecyclerView.adapter = mAdapter
 
+        //联动控件 上下同步
+        combine()
+    }
+
+    /**
+     * 组合VerticalTabLayout和RecyclerView,使它们在垂直方向上滑动同步
+     */
+    private fun combine() {
+        //1.RecyclerView滚动时控制VerticalTabLayout滚动
+        mRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (needScroll && newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    scrollRecyclerView()
+                }
+
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    if (isClickTab) {
+                        isClickTab = false
+                        return
+                    }
+                    val firstPosition = mLinearLayoutManager.findFirstVisibleItemPosition()
+                    if (index != firstPosition) {
+                        index = firstPosition
+                        setChecked(index)
+                    }
+                }
+            }
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (needScroll) {
+                    scrollRecyclerView()
+                }
+            }
+        })
+
+        //1.VerticalTabLayout滚动时控制RecyclerView滚动
+        mTabLayout.addOnTabSelectedListener(object : VerticalTabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tabView: TabView, i: Int) {
+                isClickTab = true
+                index = i
+                mRecyclerView.stopScroll()
+                smoothScrollToPosition(i)
+            }
+
+            override fun onTabReselected(tabView: TabView, i: Int) {}
+        })
+    }
+
+    private fun scrollRecyclerView() {
+        needScroll = false
+        val indexDistance = index - mLinearLayoutManager.findFirstVisibleItemPosition()
+        if (indexDistance >= 0 && indexDistance < mRecyclerView.childCount) {
+            val top = mRecyclerView.getChildAt(indexDistance).top
+            mRecyclerView.smoothScrollBy(0, top)
+        }
+    }
+
+    private fun setChecked(position: Int) {
+        if (isClickTab) {
+            isClickTab = false
+        } else {
+            mTabLayout.setTabSelected(index)
+        }
+        index = position
+    }
+
+    private fun smoothScrollToPosition(currentPosition: Int) {
+        val firstPosition = mLinearLayoutManager.findFirstVisibleItemPosition()
+        val lastPosition = mLinearLayoutManager.findLastVisibleItemPosition()
+        if (currentPosition <= firstPosition) {
+            mRecyclerView.smoothScrollToPosition(currentPosition)
+        } else if (currentPosition <= lastPosition) {
+            val top = mRecyclerView.getChildAt(currentPosition - firstPosition).top
+            mRecyclerView.smoothScrollBy(0, top)
+        } else {
+            mRecyclerView.smoothScrollToPosition(currentPosition)
+            needScroll = true
+        }
     }
 
     override fun initEventAndData() {

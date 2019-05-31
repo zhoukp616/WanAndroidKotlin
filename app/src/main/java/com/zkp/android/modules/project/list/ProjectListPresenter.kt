@@ -53,4 +53,45 @@ class ProjectListPresenter : BasePresenter<ProjectListContract.Model, ProjectLis
 
             })
     }
+
+    override fun collectArticle(id: Int) {
+        mView?.showLoading()
+        HttpsUtil().request(mModel!!.collectArticle(id), object : HttpsUtil.IResponseListener<HttpResult<Any>> {
+            override fun onSuccess(data: HttpResult<Any>) {
+                if (data.errorCode == 0) {
+                    mView?.collectArticleSuccess()
+                } else {
+                    mView?.collectArticleError(data.errorMsg)
+                }
+                mView?.hideLoading()
+            }
+
+            override fun onFail(errMsg: String) {
+                mView?.collectArticleError(errMsg)
+                mView?.hideLoading()
+            }
+
+        })
+    }
+
+    override fun unCollectArticle(id: Int) {
+        mView?.showLoading()
+        HttpsUtil().request(mModel!!.unCollectArticle(id), object : HttpsUtil.IResponseListener<HttpResult<Any>> {
+            override fun onSuccess(data: HttpResult<Any>) {
+                if (data.errorCode == 0) {
+                    mView?.unCollectArticleSuccess()
+                } else {
+                    mView?.unCollectArticleError(data.errorMsg)
+                }
+                mView?.hideLoading()
+            }
+
+            override fun onFail(errMsg: String) {
+                mView?.unCollectArticleError(errMsg)
+                mView?.hideLoading()
+            }
+
+        })
+    }
+
 }

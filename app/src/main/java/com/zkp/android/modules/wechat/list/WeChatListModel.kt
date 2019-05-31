@@ -22,4 +22,14 @@ class WeChatListModel : BaseModel(), WeChatListContract.Model {
         return HttpsUtil().createApi(App.getContext(), AppConfig().BASE_URL, ApiService::class.java)
             .getWeChatArticle(id, page)
     }
+
+    override fun collectArticle(id: Int): Observable<HttpResult<Any>> {
+        return HttpsUtil().createApi(App.getContext(), AppConfig().BASE_URL, ApiService::class.java).collectArticle(id)
+    }
+
+    override fun unCollectArticle(id: Int): Observable<HttpResult<Any>> {
+        return HttpsUtil().createApi(App.getContext(), AppConfig().BASE_URL, ApiService::class.java)
+            .unCollectArticle(id)
+    }
+
 }

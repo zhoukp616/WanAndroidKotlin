@@ -89,8 +89,36 @@ class KnowledgeListFragment : BaseFragment<KnowledgeListContract.View, Knowledge
             context?.startActivity(intent)
         }
 
+        mAdapter.setOnItemChildClickListener { _, view, position ->
+            when (view.id) {
+                R.id.ivArticleLike ->
+                    //收藏
+                    if (mAdapter.getItem(position)?.collect!!) {
+                        mPresenter?.unCollectArticle(mAdapter.getItem(position)?.id!!)
+                    } else {
+                        mPresenter?.collectArticle(mAdapter.getItem(position)?.id!!)
+                    }
+            }
+        }
+
         mPresenter?.refresh(cid)
 
+    }
+
+    override fun collectArticleSuccess() {
+        mPresenter?.refresh(cid)
+    }
+
+    override fun collectArticleError(errorMsg: String) {
+        SmartToast.show(errorMsg)
+    }
+
+    override fun unCollectArticleSuccess() {
+        mPresenter?.refresh(cid)
+    }
+
+    override fun unCollectArticleError(errorMsg: String) {
+        SmartToast.show(errorMsg)
     }
 
     private fun initRefreshLayout() {

@@ -37,4 +37,5 @@ class WeChatPresenter : BasePresenter<WeChatContract.Model, WeChatContract.View>
 
             })
     }
+
 }

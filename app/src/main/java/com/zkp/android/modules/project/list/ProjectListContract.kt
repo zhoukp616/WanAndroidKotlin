@@ -32,6 +32,27 @@ class ProjectListContract {
          */
         fun getProjectListError(errorMsg: String)
 
+        /**
+         * 收藏文章成功
+         */
+        fun collectArticleSuccess()
+
+        /**
+         * 收藏文章失败
+         * @param errorMsg
+         */
+        fun collectArticleError(errorMsg: String)
+
+        /**
+         * 取消收藏文章成功
+         */
+        fun unCollectArticleSuccess()
+
+        /**
+         * 取消收藏文章失败
+         */
+        fun unCollectArticleError(errorMsg: String)
+
     }
 
     interface Presenter : IPresenter<View> {
@@ -54,6 +75,18 @@ class ProjectListContract {
          * 加载更多
          */
         fun loadMore()
+
+        /**
+         * 收藏文章
+         * @param id 文章id
+         */
+        fun collectArticle(id: Int)
+
+        /**
+         * 取消收藏文章
+         * @param id 文章id
+         */
+        fun unCollectArticle(id: Int)
     }
 
     interface Model : IModel {
@@ -62,6 +95,18 @@ class ProjectListContract {
          * 请求某个分类下的项目列表数据
          */
         fun requestProjectList(page: Int, cid: Int): Observable<HttpResult<ArticleResponseBody>>
+
+        /**
+         * 收藏文章
+         * @param id
+         */
+        fun collectArticle(id: Int): Observable<HttpResult<Any>>
+
+        /**
+         * 取消收藏文章
+         * @param id
+         */
+        fun unCollectArticle(id: Int): Observable<HttpResult<Any>>
 
     }
 
