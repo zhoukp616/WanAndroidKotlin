@@ -22,6 +22,8 @@ class AppConfig {
 
     val CURRENT_FRAGMENT_INDEX = "current_fragment"
 
+    val SHARED_PREFERENCES_NAME = "WanAndroidZkpAPP"
+
     /**
      * 首页
      */

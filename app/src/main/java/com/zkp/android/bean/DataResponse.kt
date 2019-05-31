@@ -131,7 +131,7 @@ data class Hotkey(
 )
 
 // 登录数据
-data class LoginData(
+data class Login(
     @Json(name = "chapterTops") val chapterTops: MutableList<String>,
     @Json(name = "collectIds") val collectIds: MutableList<String>,
     @Json(name = "email") val email: String,

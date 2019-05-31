@@ -41,6 +41,7 @@ class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), 
     private var mImageUrlList: MutableList<String>? = null
     private var mUrlList: MutableList<String>? = null
     private var mIdList: MutableList<Int>? = null
+
     private var mTitles: MutableList<String>? = null
 
     fun getInstance(): HomeFragment {

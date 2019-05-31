@@ -9,10 +9,10 @@ import android.text.Html
 import android.util.SparseArray
 import android.widget.LinearLayout
 import butterknife.BindView
+import com.coder.zzq.smartshow.toast.SmartToast
 import com.zkp.android.R
 import com.zkp.android.base.fragment.BaseFragment
 import com.zkp.android.bean.ProjectTree
-import com.zkp.android.modules.knowledge.list.KnowledgeListFragment
 import com.zkp.android.modules.project.list.ProjectListFragment
 import com.zkp.android.utils.DensityUtils
 import net.lucode.hackware.magicindicator.MagicIndicator
@@ -132,7 +132,11 @@ class ProjectFragment : BaseFragment<ProjectContract.View, ProjectContract.Prese
         }
     }
 
-    override fun getProjectTreeError(errorMsg: String) {
+    fun jumpToTop(){
+        fragmentSparseArray.get(mViewPager.currentItem)?.jumpToTop()
+    }
 
+    override fun getProjectTreeError(errorMsg: String) {
+        SmartToast.show(errorMsg)
     }
 }

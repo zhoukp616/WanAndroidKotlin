@@ -133,6 +133,10 @@ class WeChatFragment : BaseFragment<WeChatContract.View, WeChatContract.Presente
         }
     }
 
+    fun jumpToTop(){
+        fragmentSparseArray.get(mViewPager.currentItem)?.jumpToTop()
+    }
+
     override fun onDestroyView() {
         fragmentSparseArray.clear()
         mChapters.clear()

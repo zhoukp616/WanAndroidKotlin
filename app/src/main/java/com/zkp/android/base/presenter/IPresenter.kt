@@ -36,4 +36,25 @@ interface IPresenter<in V : IView> {
      * 取消注册EventBus
      */
     fun unregisterEventBus()
+
+    /**
+     * 获取登录状态
+     *
+     * @return true--已经登录   false--还未登录
+     */
+    fun getLoginStatus(): Boolean
+
+    /**
+     * 获取用户账号
+     *
+     * @return String
+     */
+    fun getUserAccount(): String
+
+    /**
+     * 设置用户账号
+     *
+     * @param userAccount String
+     */
+    fun setUserAccount(userAccount: String)
 }

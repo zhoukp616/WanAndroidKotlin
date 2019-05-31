@@ -1,7 +1,9 @@
 package com.zkp.android.modules.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.NavigationView
 import android.support.v4.app.FragmentTransaction
 import android.support.v4.widget.DrawerLayout
@@ -19,11 +21,16 @@ import com.zkp.android.base.activity.BaseActivity
 import com.zkp.android.http.AppConfig
 import com.zkp.android.modules.home.HomeFragment
 import com.zkp.android.modules.knowledge.KnowledgeFragment
+import com.zkp.android.modules.login.LoginActivity
 import com.zkp.android.modules.navigation.NavigationFragment
 import com.zkp.android.modules.project.ProjectFragment
 import com.zkp.android.modules.wechat.WeChatFragment
 
 class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), MainContract.View {
+
+    companion object {
+        private const val LOGIN = 0x00001
+    }
 
     @BindView(R.id.toolbar)
     lateinit var mToolBar: Toolbar
@@ -37,8 +44,13 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
     @BindView(R.id.navigation)
     lateinit var mNavigation: NavigationView
 
+    @BindView(R.id.faBtn)
+    lateinit var mFaBtn: FloatingActionButton
+
     @BindView(R.id.drawerLayout)
     lateinit var mDrawerLayout: DrawerLayout
+
+    private lateinit var mUsTv: TextView
 
     /**
      * 当前Fragment的索引
@@ -99,6 +111,57 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
 
     override fun initEventAndData() {
         initBottomNavigationView()
+        initNavigationView()
+        mFaBtn.setOnClickListener {
+            //跳转到页面顶部
+            jumpToTop()
+        }
+    }
+
+    private fun initBottomNavigationView() {
+        mBottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_home -> showFragment(AppConfig().TYPE_HOME_PAGER)
+                R.id.navigation_knowledge_hierarchy -> showFragment(AppConfig().TYPE_KNOWLEDGE)
+                R.id.navigation_wx_article -> showFragment(AppConfig().TYPE_WX_ARTICLE)
+                R.id.navigation_navigation -> showFragment(AppConfig().TYPE_NAVIGATION)
+                R.id.navigation_project -> showFragment(AppConfig().TYPE_PROJECT)
+            }
+            true
+        }
+    }
+
+    private fun initNavigationView() {
+//        mNavigation.setNavigationItemSelectedListener { menuItem ->
+//            when(menuItem.itemId){
+//                R.id.nav_item_my_collect->
+//            }
+//            true
+//        }
+        mUsTv = mNavigation.getHeaderView(0).findViewById(R.id.nav_header_login)
+        mUsTv.text = if (mPresenter?.getLoginStatus()!!) mPresenter?.getUserAccount() else getString(R.string.login_in)
+        if (!mPresenter?.getLoginStatus()!!) {
+            //还没有登录，跳转到登录页面
+            mUsTv.setOnClickListener {
+                startActivityForResult(
+                    Intent(this@MainActivity, LoginActivity::class.java),
+                    LOGIN
+                )
+            }
+        }
+    }
+
+    /**
+     * 跳转到页面顶部
+     */
+    private fun jumpToTop() {
+        when (mCurrentFgIndex) {
+            AppConfig().TYPE_HOME_PAGER -> mHomeFragment?.jumpToTop()
+            AppConfig().TYPE_KNOWLEDGE -> mKnowledgeFragment?.jumpToTop()
+            AppConfig().TYPE_WX_ARTICLE -> mWeChatFragment?.jumpToTop()
+            AppConfig().TYPE_NAVIGATION -> mNavigationFragment?.jumpToTop()
+            AppConfig().TYPE_PROJECT -> mProjectFragment?.jumpToTop()
+        }
     }
 
     override fun initView() {
@@ -190,16 +253,18 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
 
     override fun createPresenter(): MainContract.Presenter = MainPresenter()
 
-    private fun initBottomNavigationView() {
-        mBottomNavigationView.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.navigation_home -> showFragment(AppConfig().TYPE_HOME_PAGER)
-                R.id.navigation_knowledge_hierarchy -> showFragment(AppConfig().TYPE_KNOWLEDGE)
-                R.id.navigation_wx_article -> showFragment(AppConfig().TYPE_WX_ARTICLE)
-                R.id.navigation_navigation -> showFragment(AppConfig().TYPE_NAVIGATION)
-                R.id.navigation_project -> showFragment(AppConfig().TYPE_PROJECT)
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK) {
+            when (requestCode) {
+                LOGIN -> {
+                    mUsTv.text =
+                        if (mPresenter?.getLoginStatus()!!) mPresenter?.getUserAccount() else getString(R.string.login_in)
+                    if (mPresenter?.getLoginStatus()!!) {
+                        mUsTv.isEnabled = false
+                    }
+                }
             }
-            true
         }
     }
 }

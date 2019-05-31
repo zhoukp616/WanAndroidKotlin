@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+        <android.support.design.widget.TextInputLayout
+                android:id="@+id/etUserName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:layout_marginLeft="@dimen/dp_30"
+                android:layout_marginRight="@dimen/dp_30"
+                android:gravity="center_vertical"
+                android:hint="@string/enter_user_name"
+                app:hintTextAppearance="@style/TextInputAppTheme">
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:drawableStart="@drawable/icon_user"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:paddingStart="@dimen/dp_10" tools:ignore="RtlSymmetry"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:layout_marginLeft="@dimen/dp_30"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_30"
+                android:gravity="center_vertical"
+                android:hint="@string/enter_password"
+                app:hintTextAppearance="@style/TextInputAppTheme">
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:drawableStart="@drawable/icon_password"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:inputType="textPassword"
+                    android:paddingStart="@dimen/dp_10" tools:ignore="RtlSymmetry"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+                android:id="@+id/etRePassword"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:layout_marginLeft="@dimen/dp_30"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_30"
+                android:gravity="center_vertical"
+                android:hint="@string/enter_password_again"
+                app:hintTextAppearance="@style/TextInputAppTheme">
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:drawableStart="@drawable/icon_password"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:inputType="textPassword"
+                    android:paddingStart="@dimen/dp_10" tools:ignore="RtlSymmetry"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginLeft="@dimen/dp_30"
+                android:layout_marginTop="@dimen/dp_50"
+                android:layout_marginRight="@dimen/dp_30"
+                android:background="@drawable/login_bg_selector"
+                android:text="@string/registertxt"
+                android:textColor="@drawable/login_text_selector"
+                android:textSize="@dimen/sp_16" />
+
+    </LinearLayout>
+
+</RelativeLayout>

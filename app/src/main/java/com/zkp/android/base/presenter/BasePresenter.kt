@@ -4,8 +4,10 @@ import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.OnLifecycleEvent
+import com.zkp.android.app.App
 import com.zkp.android.base.model.IModel
 import com.zkp.android.base.view.IView
+import com.zkp.android.utils.SpUtils
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
@@ -80,6 +82,18 @@ open class BasePresenter<M : IModel, V : IView> : IPresenter<V>, LifecycleObserv
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     fun onDestroy(owner: LifecycleOwner) {
         owner.lifecycle.removeObserver(this)
+    }
+
+    override fun getLoginStatus(): Boolean {
+        return SpUtils().getBoolean(App.getContext(), "loginStatus")
+    }
+
+    override fun getUserAccount(): String {
+        return SpUtils().getString(App.getContext(), "userAccount")!!
+    }
+
+    override fun setUserAccount(userAccount: String) {
+        return SpUtils().putString(App.getContext(), "userAccount", userAccount)
     }
 
 }

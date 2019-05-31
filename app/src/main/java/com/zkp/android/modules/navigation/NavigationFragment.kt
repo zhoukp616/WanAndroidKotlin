@@ -78,6 +78,7 @@ class NavigationFragment : BaseFragment<NavigationContract.View, NavigationContr
         } else {
             mAdapter.addData(mNavigationList)
         }
+        mTabLayout.setTabSelected(0)
     }
 
     override fun getNaviJsonError(errorMsg: String) {
