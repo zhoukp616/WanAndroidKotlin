@@ -1,5 +1,8 @@
 package com.zkp.android.http
 
+import android.os.Environment
+import java.io.File
+
 /**
  * @author: zkp
  * @project: WanAndroid
@@ -8,6 +11,8 @@ package com.zkp.android.http
  * @description:
  */
 class AppConfig {
+
+    val APP_PATH = Environment.getExternalStorageDirectory().toString() + File.separator + "玩安卓Kotlin"
 
     /**
      * 读取超时 默认设置为10s
@@ -19,6 +24,7 @@ class AppConfig {
     val TIMEOUT_CONNECTION = 10L
 
     val BASE_URL = "https://www.wanandroid.com/"
+    val BASE_URL_GANK = "http://gank.io/"
 
     val CURRENT_FRAGMENT_INDEX = "current_fragment"
 

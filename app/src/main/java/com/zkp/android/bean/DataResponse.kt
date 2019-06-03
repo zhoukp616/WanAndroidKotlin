@@ -183,3 +183,20 @@ data class Hotkey(
     @Json(name = "order") val order: Int,
     @Json(name = "visible") val visible: Int
 )
+
+data class HttpResultGank<T>(
+    @Json(name = "results") val results: T
+) : BaseBeanGank()
+
+data class WelFare(
+    @Json(name = "_id") val _id:String,
+    @Json(name = "createdAt") val createdAt:String,
+    @Json(name = "desc") val desc:String,
+    @Json(name = "publishedAt") val publishedAt:String,
+    @Json(name = "source") val source:String,
+    @Json(name = "type") val type:String,
+    @Json(name = "url") val url:String,
+    @Json(name = "used") val used:Boolean,
+    @Json(name = "who") val who:String
+)
+

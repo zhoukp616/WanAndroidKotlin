@@ -173,5 +173,12 @@ interface ApiService {
     @GET("/friend/json")
     fun getFriendJson(): Observable<HttpResult<MutableList<Friend>>>
 
+    /**
+     * 获取干货集中营福利相关图片
+     * @param page 页码 从1开始
+     */
+    @GET("api/data/福利/10/{page}")
+    fun getWelFare(@Path("page") page: Int): Observable<HttpResultGank<MutableList<WelFare>>>
+
 
 }

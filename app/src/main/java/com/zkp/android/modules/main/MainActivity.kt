@@ -94,7 +94,7 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        var intent: Intent
+        val intent: Intent
         when (item?.itemId) {
             R.id.action_usage -> {
                 intent = Intent(this@MainActivity, ComponentActivity::class.java)
@@ -142,6 +142,11 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
                 R.id.nav_item_my_collect -> {
                     intent = Intent(this@MainActivity, ComponentActivity::class.java)
                     intent.putExtra("type_fragment", AppConfig().TYPE_COLLECT)
+                    startActivity(intent)
+                }
+                R.id.nav_item_welfare->{
+                    intent = Intent(this@MainActivity, ComponentActivity::class.java)
+                    intent.putExtra("type_fragment", AppConfig().TYPE_WELFARE)
                     startActivity(intent)
                 }
 
