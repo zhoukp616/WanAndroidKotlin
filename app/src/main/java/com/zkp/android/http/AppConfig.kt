@@ -86,4 +86,27 @@ class AppConfig {
     val CNBLOGS_URL = "https://www.cnblogs.com/imyalost/category/873684.html"
     val CNBLOGS_AUTHOR = "老_张"
 
+    /**
+     * TODO分类
+     */
+    val TODO_TYPE_ALL = 0
+    val TODO_TYPE_WORK = 1
+    val TODO_TYPE_STUDY = 2
+    val TODO_TYPE_LIFE = 3
+    val TODO_TYPE_OTHER = 4
+
+    /**
+     * TODO列表参数
+     */
+    val KEY_TODO_TITLE = "title"
+    val KEY_TODO_CONTENT = "content"
+    val KEY_TODO_DATE = "date"
+    val KEY_TODO_TYPE = "type"
+    val KEY_TODO_STATUS = "status"
+    val KEY_TODO_PRIORITY = "priority"
+    val KEY_TODO_ORDERBY = "orderby"
+
+    val TODO_PRIORITY_FIRST = 1
+    val TODO_PRIORITY_SECOND = 2
+
 }

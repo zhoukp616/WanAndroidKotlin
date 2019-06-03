@@ -1,4 +1,4 @@
-package com.zkp.android.modules.main.activity
+package com.zkp.android.modules.main.activity.component
 
 import android.support.v4.app.Fragment
 import android.support.v7.widget.Toolbar
@@ -18,7 +18,8 @@ import com.zkp.android.modules.main.Fragment.welfare.WelfareFragment
  * @time: 2019/5/31 11:39
  * @description:
  */
-class ComponentActivity : BaseActivity<ComponetContract.View, ComponetContract.Presenter>(), ComponetContract.View {
+class ComponentActivity : BaseActivity<ComponetContract.View, ComponetContract.Presenter>(),
+    ComponetContract.View {
 
     @BindView(R.id.toolbar_title)
     lateinit var mTitle: TextView
@@ -29,7 +30,8 @@ class ComponentActivity : BaseActivity<ComponetContract.View, ComponetContract.P
     lateinit var mTargetFragment: Fragment
     lateinit var title: String
 
-    override fun createPresenter(): ComponetContract.Presenter = ComponetPresenter()
+    override fun createPresenter(): ComponetContract.Presenter =
+        ComponetPresenter()
 
     override fun getLayoutId(): Int {
         return R.layout.activity_componet

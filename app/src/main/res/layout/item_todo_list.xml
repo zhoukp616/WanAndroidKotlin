@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    xmlns:tools="http://schemas.android.com/tools"
+                                    android:id="@+id/item_search_pager_group"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="@dimen/dp_1"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:foreground="?android:attr/selectableItemBackground"
+                                    app:cardBackgroundColor="@color/colorWhite"
+                                    app:cardCornerRadius="@dimen/dp_10"
+                                    app:cardElevation="@dimen/dp_0">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dp_14"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_14"
+            android:paddingBottom="@dimen/dp_10">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/tv_todo_priority"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/dp_5"
+                    android:background="@drawable/bg_top"
+                    android:paddingLeft="@dimen/dp_2"
+                    android:paddingTop="@dimen/dp_1"
+                    android:paddingRight="@dimen/dp_2"
+                    android:paddingBottom="@dimen/dp_1"
+                    android:text="@string/todo_priority"
+                    android:textColor="@color/colorRed"
+                    android:textSize="@dimen/sp_8"
+                    android:visibility="gone"
+                    tools:text="top"
+                    tools:visibility="visible" />
+
+            <TextView
+                    android:id="@+id/tv_todo_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/Grey700"
+                    android:textSize="@dimen/sp_12"
+                    tools:text="2019-01-01" />
+
+        </RelativeLayout>
+
+        <TextView
+                android:id="@+id/tv_todo_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="top|start"
+                android:lineSpacingExtra="@dimen/dp_2"
+                android:maxLines="1"
+                android:textColor="@color/Grey900"
+                android:textSize="@dimen/sp_16"
+                tools:text="WanAndroid" />
+
+        <TextView
+                android:id="@+id/tv_todo_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@string/app_name"
+                android:textColor="@color/Grey700"
+                android:textSize="@dimen/sp_14" />
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

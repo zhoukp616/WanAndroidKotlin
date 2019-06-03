@@ -36,4 +36,32 @@
     <string name="enter_password_again">请再次输入密码</string>
     <string name="registertxt">注册</string>
 
+    <string name="todo_title">TODO</string>
+    <string name="todo">待办</string>
+    <string name="done_todo">已完成</string>
+
+    <string name="todo_all">全部</string>
+    <string name="todo_work">工作</string>
+    <string name="todo_study">学习</string>
+    <string name="todo_life">生活</string>
+    <string name="todo_other">其他</string>
+
+    <string name="todo_priority">重要</string>
+
+    <string name="todo_edit_title">编辑</string>
+    <string name="todo_new_title">新建</string>
+
+    <string name="tv_add_todo_title">标题:</string>
+    <string name="tv_add_todo_content">详情:</string>
+    <string name="tv_add_todo_label">标签:</string>
+    <string name="tv_add_todo_priority">优先级:</string>
+    <string name="tv_add_todo_date">日期:</string>
+    <string name="hint_add_todo_not_null">必填</string>
+    <string name="hint_add_todo_null_able">非必填</string>
+    <string name="todo_no_label">无标签</string>
+    <string name="todo_priority_1">重要</string>
+    <string name="todo_priority_2">一般</string>
+    <string name="bt_todo_save">保存</string>
+    <string name="bt_choose_label">选择标签</string>
+
 </resources>

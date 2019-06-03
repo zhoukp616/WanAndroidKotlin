@@ -23,7 +23,8 @@ import com.zkp.android.modules.home.HomeFragment
 import com.zkp.android.modules.home.detail.ArticleDetailActivity
 import com.zkp.android.modules.knowledge.KnowledgeFragment
 import com.zkp.android.modules.login.LoginActivity
-import com.zkp.android.modules.main.activity.ComponentActivity
+import com.zkp.android.modules.main.activity.component.ComponentActivity
+import com.zkp.android.modules.main.activity.todo.ToDoActivity
 import com.zkp.android.modules.navigation.NavigationFragment
 import com.zkp.android.modules.project.ProjectFragment
 import com.zkp.android.modules.wechat.WeChatFragment
@@ -144,10 +145,19 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
                     intent.putExtra("type_fragment", AppConfig().TYPE_COLLECT)
                     startActivity(intent)
                 }
-                R.id.nav_item_welfare->{
+                R.id.nav_item_welfare -> {
                     intent = Intent(this@MainActivity, ComponentActivity::class.java)
                     intent.putExtra("type_fragment", AppConfig().TYPE_WELFARE)
                     startActivity(intent)
+                }
+                R.id.nav_item_todo -> {
+                    if (mPresenter?.getLoginStatus()!!) {
+                        intent = Intent(this@MainActivity, ToDoActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        startActivityForResult(Intent(this@MainActivity, LoginActivity::class.java), LOGIN)
+                        SmartToast.show("请先登录")
+                    }
                 }
 
                 R.id.nav_item_cnblogs -> {

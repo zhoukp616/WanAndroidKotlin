@@ -1,11 +1,8 @@
 package com.zkp.android.http
 
 import com.zkp.android.bean.*
-import retrofit2.http.GET
 import io.reactivex.Observable
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 /**
  * @author: zkp
@@ -179,6 +176,44 @@ interface ApiService {
      */
     @GET("api/data/福利/10/{page}")
     fun getWelFare(@Path("page") page: Int): Observable<HttpResultGank<MutableList<WelFare>>>
+
+    /**
+     * 获取todo列表
+     * 页码从1开始，拼接在url 上
+     * status 状态， 1-完成；0未完成; 默认全部展示；
+     * type 创建时传入的类型, 默认全部展示
+     * priority 创建时传入的优先级；默认全部展示
+     * orderby 1:完成日期顺序；2.完成日期逆序；3.创建日期顺序；4.创建日期逆序(默认)；（1和2只能获取到已完成的TODO）
+     *
+     * @param page 页码 从1开始
+     * @param map  参数列表
+     * @return
+     */
+    @GET("/lg/todo/v2/list/{page}/json")
+    fun getToDoList(@Path("page") page: Int, @QueryMap map: Map<String, Int>): Observable<HttpResult<ToDoResponseBody>>
+
+    /**
+     * 添加一条TODO数据
+     * title: 新增标题
+     * content: 新增详情
+     * date: 2018-08-01
+     * type: 0
+     */
+    @POST("lg/todo/add/json")
+    @FormUrlEncoded
+    fun addToDo(@FieldMap map: MutableMap<String, Any>): Observable<HttpResult<Any>>
+
+    /**
+     * 更新一条Todo内容
+     * title: 新增标题
+     * content: 新增详情
+     * date: 2018-08-01
+     * status: 0为未完成，1为完成
+     * type: 0
+     */
+    @POST("/lg/todo/update/{id}/json")
+    @FormUrlEncoded
+    fun updateTodo(@Path("id") id: Int, @FieldMap map: MutableMap<String, Any>): Observable<HttpResult<Any>>
 
 
 }

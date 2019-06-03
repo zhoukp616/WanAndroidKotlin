@@ -98,6 +98,7 @@ dependencies {
 
     //support
     implementation rootProject.ext.dependencies["appcompat-v7"]
+    implementation rootProject.ext.dependencies["constraint"]
     implementation rootProject.ext.dependencies["cardview-v7"]
     implementation rootProject.ext.dependencies["preference-v7"]
     implementation rootProject.ext.dependencies["preference-v14"]
@@ -116,6 +117,7 @@ dependencies {
     implementation rootProject.ext.dependencies["MagicIndicator"]
     implementation rootProject.ext.dependencies["verticalTabLayout"]
     implementation rootProject.ext.dependencies["flowLayout"]
+    implementation rootProject.ext.dependencies["pickView"]
 
     //net
     implementation rootProject.ext.dependencies["gson"]

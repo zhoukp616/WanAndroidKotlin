@@ -1,4 +1,4 @@
-package com.zkp.android.modules.main.activity
+package com.zkp.android.modules.main.activity.component
 
 import com.zkp.android.base.model.IModel
 import com.zkp.android.base.presenter.IPresenter

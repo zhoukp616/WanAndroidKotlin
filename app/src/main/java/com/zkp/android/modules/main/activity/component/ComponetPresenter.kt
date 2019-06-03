@@ -1,4 +1,4 @@
-package com.zkp.android.modules.main.activity
+package com.zkp.android.modules.main.activity.component
 
 import com.zkp.android.base.presenter.BasePresenter
 
@@ -9,5 +9,6 @@ import com.zkp.android.base.presenter.BasePresenter
  * @time: 2019/5/31 11:42
  * @description:
  */
-class ComponetPresenter : BasePresenter<ComponetContract.Model, ComponetContract.View>(), ComponetContract.Presenter {
+class ComponetPresenter : BasePresenter<ComponetContract.Model, ComponetContract.View>(),
+    ComponetContract.Presenter {
 }

@@ -45,7 +45,15 @@
                   android:screenOrientation="portrait"
                   android:label="${app_name}"/>
 
-        <activity android:name=".modules.main.activity.ComponentActivity"
+        <activity android:name=".modules.main.activity.component.ComponentActivity"
+                  android:screenOrientation="portrait"
+                  android:label="${app_name}"/>
+
+        <activity android:name=".modules.main.activity.todo.ToDoActivity"
+                  android:screenOrientation="portrait"
+                  android:label="${app_name}"/>
+
+        <activity android:name=".modules.main.activity.todo.add.AddToDoActivity"
                   android:screenOrientation="portrait"
                   android:label="${app_name}"/>
 
@@ -58,9 +66,8 @@
                 android:grantUriPermissions="true">
             <meta-data
                     android:name="android.support.FILE_PROVIDER_PATHS"
-                    android:resource="@xml/file_paths" />
+                    android:resource="@xml/file_paths"/>
         </provider>
-
 
 
     </application>

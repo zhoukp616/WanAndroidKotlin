@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+            android:id="@+id/action_not_todo"
+            android:enabled="true"
+            android:icon="@drawable/ic_todo_default"
+            android:title="@string/todo"
+            app:showAsAction="ifRoom" />
+    <item
+            android:id="@+id/action_todo_done"
+            android:enabled="true"
+            android:icon="@drawable/ic_done"
+            android:title="@string/done_todo"
+            app:showAsAction="ifRoom" />
+</menu>

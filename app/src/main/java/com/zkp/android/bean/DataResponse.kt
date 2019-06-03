@@ -184,19 +184,42 @@ data class Hotkey(
     @Json(name = "visible") val visible: Int
 )
 
+data class ToDoResponseBody(
+    @Json(name = "curPage") val curPage: Int,
+    @Json(name = "datas") val datas: MutableList<ToDo>,
+    @Json(name = "offset") val offset: Int,
+    @Json(name = "over") val over: Boolean,
+    @Json(name = "pageCount") val pageCount: Int,
+    @Json(name = "size") val size: Int,
+    @Json(name = "total") val total: Int
+)
+
+data class ToDo(
+    @Json(name = "completeDateStr") val completeDateStr: String,
+    @Json(name = "content") val content: String,
+    @Json(name = "date") val date: Long,
+    @Json(name = "dateStr") val dateStr: String,
+    @Json(name = "id") val id: Int,
+    @Json(name = "priority") val priority: Int,
+    @Json(name = "status") val status: Int,
+    @Json(name = "title") val title: String,
+    @Json(name = "type") val type: Int,
+    @Json(name = "userId") val userId: Int
+) : Serializable
+
 data class HttpResultGank<T>(
     @Json(name = "results") val results: T
 ) : BaseBeanGank()
 
 data class WelFare(
-    @Json(name = "_id") val _id:String,
-    @Json(name = "createdAt") val createdAt:String,
-    @Json(name = "desc") val desc:String,
-    @Json(name = "publishedAt") val publishedAt:String,
-    @Json(name = "source") val source:String,
-    @Json(name = "type") val type:String,
-    @Json(name = "url") val url:String,
-    @Json(name = "used") val used:Boolean,
-    @Json(name = "who") val who:String
+    @Json(name = "_id") val _id: String,
+    @Json(name = "createdAt") val createdAt: String,
+    @Json(name = "desc") val desc: String,
+    @Json(name = "publishedAt") val publishedAt: String,
+    @Json(name = "source") val source: String,
+    @Json(name = "type") val type: String,
+    @Json(name = "url") val url: String,
+    @Json(name = "used") val used: Boolean,
+    @Json(name = "who") val who: String
 )
 

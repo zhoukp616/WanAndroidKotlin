@@ -10,6 +10,7 @@ import com.zkp.android.base.view.IView
 import com.zkp.android.utils.SpUtils
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import org.simple.eventbus.EventBus
 
 /**
  * @author: zkp
@@ -61,14 +62,14 @@ open class BasePresenter<M : IModel, V : IView> : IPresenter<V>, LifecycleObserv
      * 注册EventBus
      */
     override fun registerEventBus() {
-//        EventBus.getDefault().register(this)
+        EventBus.getDefault().register(this)
     }
 
     /**
      * 取消注册EventBus
      */
     override fun unregisterEventBus() {
-//        EventBus.getDefault().unregister(this)
+        EventBus.getDefault().unregister(this)
     }
 
     @Deprecated("")
