@@ -152,6 +152,7 @@ dependencies {
     implementation rootProject.ext.dependencies["greenDao"]
     implementation rootProject.ext.dependencies["greenDao-Generator"]
     implementation rootProject.ext.dependencies["netStatusBus"]
-
     implementation rootProject.ext.dependencies["eventBus"]
+    implementation rootProject.ext.dependencies["update"]
+    implementation rootProject.ext.dependencies["updateUtils"]
 }

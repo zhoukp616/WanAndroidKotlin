@@ -159,6 +159,11 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
                         SmartToast.show("请先登录")
                     }
                 }
+                R.id.nav_item_about_us -> {
+                    intent = Intent(this@MainActivity, ComponentActivity::class.java)
+                    intent.putExtra("type_fragment", AppConfig().TYPE_ABOUT_US)
+                    startActivity(intent)
+                }
 
                 R.id.nav_item_cnblogs -> {
                     intent = Intent(this@MainActivity, ArticleDetailActivity::class.java)

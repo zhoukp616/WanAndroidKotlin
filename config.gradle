@@ -35,7 +35,9 @@ ext {
             eventBusVersion                     : "1.0.5.1",
             verticalTabLayoutVersion            : "1.2.5",
             flowLayoutVersion                   : "1.1.2",
-            pickerViewVersion                   : "4.1.8"
+            pickerViewVersion                   : "4.1.8",
+            updateVersion                       : "3.5.2",
+            updateUtilsVersion                  : "3.8.0"
     ]
 
     dependencies = [
@@ -96,7 +98,8 @@ ext {
             "greenDao"                     : "org.greenrobot:greendao:${version["greebDaoVersion"]}",
             "greenDao-Generator"           : "org.greenrobot:greendao-generator:${version["greebDaoVersion"]}",
             "netStatusBus"                 : "com.sunchen:netstatusbus:${version["netStatusBusVersion"]}",
-
-            "eventBus"                     : "org.simple:androideventbus:${version["eventBusVersion"]}"
+            "eventBus"                     : "org.simple:androideventbus:${version["eventBusVersion"]}",
+            "update"                       : "com.qianwen:update-app:${version["updateVersion"]}",
+            "updateUtils"                  : "com.qianwen:okhttp-utils:${version["updateUtilsVersion"]}"
     ]
 }

@@ -64,4 +64,10 @@
     <string name="bt_todo_save">保存</string>
     <string name="bt_choose_label">选择标签</string>
 
+    <string name="about_update">检查更新</string>
+    <string name="about_website">关于网站</string>
+    <string name="about_source_code">源码下载</string>
+    <string name="about_feedback">意见反馈</string>
+    <string name="about_copyright">版权声明</string>
+
 </resources>

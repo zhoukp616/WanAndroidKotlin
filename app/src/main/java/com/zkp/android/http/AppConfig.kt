@@ -109,4 +109,12 @@ class AppConfig {
     val TODO_PRIORITY_FIRST = 1
     val TODO_PRIORITY_SECOND = 2
 
+    val URL_UPDATE = "http://mock-api.com/3EgdX1gM.mock/getUpdateInfo"
+    /**
+     * About Url
+     */
+    val ABOUT_WEBSITE = "https://www.wanandroid.com/about"
+    val ABOUT_SOURCE_CODE = "https://github.com/Zkp275557625/WanAndroidKotlin"
+    val ABOUT_FEEDBACK = "https://github.com/Zkp275557625/WanAndroidKotlin/issues"
+
 }
