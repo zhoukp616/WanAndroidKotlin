@@ -215,5 +215,20 @@ interface ApiService {
     @FormUrlEncoded
     fun updateTodo(@Path("id") id: Int, @FieldMap map: MutableMap<String, Any>): Observable<HttpResult<Any>>
 
+    /**
+     * 删除一条ToDo
+     * @param id todo事件的id
+     */
+    @POST("lg/todo/delete/{id}/json")
+    fun deleteToDo(@Path("id") id: Int): Observable<HttpResult<Any>>
+
+    /**
+     * 仅更新todo事件的状态
+     * @param id todo事件的id
+     * @param status 0或1，传1代表未完成到已完成，反之则反之
+     */
+    @POST("lg/todo/done/{id}/json")
+    fun updateToDoStatus(@Path("id") id: Int, @Query("status") status: Int): Observable<HttpResult<Any>>
+
 
 }

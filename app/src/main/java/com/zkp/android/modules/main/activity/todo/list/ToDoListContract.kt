@@ -32,6 +32,28 @@ class ToDoListContract {
          */
         fun getToDoListError(errorMsg: String)
 
+        /**
+         * 删除一条todo事件成功
+         */
+        fun deleteToDoSuccess()
+
+        /**
+         * 删除一条todo事件失败
+         * @param errorMsg
+         */
+        fun deleteToDoError(errorMsg: String)
+
+        /**
+         * 仅更新todo事件的状态成功
+         */
+        fun updateToDoStatusSuccess()
+
+        /**
+         * 仅更新todo事件的状态失败
+         * @param errorMsg
+         */
+        fun updateToDoStatusError(errorMsg: String)
+
     }
 
     interface Presenter : IPresenter<View> {
@@ -57,6 +79,19 @@ class ToDoListContract {
          */
         fun loadMore()
 
+        /**
+         * 删除一条todo事件
+         * @param id
+         */
+        fun deleteToDo(id: Int)
+
+        /**
+         * 仅更新todo事件的状态
+         * @param id
+         * @param status 0或1，传1代表未完成到已完成，反之则反之
+         */
+        fun updateToDoStatus(id: Int, status: Int)
+
     }
 
     interface Model : IModel {
@@ -67,6 +102,19 @@ class ToDoListContract {
          * @param map 参数列表
          */
         fun requestToDoList(page: Int, map: Map<String, Int>): Observable<HttpResult<ToDoResponseBody>>
+
+        /**
+         * 请求删除一条todo事件
+         * @param id
+         */
+        fun requsetDeleteToDo(id: Int): Observable<HttpResult<Any>>
+
+        /**
+         * 请求仅更新todo事件的状态
+         * @param id
+         * @param status
+         */
+        fun requsetUpdateToDoStatus(id: Int, status: Int): Observable<HttpResult<Any>>
 
     }
 

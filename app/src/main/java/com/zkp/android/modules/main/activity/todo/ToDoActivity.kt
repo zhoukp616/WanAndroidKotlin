@@ -1,22 +1,20 @@
 package com.zkp.android.modules.main.activity.todo
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.FloatingActionButton
-import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.widget.Toolbar
 import android.util.SparseArray
-import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import butterknife.BindView
-import butterknife.OnClick
 import com.zkp.android.R
 import com.zkp.android.base.activity.BaseActivity
 import com.zkp.android.http.AppConfig
@@ -43,12 +41,12 @@ import java.util.*
  */
 class ToDoActivity : BaseActivity<ToDoContract.View, ToDoContract.Presenter>(), ToDoContract.View {
 
-    /**
-     * todo事项完成状态 0--未完成   1--已完成
-     */
     companion object {
-
+        /**
+         * todo事项完成状态 0--未完成   1--已完成
+         */
         var mTodoStatus: Int = 0
+        val ADD = 0x0001
     }
 
     @BindView(R.id.toolbar)
@@ -118,7 +116,7 @@ class ToDoActivity : BaseActivity<ToDoContract.View, ToDoContract.Presenter>(), 
             val intent = Intent(this@ToDoActivity, AddToDoActivity::class.java)
             intent.putExtra("from_todo", 0)
             intent.putExtra("type_todo", mViewPager.currentItem)
-            startActivity(intent)
+            startActivityForResult(intent, ADD)
         }
     }
 
@@ -196,6 +194,17 @@ class ToDoActivity : BaseActivity<ToDoContract.View, ToDoContract.Presenter>(), 
                 return mTodoTypeArray.get(position)
             }
 
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                ADD -> {
+                    fragmentSparseArray[mViewPager.currentItem].refresh()
+                }
+            }
         }
     }
 

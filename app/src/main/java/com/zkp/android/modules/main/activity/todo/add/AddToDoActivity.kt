@@ -1,6 +1,7 @@
 package com.zkp.android.modules.main.activity.todo.add
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.support.v7.widget.Toolbar
 import android.view.Gravity
 import android.view.View
@@ -19,6 +20,7 @@ import com.zkp.android.base.activity.BaseActivity
 import com.zkp.android.bean.ToDo
 import com.zkp.android.http.AppConfig
 import com.zkp.android.modules.main.activity.todo.RefreshTodoEvent
+import me.yokeyword.fragmentation.ISupportFragment
 import org.simple.eventbus.EventBus
 import java.text.SimpleDateFormat
 import java.util.*
@@ -127,7 +129,7 @@ class AddToDoActivity : BaseActivity<AddToDoContract.View, AddToDoContract.Prese
         R.id.iv_date_arrow_right,
         R.id.bt_todo_save
     )
-    internal fun onClick(view: View) {
+    fun onClick(view: View) {
         when (view.id) {
             R.id.iv_label_arrow_right, R.id.tv_add_todo_label_content ->
                 //选择标签
@@ -139,8 +141,6 @@ class AddToDoActivity : BaseActivity<AddToDoContract.View, AddToDoContract.Prese
                 addToDo()
             } else {
                 updateToDo()
-            }
-            else -> {
             }
         }
     }
@@ -235,6 +235,7 @@ class AddToDoActivity : BaseActivity<AddToDoContract.View, AddToDoContract.Prese
     override fun addToDoSuccess() {
         EventBus.getDefault().post(RefreshTodoEvent(-1))
         SmartToast.show("添加成功")
+        setResult(Activity.RESULT_OK)
         finish()
     }
 
@@ -245,6 +246,7 @@ class AddToDoActivity : BaseActivity<AddToDoContract.View, AddToDoContract.Prese
     override fun updateToDoSuccess() {
         EventBus.getDefault().post(RefreshTodoEvent(-1))
         SmartToast.show("更新成功")
+        setResult(ISupportFragment.RESULT_OK)
         finish()
     }
 

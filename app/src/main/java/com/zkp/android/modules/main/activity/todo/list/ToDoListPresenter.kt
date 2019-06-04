@@ -67,4 +67,46 @@ class ToDoListPresenter : BasePresenter<ToDoListContract.Model, ToDoListContract
         currentPage++
         getToDoList(currentPage, false)
     }
+
+    override fun deleteToDo(id: Int) {
+        mView?.showLoading()
+        HttpsUtil().request(mModel!!.requsetDeleteToDo(id), object : HttpsUtil.IResponseListener<HttpResult<Any>> {
+            override fun onSuccess(data: HttpResult<Any>) {
+                if (data.errorCode == 0) {
+                    mView?.deleteToDoSuccess()
+                } else {
+                    mView?.deleteToDoError(data.errorMsg)
+                }
+                mView?.hideLoading()
+            }
+
+            override fun onFail(errMsg: String) {
+                mView?.getToDoListError(errMsg)
+                mView?.hideLoading()
+            }
+
+        })
+    }
+
+    override fun updateToDoStatus(id: Int, status: Int) {
+        mView?.showLoading()
+        HttpsUtil().request(mModel!!.requsetUpdateToDoStatus(id, status),
+            object : HttpsUtil.IResponseListener<HttpResult<Any>> {
+                override fun onSuccess(data: HttpResult<Any>) {
+                    if (data.errorCode == 0) {
+                        mView?.updateToDoStatusSuccess()
+                    } else {
+                        mView?.updateToDoStatusError(data.errorMsg)
+                    }
+                    mView?.hideLoading()
+                }
+
+                override fun onFail(errMsg: String) {
+                    mView?.updateToDoStatusError(errMsg)
+                    mView?.hideLoading()
+                }
+
+            })
+    }
+
 }

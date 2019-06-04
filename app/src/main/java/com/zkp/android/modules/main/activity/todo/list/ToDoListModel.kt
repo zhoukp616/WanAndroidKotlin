@@ -21,4 +21,13 @@ class ToDoListModel : BaseModel(), ToDoListContract.Model {
         return HttpsUtil().createApi(App.getContext(), AppConfig().BASE_URL, ApiService::class.java)
             .getToDoList(page, map)
     }
+
+    override fun requsetDeleteToDo(id: Int): Observable<HttpResult<Any>> {
+        return HttpsUtil().createApi(App.getContext(), AppConfig().BASE_URL, ApiService::class.java).deleteToDo(id)
+    }
+
+    override fun requsetUpdateToDoStatus(id: Int, status: Int): Observable<HttpResult<Any>> {
+        return HttpsUtil().createApi(App.getContext(), AppConfig().BASE_URL, ApiService::class.java)
+            .updateToDoStatus(id, status)
+    }
 }
