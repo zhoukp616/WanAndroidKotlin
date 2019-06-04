@@ -70,4 +70,7 @@
     <string name="about_feedback">意见反馈</string>
     <string name="about_copyright">版权声明</string>
 
+    <string name="cache_setting">缓存设置</string>
+    <string name="clear_cache">清空缓存</string>
+
 </resources>

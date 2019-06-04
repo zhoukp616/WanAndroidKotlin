@@ -9,6 +9,7 @@ import com.zkp.android.base.activity.BaseActivity
 import com.zkp.android.http.AppConfig
 import com.zkp.android.modules.main.Fragment.about.AboutUsFragment
 import com.zkp.android.modules.main.Fragment.collect.CollectFragment
+import com.zkp.android.modules.main.Fragment.setting.SettingFragment
 import com.zkp.android.modules.main.Fragment.usage.UseageFragment
 import com.zkp.android.modules.main.Fragment.welfare.WelfareFragment
 
@@ -56,6 +57,10 @@ class ComponentActivity : BaseActivity<ComponetContract.View, ComponetContract.P
             AppConfig().TYPE_WELFARE -> {
                 mTargetFragment = WelfareFragment()
                 title = getString(R.string.nav_welfare)
+            }
+            AppConfig().TYPE_SETTING->{
+                mTargetFragment = SettingFragment()
+                title = getString(R.string.setting)
             }
             AppConfig().TYPE_ABOUT_US -> {
                 mTargetFragment = AboutUsFragment()
