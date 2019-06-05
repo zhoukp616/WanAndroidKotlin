@@ -9,6 +9,7 @@ import com.zkp.android.base.activity.BaseActivity
 import com.zkp.android.http.AppConfig
 import com.zkp.android.modules.main.Fragment.about.AboutUsFragment
 import com.zkp.android.modules.main.Fragment.collect.CollectFragment
+import com.zkp.android.modules.main.Fragment.search.SearchFragment
 import com.zkp.android.modules.main.Fragment.setting.SettingFragment
 import com.zkp.android.modules.main.Fragment.usage.UseageFragment
 import com.zkp.android.modules.main.Fragment.welfare.WelfareFragment
@@ -20,6 +21,7 @@ import com.zkp.android.modules.main.Fragment.welfare.WelfareFragment
  * @time: 2019/5/31 11:39
  * @description:
  */
+@Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class ComponentActivity : BaseActivity<ComponetContract.View, ComponetContract.Presenter>(),
     ComponetContract.View {
 
@@ -48,7 +50,7 @@ class ComponentActivity : BaseActivity<ComponetContract.View, ComponetContract.P
 
     override fun initView() {
         val fragType = intent.getIntExtra("type_fragment", -1)
-//        val extras = intent.extras
+        val extras = intent.extras
         when (fragType) {
             AppConfig().TYPE_COLLECT -> {
                 mTargetFragment = CollectFragment()
@@ -58,7 +60,7 @@ class ComponentActivity : BaseActivity<ComponetContract.View, ComponetContract.P
                 mTargetFragment = WelfareFragment()
                 title = getString(R.string.nav_welfare)
             }
-            AppConfig().TYPE_SETTING->{
+            AppConfig().TYPE_SETTING -> {
                 mTargetFragment = SettingFragment()
                 title = getString(R.string.setting)
             }
@@ -69,6 +71,10 @@ class ComponentActivity : BaseActivity<ComponetContract.View, ComponetContract.P
             AppConfig().TYPE_USEFUL_SITES -> {
                 mTargetFragment = UseageFragment()
                 title = getString(R.string.useful_sites)
+            }
+            AppConfig().TYPE_SEARCH_RESULT -> {
+                title = extras.getString("search_key", "")
+                mTargetFragment = SearchFragment().newInstance(extras!!)
             }
         }
 

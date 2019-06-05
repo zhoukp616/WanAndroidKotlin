@@ -14,6 +14,10 @@ class AppConfig {
 
     val APP_PATH = Environment.getExternalStorageDirectory().toString() + File.separator + "玩安卓Kotlin"
 
+    val DB_NAME = "zkp_wan_android_kotlin.db"
+
+    val HISTORY_LIST_SIZE = 50
+
     /**
      * 读取超时 默认设置为10s
      */

@@ -4,6 +4,9 @@ import android.app.Application
 import android.content.Context
 import com.coder.zzq.smartshow.core.SmartShow
 import com.sunchen.netbus.NetStatusBus
+import com.zkp.android.db.greendao.DaoMaster
+import com.zkp.android.db.greendao.DaoSession
+import com.zkp.android.http.AppConfig
 import kotlin.properties.Delegates
 
 /**
@@ -24,13 +27,29 @@ class App : Application() {
             return mContext
         }
 
+        var mDaoSession: DaoSession by Delegates.notNull()
+
+        fun getDaoSession(): DaoSession {
+            return mDaoSession
+        }
+
     }
 
     override fun onCreate() {
         super.onCreate()
         mContext = this
+
+        initGreenDao()
+
         SmartShow.init(this)
         NetStatusBus.getInstance().init(this)
+    }
+
+    private fun initGreenDao() {
+        val devOpenHelper = DaoMaster.DevOpenHelper(this, AppConfig().DB_NAME)
+        val database = devOpenHelper.writableDatabase
+        val daoMaster = DaoMaster(database)
+        mDaoSession = daoMaster.newSession()
     }
 
 }

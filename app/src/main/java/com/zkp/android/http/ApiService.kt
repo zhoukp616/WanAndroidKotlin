@@ -171,6 +171,26 @@ interface ApiService {
     fun getFriendJson(): Observable<HttpResult<MutableList<Friend>>>
 
     /**
+     * 获取当前搜索最多的关键词
+     *
+     * @return
+     */
+    @GET("/hotkey/json")
+    fun getHotKeys(): Observable<HttpResult<MutableList<Hotkey>>>
+
+    /**
+     * 搜索
+     * 页码：拼接在链接上，从0开始
+     * k ： 搜索关键词
+     *
+     * @param page int
+     * @param k    String
+     * @return
+     */
+    @POST("/article/query/{page}/json")
+    fun searchArticlesByKeyWord(@Path("page") page: Int, @Query("k") k: String): Observable<HttpResult<ArticleResponseBody>>
+
+    /**
      * 获取干货集中营福利相关图片
      * @param page 页码 从1开始
      */

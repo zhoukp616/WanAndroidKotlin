@@ -124,18 +124,6 @@ data class Login(
     @Json(name = "username") val username: String
 )
 
-//收藏网站
-data class CollectionWebsite(
-    @Json(name = "desc") val desc: String,
-    @Json(name = "icon") val icon: String,
-    @Json(name = "id") val id: Int,
-    @Json(name = "link") var link: String,
-    @Json(name = "name") var name: String,
-    @Json(name = "order") val order: Int,
-    @Json(name = "userId") val userId: Int,
-    @Json(name = "visible") val visible: Int
-)
-
 data class CollectResponseBody<T>(
     @Json(name = "curPage") val curPage: Int,
     @Json(name = "datas") val datas: MutableList<T>,

@@ -57,6 +57,10 @@
                   android:screenOrientation="portrait"
                   android:label="${app_name}"/>
 
+        <activity android:name=".modules.main.activity.search.SearchActivity"
+                  android:screenOrientation="portrait"
+                  android:label="${app_name}"/>
+
         <!--debug com.zkp.androiddev.provider-->
         <!--打包 com.zkp.android.provider-->
         <provider

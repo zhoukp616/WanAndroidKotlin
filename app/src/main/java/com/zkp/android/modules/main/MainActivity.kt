@@ -24,6 +24,7 @@ import com.zkp.android.modules.home.detail.ArticleDetailActivity
 import com.zkp.android.modules.knowledge.KnowledgeFragment
 import com.zkp.android.modules.login.LoginActivity
 import com.zkp.android.modules.main.activity.component.ComponentActivity
+import com.zkp.android.modules.main.activity.search.SearchActivity
 import com.zkp.android.modules.main.activity.todo.ToDoActivity
 import com.zkp.android.modules.navigation.NavigationFragment
 import com.zkp.android.modules.project.ProjectFragment
@@ -103,7 +104,8 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
                 startActivity(intent)
             }
             R.id.action_search -> {
-                SmartToast.show("搜索")
+                intent = Intent(this@MainActivity, SearchActivity::class.java)
+                startActivity(intent)
             }
         }
         return true

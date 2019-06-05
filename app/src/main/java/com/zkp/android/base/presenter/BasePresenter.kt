@@ -72,7 +72,6 @@ open class BasePresenter<M : IModel, V : IView> : IPresenter<V>, LifecycleObserv
         EventBus.getDefault().unregister(this)
     }
 
-    @Deprecated("")
     open fun addSubscribe(disposable: Disposable?) {
         if (mCompositeDisposable == null) {
             mCompositeDisposable = CompositeDisposable()

@@ -73,4 +73,9 @@
     <string name="cache_setting">缓存设置</string>
     <string name="clear_cache">清空缓存</string>
 
+    <string name="history_search">搜索历史</string>
+    <string name="hot_search">热搜</string>
+    <string name="clear_all">全部清除</string>
+    <string name="search_null_tint">快去搜索更多干货吧</string>
+
 </resources>

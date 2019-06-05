@@ -37,7 +37,8 @@ ext {
             flowLayoutVersion                   : "1.1.2",
             pickerViewVersion                   : "4.1.8",
             updateVersion                       : "3.5.2",
-            updateUtilsVersion                  : "3.8.0"
+            updateUtilsVersion                  : "3.8.0",
+            ankoVersion                         : "0.10.8"
     ]
 
     dependencies = [
@@ -100,6 +101,7 @@ ext {
             "netStatusBus"                 : "com.sunchen:netstatusbus:${version["netStatusBusVersion"]}",
             "eventBus"                     : "org.simple:androideventbus:${version["eventBusVersion"]}",
             "update"                       : "com.qianwen:update-app:${version["updateVersion"]}",
-            "updateUtils"                  : "com.qianwen:okhttp-utils:${version["updateUtilsVersion"]}"
+            "updateUtils"                  : "com.qianwen:okhttp-utils:${version["updateUtilsVersion"]}",
+            "anko"                         : "org.jetbrains.anko:anko:${version["ankoVersion"]}"
     ]
 }
