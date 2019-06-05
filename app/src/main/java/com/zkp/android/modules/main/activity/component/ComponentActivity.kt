@@ -7,12 +7,12 @@ import butterknife.BindView
 import com.zkp.android.R
 import com.zkp.android.base.activity.BaseActivity
 import com.zkp.android.http.AppConfig
-import com.zkp.android.modules.main.Fragment.about.AboutUsFragment
-import com.zkp.android.modules.main.Fragment.collect.CollectFragment
-import com.zkp.android.modules.main.Fragment.search.SearchFragment
-import com.zkp.android.modules.main.Fragment.setting.SettingFragment
-import com.zkp.android.modules.main.Fragment.usage.UseageFragment
-import com.zkp.android.modules.main.Fragment.welfare.WelfareFragment
+import com.zkp.android.modules.main.fragment.about.AboutUsFragment
+import com.zkp.android.modules.main.fragment.collect.CollectFragment
+import com.zkp.android.modules.main.fragment.search.SearchFragment
+import com.zkp.android.modules.main.fragment.setting.SettingFragment
+import com.zkp.android.modules.main.fragment.usage.UseageFragment
+import com.zkp.android.modules.main.fragment.welfare.WelfareFragment
 
 /**
  * @author: zkp

@@ -29,6 +29,7 @@ class AppConfig {
 
     val BASE_URL = "https://www.wanandroid.com/"
     val BASE_URL_GANK = "http://gank.io/"
+    val BASE_URL_WEATHER = "https://api.caiyunapp.com/"
 
     val CURRENT_FRAGMENT_INDEX = "current_fragment"
 

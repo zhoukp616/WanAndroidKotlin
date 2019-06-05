@@ -38,7 +38,8 @@ ext {
             pickerViewVersion                   : "4.1.8",
             updateVersion                       : "3.5.2",
             updateUtilsVersion                  : "3.8.0",
-            ankoVersion                         : "0.10.8"
+            ankoVersion                         : "0.10.8",
+            weatherViewVersion                  : "2.0.3"
     ]
 
     dependencies = [
@@ -65,6 +66,7 @@ ext {
             "verticalTabLayout"            : "q.rorbin:VerticalTabLayout:${version["verticalTabLayoutVersion"]}",
             "flowLayout"                   : "com.hyman:flowlayout-lib:${version["flowLayoutVersion"]}",
             "pickView"                     : "com.contrarywind:Android-PickerView:${version["pickerViewVersion"]}",
+            "weatherView"                  : "com.github.MatteoBattilana:WeatherView:${version["weatherViewVersion"]}",
 
             //net
             "gson"                         : "com.google.code.gson:gson:${version["gsonVersion"]}",

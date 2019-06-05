@@ -26,6 +26,7 @@ import com.zkp.android.modules.login.LoginActivity
 import com.zkp.android.modules.main.activity.component.ComponentActivity
 import com.zkp.android.modules.main.activity.search.SearchActivity
 import com.zkp.android.modules.main.activity.todo.ToDoActivity
+import com.zkp.android.modules.main.activity.weather.WeatherActivity
 import com.zkp.android.modules.navigation.NavigationFragment
 import com.zkp.android.modules.project.ProjectFragment
 import com.zkp.android.modules.wechat.WeChatFragment
@@ -150,6 +151,10 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
                 R.id.nav_item_welfare -> {
                     intent = Intent(this@MainActivity, ComponentActivity::class.java)
                     intent.putExtra("type_fragment", AppConfig().TYPE_WELFARE)
+                    startActivity(intent)
+                }
+                R.id.nav_item_weather -> {
+                    intent = Intent(this@MainActivity, WeatherActivity::class.java)
                     startActivity(intent)
                 }
                 R.id.nav_item_todo -> {

@@ -211,3 +211,207 @@ data class WelFare(
     @Json(name = "who") val who: String
 )
 
+data class HttpResultWeather<T>(
+    @Json(name = "location") val location: DoubleArray,
+    @Json(name = "result") val result: T
+) : BaseBeanWeather() {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as HttpResultWeather<*>
+
+        if (!location.contentEquals(other.location)) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return location.contentHashCode()
+    }
+}
+
+data class RealTimeResponseBody(
+    @Json(name = "apparent_temperature") val apparent_temperature: Double,
+    @Json(name = "aqi") val aqi: Int,
+    @Json(name = "cloudrate") val cloudrate: Double,
+    @Json(name = "co") val co: Double,
+    @Json(name = "comfort") val comfort: Comfort,
+    @Json(name = "dswrf") val dswrf: Double,
+    @Json(name = "humidity") val humidity: Double,
+    @Json(name = "no2") val no2: Double,
+    @Json(name = "o3") val o3: Double,
+    @Json(name = "pm10") val pm10: Double,
+    @Json(name = "pm25") val pm25: Double,
+    @Json(name = "precipitation") val precipitation: Precipitation,
+    @Json(name = "pres") val pres: Double,
+    @Json(name = "skycon") val skycon: String,
+    @Json(name = "so2") val so2: Double,
+    @Json(name = "status") val status: String,
+    @Json(name = "temperature") val temperature: Double,
+    @Json(name = "ultraviolet") val ultraviolet: Ultraviolet,
+    @Json(name = "visibility") val visibility: Double,
+    @Json(name = "wind") val wind: Wind
+)
+
+data class Comfort(
+    @Json(name = "desc") val desc: String,
+    @Json(name = "index") val index: Int
+)
+
+data class Precipitation(
+    @Json(name = "local") val local: Local,
+    @Json(name = "nearest") val nearest: Nearest
+)
+
+data class Local(
+    @Json(name = "datasource") val datasource: String,
+    @Json(name = "intensity") val intensity: Double,
+    @Json(name = "status") val status: String
+)
+
+data class Nearest(
+    @Json(name = "distance") val distance: Double,
+    @Json(name = "intensity") val intensity: Double,
+    @Json(name = "status") val status: String
+)
+
+data class Ultraviolet(
+    @Json(name = "desc") val desc: String,
+    @Json(name = "index") val index: Int
+)
+
+data class Wind(
+    @Json(name = "direction") val direction: Double,
+    @Json(name = "speed") val speed: Double
+)
+
+data class ForecastResponseBody(
+    @Json(name = "daily") val daily: Daily,
+    @Json(name = "forecast_keypoint") val forecast_keypoint: String,
+    @Json(name = "hourly") val hourly: Hourly,
+    @Json(name = "minutely") val minutely: Minutely,
+    @Json(name = "primary") val primary: Double
+)
+
+data class Minutely(
+    @Json(name = "datasource") val datasource: String,
+    @Json(name = "description") val description: String,
+    @Json(name = "precipitation") val precipitation: DoubleArray,
+    @Json(name = "precipitation_2h") val precipitation_2h: DoubleArray,
+    @Json(name = "probability") val probability: DoubleArray,
+    @Json(name = "probability_4h") val probability_4h: DoubleArray,
+    @Json(name = "status") val status: String
+) {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Minutely
+
+        if (!precipitation.contentEquals(other.precipitation)) return false
+        if (!precipitation_2h.contentEquals(other.precipitation_2h)) return false
+        if (!probability.contentEquals(other.probability)) return false
+        if (!probability_4h.contentEquals(other.probability_4h)) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = precipitation.contentHashCode()
+        result = 31 * result + precipitation_2h.contentHashCode()
+        result = 31 * result + probability.contentHashCode()
+        result = 31 * result + probability_4h.contentHashCode()
+        return result
+    }
+}
+
+data class Hourly(
+    @Json(name = "aqi") val aqi: MutableList<Value>,
+    @Json(name = "cloudrate") val cloudrate: MutableList<Value>,
+    @Json(name = "description") val description: String,
+    @Json(name = "dswrf") val dswrf: MutableList<Value>,
+    @Json(name = "humidity") val humidity: MutableList<Value>,
+    @Json(name = "pm25") val pm25: MutableList<Value>,
+    @Json(name = "precipitation") val precipitation: MutableList<Value>,
+    @Json(name = "pres") val pres: MutableList<Value>,
+    @Json(name = "skycon") val skycon: MutableList<Skycon>,
+    @Json(name = "status") val status: String,
+    @Json(name = "temperature") val temperature: MutableList<Value>,
+    @Json(name = "visibility") val visibility: MutableList<Value>,
+    @Json(name = "wind") val wind: MutableList<WindHourly>
+)
+
+data class WindHourly(
+    @Json(name = "datetime") val datetime: String,
+    @Json(name = "direction") val direction: Double,
+    @Json(name = "speed") val speed: Double
+)
+
+data class Value(
+    @Json(name = "datetime") val datetime: String,
+    @Json(name = "value") val value: Double
+)
+
+data class Daily(
+    @Json(name = "aqi") val aqi: MutableList<Data>,
+    @Json(name = "astro") val astro: MutableList<Astro>,
+    @Json(name = "carWashing") val carWashing: MutableList<DataIndex>,
+    @Json(name = "cloudrate") val cloudrate: MutableList<Data>,
+    @Json(name = "coldRisk") val coldRisk: MutableList<DataIndex>,
+    @Json(name = "comfort") val comfort: MutableList<DataIndex>,
+    @Json(name = "dressing") val dressing: MutableList<DataIndex>,
+    @Json(name = "dswrf") val dswrf: MutableList<Data>,
+    @Json(name = "humidity") val humidity: MutableList<Data>,
+    @Json(name = "pm25") val pm25: MutableList<Data>,
+    @Json(name = "precipitation") val precipitation: MutableList<Data>,
+    @Json(name = "pres") val pres: MutableList<Data>,
+    @Json(name = "skycon") val skycon: MutableList<Skycon>,
+    @Json(name = "skycon_08h_20h") val skycon_08h_20h: MutableList<Skycon>,
+    @Json(name = "skycon_20h_32h") val skycon_20h_32h: MutableList<Skycon>,
+    @Json(name = "status") val status: String,
+    @Json(name = "temperature") val temperature: MutableList<Data>,
+    @Json(name = "ultraviolet") val ultraviolet: MutableList<DataIndex>,
+    @Json(name = "visibility") val visibility: MutableList<Data>,
+    @Json(name = "wind") val wind: MutableList<WindForecast>
+)
+
+data class Data(
+    @Json(name = "avg") val avg: Double,
+    @Json(name = "date") val date: String,
+    @Json(name = "max") val max: Double,
+    @Json(name = "min") val min: Double
+)
+
+data class DataIndex(
+    @Json(name = "datetime") val datetime: String,
+    @Json(name = "desc") val desc: String,
+    @Json(name = "index") val index: String
+)
+
+data class Astro(
+    @Json(name = "date") val date: String,
+    @Json(name = "sunrise") val sunrise: SunRiseSet,
+    @Json(name = "sunset") val sunset: SunRiseSet
+)
+
+data class SunRiseSet(
+    @Json(name = "time") val time: String
+)
+
+data class Skycon(
+    @Json(name = "date") val date: String,
+    @Json(name = "value") val value: String
+)
+
+data class WindForecast(
+    @Json(name = "avg") val avg: Avg,
+    @Json(name = "date") val date: String,
+    @Json(name = "max") val max: Avg,
+    @Json(name = "min") val min: Avg
+)
+
+data class Avg(
+    @Json(name = "direction") val direction: Double,
+    @Json(name = "speed") val speed: Double
+)

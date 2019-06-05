@@ -251,5 +251,27 @@ interface ApiService {
     @POST("lg/todo/done/{id}/json")
     fun updateToDoStatus(@Path("id") id: Int, @Query("status") status: Int): Observable<HttpResult<Any>>
 
+    /**
+     * 获取实时天气
+     * @param longitude 经度
+     * @param latitude 纬度
+     */
+    @GET("v2/9shhevvLpHGiolKo/{longitude},{latitude}/realtime.json")
+    fun getRealTime(
+        @Path("longitude") longitude: Double,
+        @Path("latitude") latitude: Double
+    ): Observable<HttpResultWeather<RealTimeResponseBody>>
+
+    /**
+     * 获取预报天气
+     * @param longitude 经度
+     * @param latitude 纬度
+     */
+    @GET("v2/9shhevvLpHGiolKo/{longitude},{latitude}/forecast.json")
+    fun getForecast(
+        @Path("longitude") longitude: Double,
+        @Path("latitude") latitude: Double
+    ): Observable<HttpResultWeather<ForecastResponseBody>>
+
 
 }

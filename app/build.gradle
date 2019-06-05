@@ -76,7 +76,8 @@ android {
         flavors_dev {
             applicationId "com.zkp.wanandroiddev"
             manifestPlaceholders = [
-                    app_name: "玩安卓_dev"
+                    app_name: "玩安卓_dev",
+                    gaode_key: "8ed35646eafa9371b437e973427ef010"
             ]
         }
         flavors_gank {
@@ -125,6 +126,7 @@ dependencies {
     implementation rootProject.ext.dependencies["verticalTabLayout"]
     implementation rootProject.ext.dependencies["flowLayout"]
     implementation rootProject.ext.dependencies["pickView"]
+    implementation rootProject.ext.dependencies["weatherView"]
 
     //net
     implementation rootProject.ext.dependencies["gson"]
@@ -163,4 +165,7 @@ dependencies {
     implementation rootProject.ext.dependencies["update"]
     implementation rootProject.ext.dependencies["updateUtils"]
     implementation rootProject.ext.dependencies["anko"]
+
+    //定位
+    implementation 'com.amap.api:location:4.6.0'
 }
