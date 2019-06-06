@@ -69,6 +69,23 @@ class WeatherContract {
          */
         fun getForecast(longitude: Double, latitude: Double)
 
+        /**
+         * 获取天气id
+         *
+         * @param weather
+         * @return
+         */
+        fun getWeatherId(weather: String): Int
+
+        /**
+         * 获取星期几
+         *
+         * @param date  日期
+         * @param index 索引 index=0返回今日
+         * @return
+         */
+        fun getWeek(date: String, index: Int): String
+
     }
 
     interface Model : IModel {

@@ -1,20 +1,25 @@
 package com.zkp.android.modules.main.activity.weather
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.widget.TextView
 import butterknife.BindView
-import com.github.matteobattilana.weather.PrecipType
-import com.github.matteobattilana.weather.WeatherView
 import com.zkp.android.R
 import com.zkp.android.base.activity.BaseActivity
 import com.amap.api.location.AMapLocationClient
 import com.amap.api.location.AMapLocationClientOption
 import com.coder.zzq.smartshow.toast.SmartToast
+import com.github.matteobattilana.weather.PrecipType
+import com.github.matteobattilana.weather.WeatherView
+import com.github.matteobattilana.weather.WeatherViewSensorEventListener
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.yanzhenjie.permission.AndPermission
 import com.yanzhenjie.permission.runtime.Permission
 import com.zkp.android.bean.ForecastResponseBody
 import com.zkp.android.bean.RealTimeResponseBody
+import com.zkp.android.widget.OnePlusWeatherView
+import com.zkp.android.widget.WeatherBean
+import java.util.ArrayList
 
 
 /**
@@ -31,6 +36,12 @@ class WeatherActivity : BaseActivity<WeatherContract.View, WeatherContract.Prese
 
     @BindView(R.id.refreshLayout)
     lateinit var mRefreshLayout: SmartRefreshLayout
+
+    @BindView(R.id.tvForecastKeypoint)
+    lateinit var mTvForecastKeypoint: TextView
+
+    @BindView(R.id.tvDescription)
+    lateinit var mTvDescription: TextView
 
     @BindView(R.id.tvTemperature)
     lateinit var mTvTemperature: TextView
@@ -80,6 +91,9 @@ class WeatherActivity : BaseActivity<WeatherContract.View, WeatherContract.Prese
     @BindView(R.id.tvCold)
     lateinit var mTvCold: TextView
 
+    @BindView(R.id.onePlusWeatherView)
+    lateinit var mOnePlusWeatherView: OnePlusWeatherView
+
     //声明AMapLocationClient类对象
     private lateinit var mLocationClient: AMapLocationClient
     private lateinit var mCity: String
@@ -87,6 +101,8 @@ class WeatherActivity : BaseActivity<WeatherContract.View, WeatherContract.Prese
     private var mLongitude: Double = 0.0
     //纬度
     private var mLatitude: Double = 0.0
+
+    lateinit var weatherSensor: WeatherViewSensorEventListener
 
 
     override fun createPresenter(): WeatherContract.Presenter = WeatherPresenter()
@@ -99,12 +115,17 @@ class WeatherActivity : BaseActivity<WeatherContract.View, WeatherContract.Prese
     }
 
     override fun initView() {
-        mWeatherView.fadeOutPercent = 100f
-        mWeatherView.angle = -10
-        mWeatherView.speed = 1000
-        mWeatherView.emissionRate = 300f
-        mWeatherView.setWeatherData(PrecipType.RAIN)
+        weatherSensor = WeatherViewSensorEventListener(this, mWeatherView)
+    }
 
+    override fun onResume() {
+        super.onResume()
+        weatherSensor.start()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        weatherSensor.onPause()
     }
 
     override fun initEventAndData() {
@@ -149,6 +170,10 @@ class WeatherActivity : BaseActivity<WeatherContract.View, WeatherContract.Prese
             if (aMapLocation != null && aMapLocation.errorCode == 0) {
                 mLatitude = aMapLocation.latitude
                 mLongitude = aMapLocation.longitude
+
+                Log.d("qwe", "mLatitude==$mLatitude")
+                Log.d("qwe", "mLongitude==$mLongitude")
+
                 mCity = aMapLocation.city
 
                 mPresenter?.getRealTime(mLongitude, mLatitude)
@@ -170,11 +195,12 @@ class WeatherActivity : BaseActivity<WeatherContract.View, WeatherContract.Prese
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun getRealTimeSuccess(realTime: RealTimeResponseBody) {
 
         mTvTemperature.text = realTime.apparent_temperature.toString()
         mTvWether.text = mPresenter?.getWeather(realTime.skycon)
-        mTvHumidity.text = realTime.humidity.toString()
+        mTvHumidity.text = realTime.humidity.toString().substring(2) + "%"
         mTvAqi.text = realTime.aqi.toString()
         mTvAqiLevel.text = mPresenter?.getApiLeve(realTime.aqi)
         mTvWindSpeed.text = mPresenter?.getWindSpeed(realTime.wind.speed)
@@ -185,7 +211,30 @@ class WeatherActivity : BaseActivity<WeatherContract.View, WeatherContract.Prese
         mTvPm25.text = realTime.pm25.toString()
         mTvDswrf.text = realTime.dswrf.toString()
         mTvTgwd.text = realTime.temperature.toString()
-        mTvColth.text = realTime.comfort.desc
+
+        when {
+            realTime.skycon == "RAIN" -> {
+                mWeatherView.fadeOutPercent = 100f
+                mWeatherView.angle = -10
+                mWeatherView.speed = 1000
+                mWeatherView.emissionRate = 300f
+                mWeatherView.setWeatherData(PrecipType.RAIN)
+            }
+            realTime.skycon == "SNOW" -> {
+                mWeatherView.fadeOutPercent = 100f
+                mWeatherView.angle = -10
+                mWeatherView.speed = 1000
+                mWeatherView.emissionRate = 300f
+                mWeatherView.setWeatherData(PrecipType.SNOW)
+            }
+            else -> {
+                mWeatherView.fadeOutPercent = 100f
+                mWeatherView.angle = -10
+                mWeatherView.speed = 1000
+                mWeatherView.emissionRate = 300f
+                mWeatherView.setWeatherData(PrecipType.CLEAR)
+            }
+        }
 
         mPresenter?.getForecast(mLongitude, mLatitude)
 
@@ -196,7 +245,26 @@ class WeatherActivity : BaseActivity<WeatherContract.View, WeatherContract.Prese
     }
 
     override fun getForecastSuccess(forecast: ForecastResponseBody) {
-        Log.d("qwe", forecast.toString())
+        mTvColth.text = forecast.daily.comfort[0].desc
+        mTvCar.text = forecast.daily.carWashing[0].desc
+        mTvCold.text = forecast.daily.coldRisk[0].desc
+        mTvForecastKeypoint.text = forecast.forecast_keypoint
+        mTvDescription.text = forecast.hourly.description
+
+        val weatherBeanList = ArrayList<WeatherBean>()
+        for (i in 0 until forecast.daily.temperature.size) {
+            val weatherBean = WeatherBean(
+                mPresenter?.getWeatherId(forecast.daily.skycon_08h_20h[i].value)!!,
+                forecast.daily.temperature[i].date.substring(5),
+                mPresenter?.getWeek(forecast.daily.temperature[i].date, i),
+                forecast.daily.temperature[i].max.toInt(),
+                forecast.daily.temperature[i].min.toInt()
+            )
+            weatherBeanList.add(weatherBean)
+        }
+
+        mOnePlusWeatherView.setData(weatherBeanList)
+
     }
 
     override fun getForecastError(errorMsg: String) {

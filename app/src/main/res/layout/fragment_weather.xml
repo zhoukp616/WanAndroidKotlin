@@ -34,10 +34,31 @@
                           android:layout_height="wrap_content"
                           android:orientation="vertical">
 
+                <TextView android:id="@+id/tvForecastKeypoint"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginTop="@dimen/dp_20"
+                          android:textSize="@dimen/sp_18"
+                          android:marqueeRepeatLimit="marquee_forever"
+                          android:textColor="@color/colorWhiteTitle"
+                          android:layout_marginStart="@dimen/dp_20"
+                          android:layout_marginEnd="@dimen/dp_20"/>
+
+                <TextView android:id="@+id/tvDescription"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:textSize="@dimen/sp_16"
+                          android:layout_marginTop="@dimen/dp_5"
+                          android:layout_gravity="center_horizontal"
+                          android:marqueeRepeatLimit="marquee_forever"
+                          android:textColor="@color/colorWhiteTitle"
+                          android:layout_marginStart="@dimen/dp_20"
+                          android:layout_marginEnd="@dimen/dp_20"/>
+
                 <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_100">
+                        android:layout_marginTop="@dimen/dp_10">
 
                     <TextView
                             android:id="@+id/tvTemperature"
@@ -46,7 +67,7 @@
                             android:layout_centerHorizontal="true"
                             android:text="@string/temperature_data"
                             android:textColor="@color/colorWhiteTitle"
-                            android:textSize="@dimen/sp_42" />
+                            android:textSize="@dimen/sp_42"/>
 
                     <TextView
                             android:id="@+id/temperature"
@@ -58,7 +79,7 @@
                             android:layout_toEndOf="@id/tvTemperature"
                             android:text="@string/temperature"
                             android:textColor="@color/colorWhiteTitle"
-                            android:textSize="@dimen/sp_16" />
+                            android:textSize="@dimen/sp_16"/>
 
                     <TextView
                             android:id="@+id/tvWether"
@@ -71,7 +92,7 @@
                             android:layout_toEndOf="@id/tvTemperature"
                             android:text="@string/app_name"
                             android:textColor="@color/colorWhiteTitle"
-                            android:textSize="@dimen/sp_16" />
+                            android:textSize="@dimen/sp_16"/>
 
                 </RelativeLayout>
 
@@ -97,7 +118,7 @@
                                 android:layout_marginStart="@dimen/dp_5"
                                 android:text="@string/temperature"
                                 android:textColor="@color/colorWhiteTitle"
-                                android:textSize="@dimen/sp_14" />
+                                android:textSize="@dimen/sp_14"/>
 
                         <TextView
                                 android:layout_width="wrap_content"
@@ -105,7 +126,7 @@
                                 android:layout_marginStart="@dimen/dp_5"
                                 android:text="@string/humidity"
                                 android:textColor="@color/colorWhiteTitle"
-                                android:textSize="@dimen/sp_14" />
+                                android:textSize="@dimen/sp_14"/>
 
                     </LinearLayout>
 
@@ -124,7 +145,7 @@
                                 android:layout_marginStart="@dimen/dp_5"
                                 android:text="@string/temperature"
                                 android:textColor="@color/colorWhiteTitle"
-                                android:textSize="@dimen/sp_14" />
+                                android:textSize="@dimen/sp_14"/>
 
                         <TextView
                                 android:id="@+id/tvAqiLevel"
@@ -133,7 +154,7 @@
                                 android:layout_marginStart="@dimen/dp_5"
                                 android:text="@string/aqi_excellent"
                                 android:textColor="@color/colorWhiteTitle"
-                                android:textSize="@dimen/sp_14" />
+                                android:textSize="@dimen/sp_14"/>
 
                     </LinearLayout>
 
@@ -152,7 +173,7 @@
                                 android:layout_marginStart="@dimen/dp_5"
                                 android:text="@string/temperature"
                                 android:textColor="@color/colorWhiteTitle"
-                                android:textSize="@dimen/sp_14" />
+                                android:textSize="@dimen/sp_14"/>
 
                         <TextView
                                 android:id="@+id/tvWindDirection"
@@ -161,7 +182,7 @@
                                 android:layout_marginStart="@dimen/dp_5"
                                 android:text="@string/wind"
                                 android:textColor="@color/colorWhiteTitle"
-                                android:textSize="@dimen/sp_14" />
+                                android:textSize="@dimen/sp_14"/>
 
                     </LinearLayout>
 
@@ -189,14 +210,14 @@
                                 android:drawablePadding="@dimen/dp_5"
                                 android:text="@string/ultraviolet"
                                 android:textColor="@color/colorWhiteTitle"
-                                android:textSize="@dimen/sp_14" />
+                                android:textSize="@dimen/sp_14"/>
 
                         <TextView
                                 android:id="@+id/tvUltraviolet"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/colorWhiteTitle"
-                                android:textSize="@dimen/sp_16" />
+                                android:textSize="@dimen/sp_16"/>
 
                     </LinearLayout>
 
@@ -214,14 +235,14 @@
                                 android:drawablePadding="@dimen/dp_5"
                                 android:text="@string/visibility"
                                 android:textColor="@color/colorWhiteTitle"
-                                android:textSize="@dimen/sp_14" />
+                                android:textSize="@dimen/sp_14"/>
 
                         <TextView
                                 android:id="@+id/tvVisibility"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/colorWhiteTitle"
-                                android:textSize="@dimen/sp_16" />
+                                android:textSize="@dimen/sp_16"/>
 
                     </LinearLayout>
 
@@ -239,14 +260,14 @@
                                 android:drawablePadding="@dimen/dp_5"
                                 android:text="@string/intensity"
                                 android:textColor="@color/colorWhiteTitle"
-                                android:textSize="@dimen/sp_14" />
+                                android:textSize="@dimen/sp_14"/>
 
                         <TextView
                                 android:id="@+id/tvIntensity"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/colorWhiteTitle"
-                                android:textSize="@dimen/sp_16" />
+                                android:textSize="@dimen/sp_16"/>
 
                     </LinearLayout>
 
@@ -275,14 +296,14 @@
                                 android:drawablePadding="@dimen/dp_5"
                                 android:text="@string/pm2_5"
                                 android:textColor="@color/colorWhiteTitle"
-                                android:textSize="@dimen/sp_14" />
+                                android:textSize="@dimen/sp_14"/>
 
                         <TextView
                                 android:id="@+id/tvPm25"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/colorWhiteTitle"
-                                android:textSize="@dimen/sp_16" />
+                                android:textSize="@dimen/sp_16"/>
 
                     </LinearLayout>
 
@@ -300,14 +321,14 @@
                                 android:drawablePadding="@dimen/dp_5"
                                 android:text="@string/dswrf"
                                 android:textColor="@color/colorWhiteTitle"
-                                android:textSize="@dimen/sp_14" />
+                                android:textSize="@dimen/sp_14"/>
 
                         <TextView
                                 android:id="@+id/tvDswrf"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/colorWhiteTitle"
-                                android:textSize="@dimen/sp_16" />
+                                android:textSize="@dimen/sp_16"/>
 
                     </LinearLayout>
 
@@ -325,14 +346,14 @@
                                 android:drawablePadding="@dimen/dp_5"
                                 android:text="@string/tgwd"
                                 android:textColor="@color/colorWhiteTitle"
-                                android:textSize="@dimen/sp_14" />
+                                android:textSize="@dimen/sp_14"/>
 
                         <TextView
                                 android:id="@+id/tvTgwd"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/colorWhiteTitle"
-                                android:textSize="@dimen/sp_16" />
+                                android:textSize="@dimen/sp_16"/>
 
                     </LinearLayout>
 
@@ -356,18 +377,28 @@
                                 android:id="@+id/ivCloth"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:background="@drawable/life_index_cloth" />
+                                android:background="@drawable/life_index_cloth"/>
+
+                        <TextView
+                                android:id="@+id/tvColthDec"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dp_5"
+                                android:layout_toEndOf="@id/ivCloth"
+                                android:text="@string/cloth"
+                                android:textColor="@color/colorWhiteTitle"
+                                android:textSize="@dimen/sp_12"/>
 
                         <TextView
                                 android:id="@+id/tvColth"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
                                 android:layout_marginStart="@dimen/dp_5"
+                                android:layout_below="@id/tvColthDec"
                                 android:layout_toEndOf="@id/ivCloth"
                                 android:text="@string/cloth"
                                 android:textColor="@color/colorWhiteTitle"
-                                android:textSize="@dimen/sp_14" />
+                                android:textSize="@dimen/sp_10"/>
 
                     </RelativeLayout>
 
@@ -381,18 +412,28 @@
                                 android:id="@+id/ivCar"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:background="@drawable/life_index_car" />
+                                android:background="@drawable/life_index_car"/>
+
+                        <TextView
+                                android:id="@+id/tvCarDes"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dp_5"
+                                android:layout_toEndOf="@id/ivCar"
+                                android:text="@string/car"
+                                android:textColor="@color/colorWhiteTitle"
+                                android:textSize="@dimen/sp_12"/>
 
                         <TextView
                                 android:id="@+id/tvCar"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
                                 android:layout_marginStart="@dimen/dp_5"
                                 android:layout_toEndOf="@id/ivCar"
+                                android:layout_below="@id/tvCarDes"
                                 android:text="@string/car"
                                 android:textColor="@color/colorWhiteTitle"
-                                android:textSize="@dimen/sp_14" />
+                                android:textSize="@dimen/sp_10"/>
 
                     </RelativeLayout>
 
@@ -406,28 +447,43 @@
                                 android:id="@+id/ivCold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:background="@drawable/life_index_cold" />
+                                android:background="@drawable/life_index_cold"/>
 
                         <TextView
-                                android:id="@+id/tvCold"
+                                android:id="@+id/tvColdDesc"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
                                 android:layout_marginStart="@dimen/dp_5"
                                 android:layout_toEndOf="@id/ivCold"
                                 android:text="@string/cold"
                                 android:textColor="@color/colorWhiteTitle"
-                                android:textSize="@dimen/sp_14" />
+                                android:textSize="@dimen/sp_12"/>
+
+                        <TextView
+                                android:id="@+id/tvCold"
+                                android:layout_below="@id/tvColdDesc"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dp_5"
+                                android:layout_toEndOf="@id/ivCold"
+                                android:text="@string/cold"
+                                android:textColor="@color/colorWhiteTitle"
+                                android:textSize="@dimen/sp_10"/>
 
                     </RelativeLayout>
 
                 </LinearLayout>
+
+                <com.zkp.android.widget.OnePlusWeatherView
+                        android:id="@+id/onePlusWeatherView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_20"/>
 
             </LinearLayout>
 
         </ScrollView>
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-
 
 </com.classic.common.MultipleStatusView>

@@ -1,10 +1,14 @@
 package com.zkp.android.modules.main.activity.weather
 
+import android.annotation.SuppressLint
 import com.zkp.android.base.presenter.BasePresenter
 import com.zkp.android.bean.ForecastResponseBody
 import com.zkp.android.bean.HttpResultWeather
 import com.zkp.android.bean.RealTimeResponseBody
 import com.zkp.android.http.HttpsUtilWeather
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * @author: hmc
@@ -120,6 +124,41 @@ class WeatherPresenter : BasePresenter<WeatherContract.Model, WeatherContract.Vi
             direction < 360 -> "西北"
             else -> "北风"
         }
+    }
+
+    override fun getWeatherId(weather: String): Int {
+        when (weather) {
+            "CLEAR_DAY", "CLEAR_NIGHT" -> return 1
+            "CLOUDY" -> return 2
+            "SNOW" -> return 3
+            "RAIN" -> return 4
+            "PARTLY_CLOUDY_DAY", "PARTLY_CLOUDY_NIGHT" -> return 5
+            "WIND" -> return 6
+            "HAZE" -> return 6
+        }
+        return 1
+    }
+
+    override fun getWeek(dateString: String, index: Int): String {
+        val week: String
+        val weekDays = arrayOf("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六")
+        if (index == 0) {
+            week = "今日"
+        } else {
+            @SuppressLint("SimpleDateFormat")
+            val sdf = SimpleDateFormat("yyyy-MM-dd")
+            val cal = Calendar.getInstance()
+            val date: Date
+            try {
+                date = sdf.parse(dateString)
+                cal.time = date
+            } catch (e: ParseException) {
+                e.printStackTrace()
+            }
+
+            week = weekDays[cal.get(Calendar.DAY_OF_WEEK) - 1]
+        }
+        return week
     }
 
 }
