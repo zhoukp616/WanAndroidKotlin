@@ -10,6 +10,7 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
+
 /**
  * @author: hmc
  * @project: WanAndroid
@@ -159,6 +160,33 @@ class WeatherPresenter : BasePresenter<WeatherContract.Model, WeatherContract.Vi
             week = weekDays[cal.get(Calendar.DAY_OF_WEEK) - 1]
         }
         return week
+    }
+
+    override fun getDayLong(sunRise: String, sunSet: String): String {
+        val dayLong = StringBuilder()
+
+        when {
+            Integer.parseInt(sunSet.substring(3)) < Integer.parseInt(sunRise.substring(3)) -> dayLong.append(
+                Integer.parseInt(
+                    sunSet.substring(0, 2)
+                ) - 1 - Integer.parseInt(sunRise.substring(0, 2))
+            )
+                .append("时")
+                .append(60 + Integer.parseInt(sunSet.substring(3)) - Integer.parseInt(sunRise.substring(3)))
+                .append("分")
+            Integer.parseInt(sunSet.substring(3)) > Integer.parseInt(sunRise.substring(3)) -> dayLong.append(
+                Integer.parseInt(
+                    sunSet.substring(0, 2)
+                ) - Integer.parseInt(sunRise.substring(0, 2))
+            )
+                .append("时")
+                .append(Integer.parseInt(sunSet.substring(3)) - Integer.parseInt(sunRise.substring(3)))
+                .append("分")
+            else -> dayLong.append(Integer.parseInt(sunSet.substring(0, 2)) - Integer.parseInt(sunRise.substring(0, 2)))
+                .append("时")
+        }
+
+        return dayLong.toString()
     }
 
 }

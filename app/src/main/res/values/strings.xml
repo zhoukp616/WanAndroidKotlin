@@ -93,5 +93,8 @@
     <string name="cloth">穿衣</string>
     <string name="car">洗车</string>
     <string name="cold">感冒</string>
+    <string name="sunrise">日出：</string>
+    <string name="sunset">日落：</string>
+    <string name="daylong">昼长：</string>
 
 </resources>

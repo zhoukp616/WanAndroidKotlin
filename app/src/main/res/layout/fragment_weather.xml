@@ -360,6 +360,113 @@
 
                 </LinearLayout>
 
+                <com.zkp.android.widget.SuitLines
+                        android:id="@+id/suitLines"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_200"
+                        app:colorHint="@color/colorWhiteTitle"
+                        app:countOfY="6"
+                        app:lineStyle="solid"
+                        app:lineType="curve"
+                        app:maxOfVisible="6"
+                        app:needClickHint="true"
+                        app:needEdgeEffect="false"
+                        app:xyColor="@color/colorWhiteTitle"
+                        app:xySize="10" />
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginStart="@dimen/dp_20"
+                              android:layout_marginEnd="@dimen/dp_20"
+                              android:layout_marginTop="@dimen/dp_10"
+                              android:orientation="horizontal">
+
+                    <LinearLayout android:layout_width="@dimen/dp_0"
+                                  android:layout_height="wrap_content"
+                                  android:layout_weight="3"
+                                  android:layout_marginStart="@dimen/dp_10"
+                                  android:layout_gravity="center_vertical"
+                                  android:layout_marginEnd="@dimen/dp_10"
+                                  android:orientation="vertical">
+
+                        <LinearLayout android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:orientation="horizontal">
+
+                            <TextView android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:textColor="@color/colorWhiteTitle"
+                                      android:textSize="@dimen/sp_14"
+                                      android:text="@string/sunrise"/>
+
+                            <TextView android:id="@+id/tvSunRise"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:textColor="@color/colorWhiteTitle"
+                                      android:textSize="@dimen/sp_14"
+                                      android:text="@string/sunrise"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:layout_marginTop="@dimen/dp_5"
+                                      android:orientation="horizontal">
+
+                            <TextView android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:textColor="@color/colorWhiteTitle"
+                                      android:textSize="@dimen/sp_14"
+                                      android:text="@string/sunset"/>
+
+                            <TextView android:id="@+id/tvSunSet"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:textColor="@color/colorWhiteTitle"
+                                      android:textSize="@dimen/sp_14"
+                                      android:text="@string/sunset"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:layout_marginTop="@dimen/dp_5"
+                                      android:orientation="horizontal">
+
+                            <TextView android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:textColor="@color/colorWhiteTitle"
+                                      android:textSize="@dimen/sp_14"
+                                      android:text="@string/daylong"/>
+
+                            <TextView android:id="@+id/tvDayLong"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:textColor="@color/colorWhiteTitle"
+                                      android:textSize="@dimen/sp_14"
+                                      android:text="@string/daylong"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <com.zkp.android.widget.SunRiseSetView
+                            android:id="@+id/sunRiseSetView"
+                            android:layout_width="@dimen/dp_0"
+                            android:layout_weight="4"
+                            android:layout_gravity="center_vertical"
+                            android:layout_height="@dimen/dp_80"
+                            app:svMainColor="#FE8109"
+                            app:svPadding="@dimen/dp_10"
+                            app:svSunColor="#FED300"
+                            app:svSunRadius="@dimen/dp_8"
+                            app:svTextOffset="@dimen/dp_20"
+                            app:svTextSize="@dimen/sp_10"
+                            app:svTrackColor="#FE8109"
+                            app:svTrackWidth="@dimen/dp_1"/>
+
+                </LinearLayout>
+
                 <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -478,6 +585,7 @@
                         android:id="@+id/onePlusWeatherView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp_50"
                         android:layout_marginTop="@dimen/dp_20"/>
 
             </LinearLayout>

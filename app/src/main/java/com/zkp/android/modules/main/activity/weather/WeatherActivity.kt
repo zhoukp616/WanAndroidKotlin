@@ -18,8 +18,10 @@ import com.yanzhenjie.permission.runtime.Permission
 import com.zkp.android.bean.ForecastResponseBody
 import com.zkp.android.bean.RealTimeResponseBody
 import com.zkp.android.widget.OnePlusWeatherView
+import com.zkp.android.widget.SunRiseSetView
 import com.zkp.android.widget.WeatherBean
-import java.util.ArrayList
+import java.util.*
+import com.zkp.android.widget.SuitLines
 
 
 /**
@@ -94,6 +96,21 @@ class WeatherActivity : BaseActivity<WeatherContract.View, WeatherContract.Prese
     @BindView(R.id.onePlusWeatherView)
     lateinit var mOnePlusWeatherView: OnePlusWeatherView
 
+    @BindView(R.id.sunRiseSetView)
+    lateinit var mSunRiseSetView: SunRiseSetView
+
+    @BindView(R.id.tvSunRise)
+    lateinit var mTvSunRise: TextView
+
+    @BindView(R.id.tvSunSet)
+    lateinit var mTvSunSet: TextView
+
+    @BindView(R.id.tvDayLong)
+    lateinit var mTvDayLong: TextView
+
+    @BindView(R.id.suitLines)
+    lateinit var msuitLines: SuitLines
+
     //声明AMapLocationClient类对象
     private lateinit var mLocationClient: AMapLocationClient
     private lateinit var mCity: String
@@ -116,6 +133,7 @@ class WeatherActivity : BaseActivity<WeatherContract.View, WeatherContract.Prese
 
     override fun initView() {
         weatherSensor = WeatherViewSensorEventListener(this, mWeatherView)
+
     }
 
     override fun onResume() {
@@ -264,6 +282,43 @@ class WeatherActivity : BaseActivity<WeatherContract.View, WeatherContract.Prese
         }
 
         mOnePlusWeatherView.setData(weatherBeanList)
+
+        mSunRiseSetView.setSunrise(
+            Integer.parseInt(forecast.daily.astro[0].sunrise.time.substring(0, 2)),
+            Integer.parseInt(forecast.daily.astro[0].sunrise.time.substring(3))
+        )
+
+        mSunRiseSetView.setSunset(
+            Integer.parseInt(forecast.daily.astro[0].sunset.time.substring(0, 2)),
+            Integer.parseInt(forecast.daily.astro[0].sunset.time.substring(3))
+        )
+
+        mSunRiseSetView.setCurrentTime(
+            Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
+            Calendar.getInstance().get(Calendar.MINUTE)
+        )
+
+        mTvSunRise.text = forecast.daily.astro[0].sunrise.time
+        mTvSunSet.text = forecast.daily.astro[0].sunset.time
+
+        mTvDayLong.text = mPresenter?.getDayLong(
+            forecast.daily.astro[0].sunrise.time,
+            forecast.daily.astro[0].sunset.time
+        )
+
+        val lines = ArrayList<com.zkp.android.widget.Unit>()
+
+        for (i in 0 until forecast.hourly.temperature.size) {
+            lines.add(
+                com.zkp.android.widget.Unit(
+                    forecast.hourly.temperature[i].value.toFloat(),
+                    forecast.hourly.temperature[i].datetime.substring(5)
+                )
+            )
+        }
+        msuitLines.setLineForm(true)
+        msuitLines.setCoverLine(false)
+        msuitLines.feedWithAnim(lines)
 
     }
 

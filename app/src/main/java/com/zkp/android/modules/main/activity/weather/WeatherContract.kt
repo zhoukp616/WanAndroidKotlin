@@ -86,6 +86,15 @@ class WeatherContract {
          */
         fun getWeek(date: String, index: Int): String
 
+        /**
+         * 计算昼长
+         *
+         * @param sunRise 日出时间 05：12
+         * @param sunSet  日落时间 18:56
+         * @return
+         */
+        fun getDayLong(sunRise: String, sunSet: String): String
+
     }
 
     interface Model : IModel {
