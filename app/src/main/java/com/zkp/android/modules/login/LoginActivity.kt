@@ -8,6 +8,7 @@ import android.widget.TextView
 import butterknife.BindView
 import com.coder.zzq.smartshow.toast.SmartToast
 import com.zkp.android.R
+import com.zkp.android.app.App
 import com.zkp.android.base.activity.BaseActivity
 import com.zkp.android.bean.Login
 import com.zkp.android.modules.register.RegisterActivity
@@ -49,7 +50,12 @@ class LoginActivity : BaseActivity<LoginContract.View, LoginContract.Presenter>(
     }
 
     override fun initView() {
+        App().addActivity(this)
+    }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        App.mActivityList.remove(this)
     }
 
     override fun initEventAndData() {

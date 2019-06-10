@@ -11,6 +11,7 @@ import android.widget.LinearLayout
 import butterknife.BindView
 import com.coder.zzq.smartshow.toast.SmartToast
 import com.zkp.android.R
+import com.zkp.android.app.App
 import com.zkp.android.base.fragment.BaseFragment
 import com.zkp.android.bean.ProjectTree
 import com.zkp.android.modules.project.list.ProjectListFragment
@@ -54,6 +55,8 @@ class ProjectFragment : BaseFragment<ProjectContract.View, ProjectContract.Prese
     }
 
     override fun initView() {
+
+        App().addFragment(this)
 
     }
 

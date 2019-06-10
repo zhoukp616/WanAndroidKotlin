@@ -7,6 +7,7 @@ import butterknife.BindView
 import com.coder.zzq.smartshow.toast.SmartToast
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.zkp.android.R
+import com.zkp.android.app.App
 import com.zkp.android.base.fragment.BaseFragment
 import com.zkp.android.bean.Navigation
 import com.zkp.android.modules.navigation.adapter.NavigationAdapter
@@ -97,6 +98,9 @@ class NavigationFragment : BaseFragment<NavigationContract.View, NavigationContr
     }
 
     override fun initView() {
+
+        App().addFragment(this)
+
         mLinearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         mRecyclerView.layoutManager = mLinearLayoutManager
         mRecyclerView.setHasFixedSize(true)

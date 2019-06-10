@@ -20,6 +20,7 @@ import com.just.agentweb.AgentWeb
 import com.just.agentweb.DefaultWebClient
 import com.just.agentweb.NestedScrollAgentWebView
 import com.zkp.android.R
+import com.zkp.android.app.App
 import com.zkp.android.base.activity.BaseActivity
 import com.zkp.android.bean.CollectArticle
 import com.zkp.android.bean.CollectResponseBody
@@ -91,7 +92,7 @@ class ArticleDetailActivity : BaseActivity<ArticleDetailContract.View, ArticleDe
     }
 
     override fun initView() {
-
+        App().addActivity(this)
     }
 
     override fun initEventAndData() {
@@ -205,6 +206,7 @@ class ArticleDetailActivity : BaseActivity<ArticleDetailContract.View, ArticleDe
 
     override fun onDestroy() {
         mAgentWeb.webLifeCycle.onDestroy()
+        App.mActivityList.remove(this)
         super.onDestroy()
     }
 

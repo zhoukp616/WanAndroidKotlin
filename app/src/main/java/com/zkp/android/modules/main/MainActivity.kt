@@ -18,6 +18,7 @@ import com.coder.zzq.smartshow.toast.SmartToast
 import com.yanzhenjie.permission.AndPermission
 import com.yanzhenjie.permission.runtime.Permission
 import com.zkp.android.R
+import com.zkp.android.app.App
 import com.zkp.android.base.activity.BaseActivity
 import com.zkp.android.http.AppConfig
 import com.zkp.android.modules.home.HomeFragment
@@ -78,6 +79,9 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
             mCurrentFgIndex = savedInstanceState.getInt(AppConfig().CURRENT_FRAGMENT_INDEX)
         }
         super.onCreate(savedInstanceState)
+
+        App().initUnCaughtHandler()
+        App().addActivity(this)
 
         AndPermission.with(this)
             .runtime()

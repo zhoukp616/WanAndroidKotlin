@@ -8,6 +8,7 @@ import butterknife.BindView
 import com.coder.zzq.smartshow.toast.SmartToast
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.zkp.android.R
+import com.zkp.android.app.App
 import com.zkp.android.base.fragment.BaseFragment
 import com.zkp.android.bean.KnowledgeTreeBody
 import com.zkp.android.modules.knowledge.adapter.KnowledgeAdapter
@@ -49,6 +50,9 @@ class KnowledgeFragment : BaseFragment<KnowledgeContract.View, KnowledgeContract
     }
 
     override fun initView() {
+
+        App().addFragment(this)
+
         //设置布局管理器
         mRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         //设置默认动画

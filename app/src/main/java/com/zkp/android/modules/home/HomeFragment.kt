@@ -13,6 +13,7 @@ import com.youth.banner.Banner
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import com.zkp.android.R
+import com.zkp.android.app.App
 import com.zkp.android.base.fragment.BaseFragment
 import com.zkp.android.bean.Article
 import com.zkp.android.modules.home.adapter.HomeArticleAdapter
@@ -56,6 +57,9 @@ class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), 
 
     @SuppressLint("InflateParams")
     override fun initView() {
+
+        App().addFragment(this)
+
         //设置布局管理器
         mRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         //设置默认动画

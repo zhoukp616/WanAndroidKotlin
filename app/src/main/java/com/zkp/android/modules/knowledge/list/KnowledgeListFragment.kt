@@ -8,6 +8,7 @@ import butterknife.BindView
 import com.coder.zzq.smartshow.toast.SmartToast
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.zkp.android.R
+import com.zkp.android.app.App
 import com.zkp.android.base.fragment.BaseFragment
 import com.zkp.android.bean.Article
 import com.zkp.android.modules.home.detail.ArticleDetailActivity
@@ -59,12 +60,20 @@ class KnowledgeListFragment : BaseFragment<KnowledgeListContract.View, Knowledge
     }
 
     override fun initView() {
+
+        App().addFragment(this)
+
         mRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         mRecyclerView.setHasFixedSize(true)
 
         val articleList = mutableListOf<Article>()
         mAdapter = KnowledgeListAdapter(R.layout.item_home_article_list, articleList)
         mRecyclerView.adapter = mAdapter
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        App.mFragmentsList.remove(this)
     }
 
     override fun initEventAndData() {
