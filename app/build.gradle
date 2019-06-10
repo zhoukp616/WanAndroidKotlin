@@ -44,7 +44,7 @@ android {
             storeFile file('D:/code/Git/WanAndroid/ot.jks')
             storePassword '123456'
         }
-        gank {
+        wanandroid {
             keyAlias 'wanandroid'
             keyPassword '123456'
             storeFile file('D:/code/Git/WanAndroid/ot.jks')
@@ -60,7 +60,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), "proguard-rules.pro"
         }
         gank {
-            signingConfig signingConfigs.gank
+            signingConfig signingConfigs.wanandroid
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), "proguard-rules.pro"
         }
@@ -80,10 +80,11 @@ android {
                     gaode_key: "8ed35646eafa9371b437e973427ef010"
             ]
         }
-        flavors_gank {
+        flavors_wanandroid {
             applicationId "com.zkp.wanandroid"
             manifestPlaceholders = [
-                    app_name: "玩安卓"
+                    app_name: "玩安卓",
+                    gaode_key: "d5685ba53bd5de26d782982356d1882c"
             ]
         }
     }
