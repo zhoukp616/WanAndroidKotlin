@@ -25,7 +25,7 @@
         <item
                 android:id="@+id/nav_item_night_mode"
                 android:icon="@drawable/ic_night"
-                android:title="@string/nav_night_mode"/>
+                android:title="@string/nav_day_mode"/>
 
         <item
                 android:id="@+id/nav_item_setting"

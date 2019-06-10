@@ -241,6 +241,39 @@ public class OnePlusWeatherView extends View {
         return resId;
     }
 
+    /**
+     * 通过天气Id获取对应的天气
+     *
+     * @param weatherId weatherId
+     * @return
+     */
+    private String getWeather(int weatherId) {
+        String weather;
+        switch (weatherId) {
+            case WeatherBean.SUN:
+                weather = "晴";
+                break;
+            case WeatherBean.CLOUDY:
+                weather = "阴";
+                break;
+            case WeatherBean.RAIN:
+                weather = "雨";
+                break;
+            case WeatherBean.SNOW:
+                weather = "雪";
+                break;
+            case WeatherBean.SUN_CLOUDY:
+                weather = "多云";
+                break;
+            case WeatherBean.THUNDER:
+                weather = "雷阵雨";
+                break;
+            default:
+                weather = "晴";
+        }
+        return weather;
+    }
+
     public static int sp2px(Context c, float sp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, c.getResources().getDisplayMetrics());
     }
@@ -321,7 +354,7 @@ public class OnePlusWeatherView extends View {
         float dateY = dp2pxF(getContext(), 10f) - (metrics.ascent + metrics.descent) / 2;
         for (int i = 0; i < 5; i++) {
             String dateText = data.get(i).getDate();
-            x = i * interval + interval / 2;
+            x = i * interval + interval / 2.0f;
             canvas.drawText(dateText, x, dateY, textPaint);
         }
 
@@ -332,7 +365,7 @@ public class OnePlusWeatherView extends View {
         float weekY = dp2pxF(getContext(), 30f) - (metrics.ascent + metrics.descent) / 2;
         for (int i = 0; i < 5; i++) {
             String weekText = data.get(i).getWeek();
-            x = i * interval + interval / 2;
+            x = i * interval + interval / 2.0f;
             canvas.drawText(weekText, x, weekY, textPaint);
         }
 
@@ -348,11 +381,12 @@ public class OnePlusWeatherView extends View {
         canvas.save();
         float iconX, iconY;   //图标的坐标
         //Y坐标都是一样的，默认为控件高度的3/8再往上一点
-        iconY = (viewHeight * 3) / 8 - dp2pxF(getContext(), 10f);
+        iconY = viewHeight / 4.0f - dp2pxF(getContext(), 10f);
+        float weatherY = viewHeight / 4.0f + dp2pxF(getContext(), 20f);
         for (int i = 0; i < 5; i++) {
             //拿到每一天的天气对应的图标
             Bitmap icon = icons.get(data.get(i).getWeatherId());
-            iconX = i * interval + interval / 2;
+            iconX = i * interval + interval / 2.0f;
 
             //创建一个用来绘制图标的矩形区域
             RectF iconRect = new RectF(iconX - iconWidth / 2.0f,
@@ -361,6 +395,7 @@ public class OnePlusWeatherView extends View {
                     iconY + iconWidth / 2.0f);
             assert icon != null;
             canvas.drawBitmap(icon, null, iconRect, null);
+            canvas.drawText(getWeather(data.get(i).getWeatherId()), iconX, weatherY, textPaint);
         }
 
         canvas.restore();

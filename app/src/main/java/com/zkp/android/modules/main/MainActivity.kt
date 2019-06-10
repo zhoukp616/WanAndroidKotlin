@@ -8,6 +8,7 @@ import android.support.design.widget.NavigationView
 import android.support.v4.app.FragmentTransaction
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.app.AppCompatDelegate
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
@@ -176,6 +177,18 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
                     intent.putExtra("type_fragment", AppConfig().TYPE_ABOUT_US)
                     startActivity(intent)
                 }
+                R.id.nav_item_night_mode -> {
+                    if (mPresenter?.isNightMode()!!) {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                        mPresenter?.setNightMode(false)
+                        menuItem.setTitle(R.string.nav_day_mode)
+                    } else {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                        mPresenter?.setNightMode(true)
+                        menuItem.setTitle(R.string.nav_night_mode)
+                    }
+                    recreate()
+                }
                 R.id.nav_item_cnblogs -> {
                     intent = Intent(this@MainActivity, ArticleDetailActivity::class.java)
                     intent.putExtra("articleLink", AppConfig().CNBLOGS_URL)
@@ -217,6 +230,15 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
             }
         }
         mNavigation.menu.findItem(R.id.nav_item_logout).isVisible = mPresenter?.getLoginStatus()!!
+
+        val nightModeItem = mNavigation.menu.findItem(R.id.nav_item_night_mode)
+        if (mPresenter?.isNightMode()!!) {
+            nightModeItem.setIcon(R.drawable.ic_day)
+            nightModeItem.setTitle(R.string.nav_day_mode)
+        } else {
+            nightModeItem.setIcon(R.drawable.ic_night)
+            nightModeItem.setTitle(R.string.nav_night_mode)
+        }
     }
 
     override fun logoutSuccess() {

@@ -216,6 +216,8 @@ class WeatherActivity : BaseActivity<WeatherContract.View, WeatherContract.Prese
     @SuppressLint("SetTextI18n")
     override fun getRealTimeSuccess(realTime: RealTimeResponseBody) {
 
+        Log.d("qwe", realTime.toString())
+
         mTvTemperature.text = realTime.apparent_temperature.toString()
         mTvWether.text = mPresenter?.getWeather(realTime.skycon)
         mTvHumidity.text = realTime.humidity.toString().substring(2) + "%"
@@ -263,11 +265,19 @@ class WeatherActivity : BaseActivity<WeatherContract.View, WeatherContract.Prese
     }
 
     override fun getForecastSuccess(forecast: ForecastResponseBody) {
+
+        Log.d("qwe", forecast.toString())
+
         mTvColth.text = forecast.daily.comfort[0].desc
         mTvCar.text = forecast.daily.carWashing[0].desc
         mTvCold.text = forecast.daily.coldRisk[0].desc
+
+        Log.d("qwe", forecast.forecast_keypoint)
+        Log.d("qwe", forecast.hourly.description)
+
         mTvForecastKeypoint.text = forecast.forecast_keypoint
         mTvDescription.text = forecast.hourly.description
+
 
         val weatherBeanList = ArrayList<WeatherBean>()
         for (i in 0 until forecast.daily.temperature.size) {

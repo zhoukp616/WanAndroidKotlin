@@ -72,7 +72,7 @@ class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), 
         mAdapter?.setHeaderView(mBanner)
 
         //设置banner样式
-        mBanner?.setBannerStyle(BannerConfig.NUM_INDICATOR_TITLE)
+        mBanner?.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE)
         //设置图片加载器
         mBanner?.setImageLoader(GlideImageLoader())
         //设置banner动画效果

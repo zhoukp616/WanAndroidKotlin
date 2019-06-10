@@ -17,6 +17,14 @@ class MainPresenter : BasePresenter<MainContract.Model, MainContract.View>(), Ma
 
     override fun createModel(): MainContract.Model? = MainModel()
 
+    override fun isNightMode(): Boolean {
+        return SpUtils().getBoolean(App.getContext(), "isNightMode")
+    }
+
+    override fun setNightMode(isNightMode: Boolean) {
+        SpUtils().putBoolean(App.getContext(), "isNightMode", isNightMode)
+    }
+
     override fun logout() {
         mView?.showLoading()
         HttpsUtil().request(mModel!!.requestLogout(), object : HttpsUtil.IResponseListener<HttpResult<Any>> {

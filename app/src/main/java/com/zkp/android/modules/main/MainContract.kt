@@ -26,6 +26,20 @@ interface MainContract {
     interface Presenter : IPresenter<View> {
 
         /**
+         * 是否是夜间模式
+         *
+         * @return
+         */
+        fun isNightMode(): Boolean
+
+        /**
+         * 设置夜间模式  true--夜间模式  false--日间模式
+         *
+         * @param isNightMode
+         */
+        fun setNightMode(isNightMode: Boolean)
+
+        /**
          * 退出登录
          */
         fun logout()

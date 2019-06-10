@@ -39,7 +39,8 @@ ext {
             updateVersion                       : "3.5.2",
             updateUtilsVersion                  : "3.8.0",
             ankoVersion                         : "0.10.8",
-            weatherViewVersion                  : "2.0.3"
+            weatherViewVersion                  : "2.0.3",
+            locationVersion                     : "4.6.0"
     ]
 
     dependencies = [
@@ -80,6 +81,8 @@ ext {
             "Kotlin-moshi"                 : "com.squareup.moshi:moshi-kotlin:1.7.0",
             "glide"                        : "com.github.bumptech.glide:glide:${version["glideVersion"]}",
             "glide_compiler"               : "com.github.bumptech.glide:compiler:${version["glideVersion"]}",
+
+            "location"                     : "com.amap.api:location:${version["locationVersion"]}",
 
             //rx
             "rxjava"                       : "io.reactivex.rxjava2:rxjava:${version["rxjavaVersion"]}",

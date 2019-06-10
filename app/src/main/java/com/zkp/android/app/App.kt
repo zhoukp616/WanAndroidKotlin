@@ -2,11 +2,13 @@ package com.zkp.android.app
 
 import android.app.Application
 import android.content.Context
+import android.support.v7.app.AppCompatDelegate
 import com.coder.zzq.smartshow.core.SmartShow
 import com.sunchen.netbus.NetStatusBus
 import com.zkp.android.db.greendao.DaoMaster
 import com.zkp.android.db.greendao.DaoSession
 import com.zkp.android.http.AppConfig
+import com.zkp.android.utils.SpUtils
 import kotlin.properties.Delegates
 
 /**
@@ -43,6 +45,17 @@ class App : Application() {
 
         SmartShow.init(this)
         NetStatusBus.getInstance().init(this)
+
+        if (SpUtils().getBoolean(this, "isNightMode")) {
+            AppCompatDelegate.setDefaultNightMode(
+                AppCompatDelegate.MODE_NIGHT_YES
+            )
+        } else {
+            AppCompatDelegate.setDefaultNightMode(
+                AppCompatDelegate.MODE_NIGHT_NO
+            )
+        }
+
     }
 
     private fun initGreenDao() {
