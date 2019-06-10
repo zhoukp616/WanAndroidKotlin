@@ -145,7 +145,7 @@
                     android:maxLines="2"
                     android:textColor="@color/Grey900"
                     android:textSize="@dimen/sp_16"
-                    tools:text="WanAndroid"/>
+                    tools:text="WanAndroid" tools:ignore="RtlHardcoded"/>
 
         </RelativeLayout>
 

@@ -1,11 +1,15 @@
 package com.zkp.android.modules.main.activity.search
 
 import android.content.Intent
+import android.support.v4.view.MenuItemCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.SearchView
 import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.OnClick
@@ -20,6 +24,8 @@ import com.zkp.android.db.entity.SearchHistory
 import com.zkp.android.http.AppConfig
 import com.zkp.android.modules.main.activity.adapter.SearchHistoryAdapter
 import com.zkp.android.modules.main.activity.component.ComponentActivity
+import java.lang.reflect.Field
+import java.lang.NoSuchFieldException as NoSuchFieldException1
 
 /**
  * @author: hmc
@@ -130,6 +136,41 @@ class SearchActivity : BaseActivity<SearchContract.View, SearchContract.Presente
         intent.putExtra("type_fragment", AppConfig().TYPE_SEARCH_RESULT)
         intent.putExtra("search_key", keyWord)
         startActivity(intent)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_search, menu)
+        val searchItem = menu.findItem(R.id.search_button)
+        val mSearchView = MenuItemCompat.getActionView(searchItem) as SearchView
+        mSearchView.maxWidth = Integer.MAX_VALUE
+        mSearchView.onActionViewExpanded()
+        mSearchView.queryHint = getString(R.string.search_tint)
+
+        mSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                goToSearchResult(query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                return false
+            }
+        })
+        mSearchView.isSubmitButtonEnabled = true
+
+        val field: Field
+        try {
+            field = mSearchView.javaClass.getDeclaredField("mGoButton")
+            field.isAccessible = true
+            val mGoButton = field.get(mSearchView) as ImageView
+            mGoButton.setImageResource(R.drawable.ic_search)
+        } catch (e: java.lang.NoSuchFieldException) {
+            e.printStackTrace()
+        } catch (e: IllegalAccessException) {
+            e.printStackTrace()
+        }
+
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun getHotKeysError(errorMsg: String) {
