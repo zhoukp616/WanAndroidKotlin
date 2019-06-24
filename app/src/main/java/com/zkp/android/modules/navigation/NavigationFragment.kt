@@ -21,7 +21,7 @@ import q.rorbin.verticaltablayout.widget.TabView
  * @project: WanAndroid
  * @package: com.zkp.android.modules.navigation
  * @time: 2019/5/30 11:37
- * @description:
+ * @description: 导航页面
  */
 class NavigationFragment : BaseFragment<NavigationContract.View, NavigationContract.Presenter>(),
     NavigationContract.View {

@@ -5,7 +5,6 @@ import com.zkp.android.app.App
 import com.zkp.android.db.entity.SearchHistory
 import com.zkp.android.db.greendao.DaoSession
 import com.zkp.android.http.AppConfig
-import javax.inject.Inject
 
 /**
  * @author: hmc
@@ -22,7 +21,7 @@ class DbHelperImpl : DbHelper {
 
     companion object {
 
-        private var daoSession: DaoSession = App.mDaoSession
+        private var daoSession: DaoSession = App.getDaoSession()
 
     }
 

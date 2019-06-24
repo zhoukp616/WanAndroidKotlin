@@ -5,6 +5,7 @@ import android.content.Intent
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import android.widget.LinearLayout
 import butterknife.BindView
 import com.coder.zzq.smartshow.toast.SmartToast
@@ -12,6 +13,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.youth.banner.Banner
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
+import com.youth.banner.listener.OnBannerListener
 import com.zkp.android.R
 import com.zkp.android.app.App
 import com.zkp.android.base.fragment.BaseFragment
@@ -28,7 +30,7 @@ import java.util.*
  * @time: 2019/5/28 14:10
  * @description:
  */
-class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), HomeContract.View {
+class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), HomeContract.View, OnBannerListener {
 
     @BindView(R.id.refreshLayout)
     lateinit var mRefreshLayout: SmartRefreshLayout
@@ -183,6 +185,19 @@ class HomeFragment : BaseFragment<HomeContract.View, HomeContract.Presenter>(), 
 
         //banner设置方法全部调用完毕时最后调用
         mBanner?.start()
+
+        mBanner?.setOnBannerListener(this)
+    }
+
+    override fun OnBannerClick(position: Int) {
+        val intent = Intent(activity, ArticleDetailActivity::class.java)
+        intent.putExtra("title", mTitles!![position])
+        intent.putExtra("articleLink", mUrlList!![position])
+        intent.putExtra("articleId", mTitles!![position])
+        intent.putExtra("isCollected", false)
+        intent.putExtra("isShowCollectIcon", true)
+        intent.putExtra("articleItemPosition", position)
+        context?.startActivity(intent)
     }
 
     override fun collectArticleSuccess() {

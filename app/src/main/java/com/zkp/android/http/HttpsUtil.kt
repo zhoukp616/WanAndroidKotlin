@@ -56,7 +56,7 @@ class HttpsUtil {
         val sslSocketFactory: SSLSocketFactory
         val inputStream: InputStream
         try {
-            //得到证书的输入流
+            //得到证书的输入流  证书文件存储在assets文件夹下
             inputStream = context.assets.open("wanandroid.crt")
 
             //以流的方式读入证书

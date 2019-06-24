@@ -11,7 +11,7 @@ import android.widget.AdapterView
  * @project: WanAndroid
  * @package: com.zkp.android.widget
  * @time: 2019/6/3 11:38
- * @description:
+ * @description: 长按可弹出菜单的RecyclerView
  */
 class RecyclerViewImplementsContextMenu : RecyclerView {
 

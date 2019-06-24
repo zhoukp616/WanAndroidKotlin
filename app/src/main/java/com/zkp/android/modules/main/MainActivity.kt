@@ -33,6 +33,13 @@ import com.zkp.android.modules.navigation.NavigationFragment
 import com.zkp.android.modules.project.ProjectFragment
 import com.zkp.android.modules.wechat.WeChatFragment
 
+/**
+ * @author: zkp
+ * @project: WanAndroid
+ * @package: com.zkp.android.modules.main
+ * @time: 2019/5/28 14:40
+ * @description: MainActivity:管理Fragment，处理页面的切换，注册闪退日志收集Handler
+ */
 class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), MainContract.View {
 
     companion object {
@@ -222,6 +229,7 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
             }
             true
         }
+
         mUsTv = mNavigation.getHeaderView(0).findViewById(R.id.nav_header_login)
         mUsTv.text = if (mPresenter?.getLoginStatus()!!) mPresenter?.getUserAccount() else getString(R.string.login_in)
         if (!mPresenter?.getLoginStatus()!!) {
@@ -233,6 +241,7 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
                 )
             }
         }
+
         mNavigation.menu.findItem(R.id.nav_item_logout).isVisible = mPresenter?.getLoginStatus()!!
 
         val nightModeItem = mNavigation.menu.findItem(R.id.nav_item_night_mode)
@@ -377,4 +386,5 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
             }
         }
     }
+
 }
