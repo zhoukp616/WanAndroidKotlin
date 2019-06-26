@@ -3,7 +3,6 @@ package com.zkp.android.modules.navigation
 import com.zkp.android.base.model.IModel
 import com.zkp.android.base.presenter.IPresenter
 import com.zkp.android.base.view.IView
-import com.zkp.android.bean.ArticleResponseBody
 import com.zkp.android.bean.HttpResult
 import com.zkp.android.bean.Navigation
 import io.reactivex.Observable
@@ -24,7 +23,7 @@ class NavigationContract {
          * @param navigationList
          * @param isFresh 是否刷新
          */
-        fun getNaviJsonSuccess(navigationList: MutableList<Navigation>, isFresh: Boolean)
+        fun getNaviJsonSuccess(navigationList: MutableList<Navigation>)
 
         /**
          * 获取导航数据失败
@@ -40,12 +39,12 @@ class NavigationContract {
          * 获取导航数据
          * @param isFresh 是否刷新
          */
-        fun getNaviJson(isFresh: Boolean)
+        fun getNaviJson()
 
         /**
          * 刷新数据
          */
-        fun refresh();
+        fun refresh()
 
     }
 

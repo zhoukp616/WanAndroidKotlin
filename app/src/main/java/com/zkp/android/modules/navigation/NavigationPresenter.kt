@@ -17,13 +17,13 @@ class NavigationPresenter : BasePresenter<NavigationContract.Model, NavigationCo
 
     override fun createModel(): NavigationContract.Model? = NavigationModel()
 
-    override fun getNaviJson(isFresh: Boolean) {
+    override fun getNaviJson() {
         mView?.showLoading()
         HttpsUtil().request(mModel!!.requestNaviJson(),
             object : HttpsUtil.IResponseListener<HttpResult<MutableList<Navigation>>> {
                 override fun onSuccess(data: HttpResult<MutableList<Navigation>>) {
                     if (data.errorCode == 0) {
-                        mView?.getNaviJsonSuccess(data.data, isFresh)
+                        mView?.getNaviJsonSuccess(data.data)
                     } else {
                         mView?.getNaviJsonError(data.errorMsg)
                     }
@@ -39,6 +39,6 @@ class NavigationPresenter : BasePresenter<NavigationContract.Model, NavigationCo
     }
 
     override fun refresh() {
-        getNaviJson(true)
+        getNaviJson()
     }
 }

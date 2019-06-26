@@ -3,7 +3,9 @@ package com.zkp.android.modules.navigation
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import butterknife.BindView
+import com.chad.library.adapter.base.BaseQuickAdapter
 import com.coder.zzq.smartshow.toast.SmartToast
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.zkp.android.R
@@ -24,7 +26,7 @@ import q.rorbin.verticaltablayout.widget.TabView
  * @description: 导航页面
  */
 class NavigationFragment : BaseFragment<NavigationContract.View, NavigationContract.Presenter>(),
-    NavigationContract.View {
+    NavigationContract.View, BaseQuickAdapter.OnItemClickListener {
 
     @BindView(R.id.refreshLayout)
     lateinit var mRefreshLayout: SmartRefreshLayout
@@ -47,50 +49,6 @@ class NavigationFragment : BaseFragment<NavigationContract.View, NavigationContr
         return NavigationFragment()
     }
 
-    override fun getNaviJsonSuccess(navigationList: MutableList<Navigation>, isFresh: Boolean) {
-        this.mNavigationList = navigationList
-
-        if (isFresh) {
-            mAdapter.replaceData(mNavigationList)
-
-            mTabLayout.setTabAdapter(object : TabAdapter {
-                override fun getCount(): Int {
-                    return mNavigationList.size
-                }
-
-                override fun getBadge(i: Int): ITabView.TabBadge? {
-                    return null
-                }
-
-                override fun getIcon(i: Int): ITabView.TabIcon? {
-                    return null
-                }
-
-                override fun getTitle(i: Int): ITabView.TabTitle {
-                    return ITabView.TabTitle.Builder()
-                        .setContent(mNavigationList[i].name)
-                        .setTextColor(
-                            ContextCompat.getColor(context!!, R.color.colorWhite),
-                            ContextCompat.getColor(context!!, R.color.Grey500)
-                        )
-                        .build()
-                }
-
-                override fun getBackground(i: Int): Int {
-                    return 0
-                }
-            })
-
-        } else {
-            mAdapter.addData(mNavigationList)
-        }
-        mTabLayout.setTabSelected(0)
-    }
-
-    override fun getNaviJsonError(errorMsg: String) {
-        SmartToast.show(errorMsg)
-    }
-
     override fun createPresenter(): NavigationContract.Presenter = NavigationPresenter()
 
     override fun getLayoutId(): Int {
@@ -108,9 +66,68 @@ class NavigationFragment : BaseFragment<NavigationContract.View, NavigationContr
         mNavigationList = mutableListOf()
         mAdapter = NavigationAdapter(R.layout.item_navigation, mNavigationList)
         mRecyclerView.adapter = mAdapter
+    }
+
+    override fun initEventAndData() {
+
+        initRefreshLayout()
+
+        mPresenter?.refresh()
+    }
+
+    private fun initRefreshLayout() {
+        mRefreshLayout.setOnRefreshListener { refreshLayout ->
+            mPresenter?.refresh()
+            refreshLayout.finishRefresh()
+        }
+    }
+
+    override fun getNaviJsonSuccess(navigationList: MutableList<Navigation>) {
+        this.mNavigationList = navigationList
+
+        mTabLayout.setTabAdapter(object : TabAdapter {
+            override fun getCount(): Int {
+                return mNavigationList.size
+            }
+
+            override fun getBadge(i: Int): ITabView.TabBadge? {
+                return null
+            }
+
+            override fun getIcon(i: Int): ITabView.TabIcon? {
+                return null
+            }
+
+            override fun getTitle(i: Int): ITabView.TabTitle {
+                return ITabView.TabTitle.Builder()
+                    .setContent(mNavigationList[i].name)
+                    .setTextColor(
+                        ContextCompat.getColor(context!!, R.color.tab_selected),
+                        ContextCompat.getColor(context!!, R.color.Grey500)
+                    )
+                    .build()
+            }
+
+            override fun getBackground(i: Int): Int {
+                return -1
+            }
+        })
+
+        mAdapter.replaceData(mNavigationList)
+
+        mAdapter.onItemClickListener = this
 
         //联动控件 上下同步
         combine()
+    }
+    override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
+        index = position;
+        mTabLayout.setTabSelected(index)
+    }
+
+
+    override fun getNaviJsonError(errorMsg: String) {
+        SmartToast.show(errorMsg)
     }
 
     /**
@@ -169,39 +186,27 @@ class NavigationFragment : BaseFragment<NavigationContract.View, NavigationContr
     }
 
     private fun setChecked(position: Int) {
+        index = position
         if (isClickTab) {
             isClickTab = false
         } else {
             mTabLayout.setTabSelected(index)
         }
-        index = position
     }
 
     private fun smoothScrollToPosition(currentPosition: Int) {
         val firstPosition = mLinearLayoutManager.findFirstVisibleItemPosition()
         val lastPosition = mLinearLayoutManager.findLastVisibleItemPosition()
-        if (currentPosition <= firstPosition) {
-            mRecyclerView.smoothScrollToPosition(currentPosition)
-        } else if (currentPosition <= lastPosition) {
-            val top = mRecyclerView.getChildAt(currentPosition - firstPosition).top
-            mRecyclerView.smoothScrollBy(0, top)
-        } else {
-            mRecyclerView.smoothScrollToPosition(currentPosition)
-            needScroll = true
-        }
-    }
-
-    override fun initEventAndData() {
-
-        initRefreshLayout()
-
-        mPresenter?.refresh()
-    }
-
-    private fun initRefreshLayout() {
-        mRefreshLayout.setOnRefreshListener { refreshLayout ->
-            mPresenter?.refresh()
-            refreshLayout.finishRefresh()
+        when {
+            currentPosition <= firstPosition -> mRecyclerView.smoothScrollToPosition(currentPosition)
+            currentPosition <= lastPosition -> {
+                val top = mRecyclerView.getChildAt(currentPosition - firstPosition).top
+                mRecyclerView.smoothScrollBy(0, top)
+            }
+            else -> {
+                mRecyclerView.smoothScrollToPosition(currentPosition)
+                needScroll = true
+            }
         }
     }
 
