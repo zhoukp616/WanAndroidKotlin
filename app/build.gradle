@@ -41,13 +41,13 @@ android {
         dev {
             keyAlias 'wanandroid_dev'
             keyPassword '123456'
-            storeFile file('D:/code/Git/WanAndroid/ot.jks')
+            storeFile file('D:/code/Git/WanAndroidKotlin/ot.jks')
             storePassword '123456'
         }
         wanandroid {
             keyAlias 'wanandroid'
             keyPassword '123456'
-            storeFile file('D:/code/Git/WanAndroid/ot.jks')
+            storeFile file('D:/code/Git/WanAndroidKotlin/ot.jks')
             storePassword '123456'
         }
     }
@@ -59,7 +59,7 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), "proguard-rules.pro"
         }
-        gank {
+        wanandroid {
             signingConfig signingConfigs.wanandroid
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), "proguard-rules.pro"
@@ -77,14 +77,14 @@ android {
             applicationId "com.zkp.wanandroiddev"
             manifestPlaceholders = [
                     app_name: "玩安卓_dev",
-                    gaode_key: "8ed35646eafa9371b437e973427ef010"
+                    gaode_key: "b5ced1e86bcb95ecce57804e42d00a6c"
             ]
         }
         flavors_wanandroid {
             applicationId "com.zkp.wanandroid"
             manifestPlaceholders = [
                     app_name: "玩安卓",
-                    gaode_key: "d5685ba53bd5de26d782982356d1882c"
+                    gaode_key: "514e2acbe9e239ce4552e0f871b41642"
             ]
         }
     }
@@ -96,7 +96,7 @@ android {
 
     greendao {
         schemaVersion 1
-        daoPackage 'com.zkp.android.db.greendao'
+        daoPackage 'com.zkp.wanandroid.db.greendao'
         targetGenDir 'src/main/java'
     }
 

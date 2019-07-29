@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools" package="com.zkp.android">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.zkp.wanandroid">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -24,9 +25,14 @@
     <uses-permission android:name="android.permission.BLUETOOTH"/>
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
 
+    <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="${gaode_key}"/>
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
+            android:roundIcon="@mipmap/ic_launcher_round"
             android:label="${app_name}"
             android:supportsRtl="true"
             android:name=".app.App"
@@ -36,7 +42,7 @@
             tools:targetApi="n">
 
         <activity
-                android:name="com.zkp.android.modules.main.MainActivity"
+                android:name=".modules.main.MainActivity"
                 android:launchMode="singleTask"
                 android:screenOrientation="portrait"
                 android:label="${app_name}">
@@ -79,7 +85,7 @@
                   android:screenOrientation="portrait"
                   android:label="${app_name}"/>
 
-        <activity android:name="com.zkp.android.modules.main.activity.weather.WeatherActivity"
+        <activity android:name=".modules.main.activity.weather.WeatherActivity"
                   android:screenOrientation="portrait"
                   android:label="${app_name}"/>
 
@@ -87,7 +93,7 @@
         <!--打包 com.zkp.android.provider-->
         <provider
                 android:name="android.support.v4.content.FileProvider"
-                android:authorities="com.zkp.androiddev.provider"
+                android:authorities="com.zkp.wanandroiddev.provider"
                 android:exported="false"
                 android:grantUriPermissions="true">
             <meta-data
@@ -96,9 +102,6 @@
         </provider>
 
         <service android:name="com.amap.api.location.APSService"/>
-
-        <meta-data android:name="com.amap.api.v2.apikey" android:value="${gaode_key}"/>
-
 
     </application>
 

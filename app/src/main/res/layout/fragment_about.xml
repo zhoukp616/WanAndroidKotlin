@@ -18,7 +18,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/dp_60"
-                android:drawableTop="@mipmap/ic_launcher"
+                android:drawableTop="@mipmap/ic_launcher_round"
                 android:drawablePadding="8dp"
                 android:gravity="center"
                 android:text="@string/app_name"

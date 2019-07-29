@@ -12,7 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-    <com.zkp.android.widget.RecyclerViewImplementsContextMenu
+    <com.zkp.wanandroid.widget.RecyclerViewImplementsContextMenu
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

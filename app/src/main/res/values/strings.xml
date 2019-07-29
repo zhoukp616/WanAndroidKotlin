@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">WanAndroid</string>
 
-    <string name="scale_down_show_behavior">com.zkp.android.utils.ScaleDownShowBehavior</string>
-    <string name="bye_burger_bottom_behavior">com.zkp.android.utils.BottomNavigationBehavior</string>
+    <string name="scale_down_show_behavior">com.zkp.wanandroid.utils.ScaleDownShowBehavior</string>
+    <string name="bye_burger_bottom_behavior">com.zkp.wanandroid.utils.BottomNavigationBehavior</string>
 
     <string name="navigation_drawer_open">Open drawer</string>
     <string name="navigation_drawer_close">Close drawer</string>

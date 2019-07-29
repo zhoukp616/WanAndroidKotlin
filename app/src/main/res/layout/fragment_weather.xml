@@ -360,7 +360,7 @@
 
                 </LinearLayout>
 
-                <com.zkp.android.widget.SuitLines
+                <com.zkp.wanandroid.widget.SuitLines
                         android:id="@+id/suitLines"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp_200"
@@ -450,7 +450,7 @@
 
                     </LinearLayout>
 
-                    <com.zkp.android.widget.SunRiseSetView
+                    <com.zkp.wanandroid.widget.SunRiseSetView
                             android:id="@+id/sunRiseSetView"
                             android:layout_width="@dimen/dp_0"
                             android:layout_weight="4"
@@ -581,7 +581,7 @@
 
                 </LinearLayout>
 
-                <com.zkp.android.widget.OnePlusWeatherView
+                <com.zkp.wanandroid.widget.OnePlusWeatherView
                         android:id="@+id/onePlusWeatherView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
