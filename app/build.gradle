@@ -41,14 +41,20 @@ android {
         dev {
             keyAlias 'wanandroid_dev'
             keyPassword '123456'
-            storeFile file('D:/code/Git/WanAndroidKotlin/ot.jks')
+            storeFile file('D:/code/Git/WanAndroidKotlin/zkp.jks')
             storePassword '123456'
         }
         wanandroid {
             keyAlias 'wanandroid'
             keyPassword '123456'
-            storeFile file('D:/code/Git/WanAndroidKotlin/ot.jks')
+            storeFile file('D:/code/Git/WanAndroidKotlin/zkp.jks')
             storePassword '123456'
+        }
+        debug {
+            storeFile file('D:/code/Git/WanAndroidKotlin/zkp.jks')
+            storePassword '123456'
+            keyAlias = 'zkp'
+            keyPassword '123456'
         }
     }
 
@@ -140,7 +146,7 @@ dependencies {
     implementation rootProject.ext.dependencies["converter-moshi"]
     implementation rootProject.ext.dependencies["Kotlin-moshi"]
     implementation rootProject.ext.dependencies["glide"]
-    annotationProcessor rootProject.ext.dependencies["glide_compiler"]
+    kapt rootProject.ext.dependencies["glide_compiler"]
 
     //rx
     implementation rootProject.ext.dependencies["rxjava"]
@@ -148,11 +154,11 @@ dependencies {
 
     //di
     implementation rootProject.ext.dependencies["dagger2"]
-    annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
+    kapt rootProject.ext.dependencies["dagger2-compiler"]
     implementation rootProject.ext.dependencies["dagger2-android"]
     implementation rootProject.ext.dependencies["dagger2-android-support"]
-    annotationProcessor rootProject.ext.dependencies["dagger2-android-processor"]
-    annotationProcessor rootProject.ext.dependencies["javax_annotation"]
+    kapt rootProject.ext.dependencies["dagger2-android-processor"]
+    kapt rootProject.ext.dependencies["javax_annotation"]
     implementation rootProject.ext.dependencies["butterknife"]
     kapt rootProject.ext.dependencies["butterknife-compiler"]
 

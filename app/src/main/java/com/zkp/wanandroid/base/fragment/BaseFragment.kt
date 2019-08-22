@@ -9,7 +9,6 @@ import com.sunchen.netbus.type.Mode
 import com.zkp.wanandroid.R
 import com.zkp.wanandroid.base.presenter.IPresenter
 import com.zkp.wanandroid.base.view.IView
-import javax.inject.Inject
 
 /**
  * @author: zkp
@@ -21,7 +20,6 @@ import javax.inject.Inject
 @Suppress("UNCHECKED_CAST")
 abstract class BaseFragment<in V : IView, P : IPresenter<V>> : AbstractSimpleFragment(), IView {
 
-    @Inject
     protected var mPresenter: P? = null
     private var mMultipleStatusView: MultipleStatusView? = null
 

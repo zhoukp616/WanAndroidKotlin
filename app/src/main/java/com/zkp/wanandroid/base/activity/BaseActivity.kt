@@ -8,7 +8,6 @@ import com.zkp.wanandroid.R
 import com.zkp.wanandroid.base.presenter.IPresenter
 import com.zkp.wanandroid.base.view.IView
 import com.zkp.wanandroid.utils.CommonUtils
-import javax.inject.Inject
 
 /**
  * @author: zkp
@@ -20,7 +19,6 @@ import javax.inject.Inject
 @Suppress("UNCHECKED_CAST")
 abstract class BaseActivity<in V : IView, P : IPresenter<V>> : AbstractSimpleActivity(), IView {
 
-    @Inject
     protected var mPresenter: P? = null
     private var mMultipleStatusView: MultipleStatusView? = null
 
